@@ -1,0 +1,12 @@
+Журнал рендеринга Adobe After Effects v13.7.1 Windows 64 для проекта «Components.aep»
+
+Рендеринг начат 14.01.2020 в 17:27:08
+
+  14.01.2020 17:27:08: Начало композиции «Components_e».
+
+  Вывод в: C:\Users\Evgenij\Amper VPL\Animations\Components_e\Components_e_[#####].png    14.01.2020 17:27:09: Окончание композиции «Components_e».
+
+
+  Всего времени прошло: 1 секунд
+Журнал закрыт 14.01.2020 в 17:27:09
+
