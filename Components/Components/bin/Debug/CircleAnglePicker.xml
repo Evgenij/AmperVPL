@@ -1,0 +1,346 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CircleAnglePicker</name>
+    </assembly>
+    <members>
+        <member name="T:System.Windows.Forms.CircleAnglePicker">
+            <summary>
+            Represents a component to pick an angle.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.circleBackColor">
+            <summary>
+            Defines the circleBackColor.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.circleColor">
+            <summary>
+            Defines the circleColor.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.circleWidth">
+            <summary>
+            Defines the circleWidth.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.coreColor">
+            <summary>
+            Defines the coreColor.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.coreType">
+            <summary>
+            Defines the coreType.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.coreWidth">
+            <summary>
+            Defines the coreWidth.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.currentValue">
+            <summary>
+            Defines the currentValue.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.innerCircle">
+            <summary>
+            Defines the innerCircle.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.innerCircleColor">
+            <summary>
+            Defines the innerCircleColor.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.innerCircleOffset">
+            <summary>
+            Defines the innerCircleOffset.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.innerCircleStyle">
+            <summary>
+            Defines the innerCircleStyle
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.innerCircleWidth">
+            <summary>
+            Defines the innerCircleWidth
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.lineCap">
+            <summary>
+            Defines the lineCap
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.lineColor">
+            <summary>
+            Defines the lineColor
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.lineCut">
+            <summary>
+            Defines the lineCut
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.lineStyle">
+            <summary>
+            Defines the lineStyle
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.lineWidth">
+            <summary>
+            Defines the lineWidth
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.shading">
+            <summary>
+            Defines the shading
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.shadingOpacity">
+            <summary>
+            Defines the shadingOpacity.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.shadingScale">
+            <summary>
+            Defines the shadingScale.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.CircleAnglePicker.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Windows.Forms.CircleAnglePicker"/> class.
+            </summary>
+        </member>
+        <member name="E:System.Windows.Forms.CircleAnglePicker.ValueChanged">
+            <summary>
+            Specifies the value change handler.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.AutoScroll">
+            <summary>
+            Gets or sets a value indicating whether AutoScroll.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.AutoScrollMargin">
+            <summary>
+            Gets or sets the AutoScrollMargin.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.AutoScrollMinSize">
+            <summary>
+            Gets or sets the AutoScrollMinSize.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.AutoSize">
+            <summary>
+            Gets or sets a value indicating whether AutoSize.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.AutoSizeMode">
+            <summary>
+            Gets or sets the AutoSizeMode.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.CircleBackColor">
+            <summary>
+            Gets or sets background color of the circle.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.CircleColor">
+            <summary>
+            Gets or sets contour color of the circle.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.CircleWidth">
+            <summary>
+            Gets or sets contour width of the circle.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.CoreColor">
+            <summary>
+            Gets or sets color of the core.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.CoreType">
+            <summary>
+            Gets or sets type of the core.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.CoreWidth">
+            <summary>
+            Gets or sets the size of core.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.Font">
+            <summary>
+            Gets or sets the Font.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.ForeColor">
+            <summary>
+            Gets or sets the ForeColor.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.ImeMode">
+            <summary>
+            Gets or sets the ImeMode.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.InnerCircle">
+            <summary>
+            Gets or sets a value indicating whether the inner circle should be displayed or not.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.InnerCircleColor">
+            <summary>
+            Gets or sets the color of the inner circle.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.InnerCircleOffset">
+            <summary>
+            Gets or sets an offset from the contour of the main circle.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.InnerCircleStyle">
+            <summary>
+            Gets or sets dash-style of the inner circle contour.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.InnerCircleWidth">
+            <summary>
+            Gets or sets the thickness of the inner circle.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.LineCap">
+            <summary>
+            Gets or sets the cap style of the line.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.LineColor">
+            <summary>
+            Gets or sets the color of the line.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.LineCut">
+            <summary>
+            Gets or sets the size to which the line length should be reduced.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.LineStyle">
+            <summary>
+            Gets or sets the dash-style of the line.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.LineWidth">
+            <summary>
+            Gets or sets the line thickness.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.Shading">
+            <summary>
+            Gets or sets a value indicating whether to display a shading circle or not.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.ShadingOpacity">
+            <summary>
+            Gets or sets the transparency level of the shading.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.ShadingScale">
+            <summary>
+            Gets or sets the size of the shading.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.Size">
+            <summary>
+            Gets or sets the size of this control is in pixels.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.CircleAnglePicker.Value">
+            <summary>
+            Gets or sets the value indicating the angle.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.CircleAnglePicker.ProcessCmdKey(System.Windows.Forms.Message@,System.Windows.Forms.Keys)">
+            <summary>
+            Processes a command key.
+            </summary>
+            <param name="msg">A <see cref="T:System.Windows.Forms.Message"/>, passed by reference, that represents the window message to process.</param>
+            <param name="keyData">One of the <see cref="T:System.Windows.Forms.Keys"/> values that represents the key to process.</param>
+            <returns><c>true</c> if the character was processed by the control; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:System.Windows.Forms.CircleAnglePicker.DrawCircle(System.Drawing.Graphics,System.Drawing.Rectangle)">
+            <summary>
+            Draws circle.
+            </summary>
+            <param name="g">The <see cref="T:System.Drawing.Graphics"/> instance.</param>
+            <param name="rect">The <see cref="T:System.Drawing.Rectangle"/> of the circle.</param>
+        </member>
+        <member name="M:System.Windows.Forms.CircleAnglePicker.DrawLine(System.Drawing.Graphics,System.Drawing.Rectangle)">
+            <summary>
+            Draws line.
+            </summary>
+            <param name="g">The <see cref="T:System.Drawing.Graphics"/> instance.</param>
+            <param name="rect">The <see cref="T:System.Drawing.Rectangle"/> of the circle.</param>
+        </member>
+        <member name="M:System.Windows.Forms.CircleAnglePicker.DrawPoint(System.Drawing.Graphics,System.Drawing.Rectangle)">
+            <summary>
+            Draws core.
+            </summary>
+            <param name="g">The <see cref="T:System.Drawing.Graphics"/> instance.</param>
+            <param name="rect">The <see cref="T:System.Drawing.Rectangle"/> of the circle.</param>
+        </member>
+        <member name="M:System.Windows.Forms.CircleAnglePicker.SetAngle(System.Drawing.Point)">
+            <summary>
+            Converts point to angle and sets value.
+            </summary>
+            <param name="p">The <see cref="T:System.Drawing.Point"/>Point to processing.</param>
+        </member>
+        <member name="M:System.Windows.Forms.CircleAnglePicker.SetValue(System.Int32)">
+            <summary>
+            Checks the incoming value, normalizes it and passes to value property.
+            </summary>
+            <param name="value">The value to check and set.</param>
+        </member>
+        <member name="F:System.Windows.Forms.CircleAnglePicker.components">
+            <summary> 
+            Обязательная переменная конструктора.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.CircleAnglePicker.Dispose(System.Boolean)">
+            <summary> 
+            Освободить все используемые ресурсы.
+            </summary>
+            <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
+        </member>
+        <member name="M:System.Windows.Forms.CircleAnglePicker.InitializeComponent">
+            <summary> 
+            Требуемый метод для поддержки конструктора — не изменяйте 
+            содержимое этого метода с помощью редактора кода.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Forms.CoreType">
+            <summary>
+            List of types for drawing the core.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CoreType.None">
+            <summary>
+            Do not draw the core.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CoreType.Rectangle">
+            <summary>
+            Rectangular core.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.CoreType.Ellipse">
+            <summary>
+            Round core.
+            </summary>
+        </member>
+    </members>
+</doc>
