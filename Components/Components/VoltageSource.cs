@@ -1,157 +1,154 @@
 ﻿using System;
-using System.Windows.Forms;
+using System.Collections.Generic;
 using System.Drawing;
-
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Components
 {
-    class Multimeter : MeterDevice, IVisualization
+    class VoltageSource : Device, IVisualization
     {
+        //компоненты формы для создания резистора
         private PictureBox picture;
-        private PictureBox button;
         private PictureBox status;
         private PictureBox contactMinus;
         private PictureBox contactPlus;
         private TextBox labelValue;
         private Zeroit.Framework.Metro.ZeroitMetroKnob knob;
+        private Zeroit.Framework.Metro.ZeroitMetroSwitch _switch;
 
-        public Multimeter()
+        private int voltage;
+        
+
+        public VoltageSource()
         {
             picture = new PictureBox();
-            button = new PictureBox();
+            labelValue = new TextBox();
             status = new PictureBox();
             contactMinus = new PictureBox();
             contactPlus = new PictureBox();
-            labelValue = new TextBox();
             knob = new Zeroit.Framework.Metro.ZeroitMetroKnob();
+            _switch = new Zeroit.Framework.Metro.ZeroitMetroSwitch();
 
+            labelValue.Text = "1";
+            voltage = 1;
             statusDevice = false;
-            labelValue.Text = "0";
-            labelValue.Hide();
-            Value = 0;
-        }
-
-        public double Calculate()
-        {
-            return 10.0;
         }
 
         public void Visualization(Form form, int x, int y)
         {
-            statusDevice = false;
-            labelValue.Text = "0";
-            labelValue.Hide();
-
-            picture.Width = 120;
-            picture.Height = 199;
+            picture.Width = 252;
+            picture.Height = 96;
             picture.Left = x - picture.Width / 2;
             picture.Top = y - picture.Height / 2;
             picture.SizeMode = PictureBoxSizeMode.AutoSize;
             picture.BackColor = Color.Transparent;
-            picture.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\multimetr\multimetr.png");
-
-            button.Width = 41;
-            button.Height = 18;
-            button.Left = 15;
-            button.Top = 58;
-            button.Cursor = Cursors.Hand;
-            button.SizeMode = PictureBoxSizeMode.AutoSize;
-            button.BackColor = Color.Transparent;
-            button.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\multimetr\power1.png");
-            button.Click += Button_Click;
-            button.MouseDown += Button_MouseDown;
-            button.MouseUp += Button_MouseUp;
-            picture.Controls.Add(button);
-
-            status.Width = 8;
-            status.Height = 8;
-            status.Left = 80;
-            status.Top = 60;
-            status.SizeMode = PictureBoxSizeMode.AutoSize;
-            status.BackColor = Color.Transparent;
-            status.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\multimetr\status_off.png");
-            picture.Controls.Add(status);
-
-            GlobalData.LoadBigFont();  //метод загрузки шрифта
+            picture.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\voltage\voltage.png");
+            
+            GlobalData.LoadFont();  //метод загрузки шрифта
+            labelValue.Hide();
             labelValue.ReadOnly = true;
             labelValue.TabStop = false;
             labelValue.Font = GlobalData.DigitalFont;
-            labelValue.Left = 22;
-            labelValue.Top = 25;
+            labelValue.Left = 179;
+            labelValue.Top = 39;
             labelValue.BorderStyle = BorderStyle.None;
             labelValue.BackColor = Color.Black;
-            labelValue.Width = 75;
-            labelValue.ForeColor = Color.Silver;
+            labelValue.Width = 50;
+            labelValue.ForeColor = Color.DeepSkyBlue;
             labelValue.TextAlign = HorizontalAlignment.Right;
             labelValue.Cursor = Cursors.Hand;
             labelValue.MouseMove += LabelValue_MouseMove;
             labelValue.TextChanged += LabelValue_TextChanged;
             picture.Controls.Add(labelValue);
 
-            knob.Top = 105;
-            knob.Left = 32;
-            knob.Width = 59;
-            knob.Height = 59;
-            knob.BlockedAngle = 0;
+            knob.Top = 20;
+            knob.Left = 90;
+            knob.Width = 63;
+            knob.Height = 63;
+            knob.BlockedAngle = 90;
+            knob.Maximum = 50;
+            knob.Minimum = 1;
+            knob.Value = 1;
             knob.BorderColor = Color.DimGray;
             knob.LineColor = Color.DimGray;
             knob.AccentColor = Color.DimGray;
             knob.FillColor = Color.Black;
             knob.Cursor = Cursors.Hand;
-            knob.LineWidth = 7;
+            knob.LineWidth = 9;
             knob.LineLength = 100;
             knob.LinePen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
             knob.LinePen.StartCap = System.Drawing.Drawing2D.LineCap.NoAnchor;
             knob.LinePen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             knob.LinePen.DashCap = System.Drawing.Drawing2D.DashCap.Flat;
+            knob.ValueChanged += Knob_ValueChanged;
             picture.Controls.Add(knob);
 
-            contactMinus.Width = 33;
+            status.Width = 10;
+            status.Height = 10;
+            status.Left = 20;
+            status.Top = 22;
+            status.SizeMode = PictureBoxSizeMode.AutoSize;
+            status.BackColor = Color.Transparent;
+            status.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\voltage\status_off.png");
+            picture.Controls.Add(status);
+
+            _switch.Width = 38;
+            _switch.Height = 20;
+            _switch.Left = 36;
+            _switch.Top = 17;
+            _switch.Cursor = Cursors.Hand;
+            _switch.DefaultColor = Color.DodgerBlue;
+            _switch.CheckColor = Color.Silver;
+            _switch.HoverColor = Color.DodgerBlue;
+            _switch.CheckedChanged += _switch_CheckedChanged;
+            picture.Controls.Add(_switch);
+
+            contactMinus.Width = 34;
             contactMinus.Height = 12;
-            contactMinus.Left = 16;
-            contactMinus.Top = 192;
+            contactMinus.Left = 174;
+            contactMinus.Top = 90;
             contactMinus.Cursor = Cursors.Hand;
             contactMinus.BackColor = Color.Transparent;
             picture.Controls.Add(contactMinus);
 
-            contactPlus.Width = 33;
+            contactPlus.Width = 34;
             contactPlus.Height = 12;
-            contactPlus.Left = 49;
-            contactPlus.Top = 192;
+            contactPlus.Left = 208;
+            contactPlus.Top = 90;
             contactPlus.Cursor = Cursors.Hand;
             contactPlus.BackColor = Color.Transparent;
             picture.Controls.Add(contactPlus);
 
-            labelValue.BringToFront();
+            picture.SendToBack();
+            knob.BringToFront();
             contactMinus.BringToFront();
             contactPlus.BringToFront();
+            _switch.BringToFront();
             form.Controls.Add(picture);
         }
 
-        private void Button_MouseUp(object sender, MouseEventArgs e)
-        {
-            button.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\multimetr\power1.png");
-        }
-
-        private void Button_MouseDown(object sender, MouseEventArgs e)
-        {
-            button.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\multimetr\power2.png");
-        }
-
-        private void Button_Click(object sender, EventArgs e)
+        private void _switch_CheckedChanged(object sender, EventArgs e)
         {
             if (statusDevice == false)
             {
-                status.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\multimetr\status_on.png");
+                status.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\voltage\status_on.png");
                 labelValue.Show();
                 statusDevice = true;
             }
             else
             {
-                status.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\multimetr\status_off.png");
+                status.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\voltage\status_off.png");
                 labelValue.Hide();
                 statusDevice = false;
             }
+        }
+
+        private void Knob_ValueChanged(object sender, EventArgs e)
+        {
+            labelValue.Text = Convert.ToString(knob.Value);
         }
 
         //метод для отключения выделения текста в TextBox компонента

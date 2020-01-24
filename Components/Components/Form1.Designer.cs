@@ -44,7 +44,7 @@
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.zeroitMetroTrackbar1 = new Zeroit.Framework.Metro.ZeroitMetroTrackbar();
+            this.zeroitMetroSwitch1 = new Zeroit.Framework.Metro.ZeroitMetroSwitch();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -143,22 +143,22 @@
             // radioButton6
             // 
             this.radioButton6.AutoSize = true;
+            this.radioButton6.Checked = true;
             this.radioButton6.Location = new System.Drawing.Point(6, 134);
             this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(85, 17);
+            this.radioButton6.Size = new System.Drawing.Size(138, 17);
             this.radioButton6.TabIndex = 5;
-            this.radioButton6.Text = "radioButton6";
+            this.radioButton6.TabStop = true;
+            this.radioButton6.Text = "Источник напряжения";
             this.radioButton6.UseVisualStyleBackColor = true;
             // 
             // radioButton5
             // 
             this.radioButton5.AutoSize = true;
-            this.radioButton5.Checked = true;
             this.radioButton5.Location = new System.Drawing.Point(6, 111);
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(66, 17);
             this.radioButton5.TabIndex = 4;
-            this.radioButton5.TabStop = true;
             this.radioButton5.Text = "Реостат";
             this.radioButton5.UseVisualStyleBackColor = true;
             // 
@@ -222,28 +222,29 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // zeroitMetroTrackbar1
+            // zeroitMetroSwitch1
             // 
-            this.zeroitMetroTrackbar1.BackColor = System.Drawing.Color.Transparent;
-            this.zeroitMetroTrackbar1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.zeroitMetroTrackbar1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
-            this.zeroitMetroTrackbar1.GradientColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(98)))), ((int)(((byte)(163)))));
-            this.zeroitMetroTrackbar1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
-            this.zeroitMetroTrackbar1.LeftColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.zeroitMetroTrackbar1.Location = new System.Drawing.Point(441, 328);
-            this.zeroitMetroTrackbar1.Name = "zeroitMetroTrackbar1";
-            this.zeroitMetroTrackbar1.RegionColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
-            this.zeroitMetroTrackbar1.RightColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(190)))), ((int)(((byte)(190)))));
-            this.zeroitMetroTrackbar1.Size = new System.Drawing.Size(196, 23);
-            this.zeroitMetroTrackbar1.SliderColor = System.Drawing.Color.White;
-            this.zeroitMetroTrackbar1.TabIndex = 3;
+            this.zeroitMetroSwitch1.BackColor = System.Drawing.Color.Transparent;
+            this.zeroitMetroSwitch1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.zeroitMetroSwitch1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
+            this.zeroitMetroSwitch1.CheckColor = System.Drawing.Color.DodgerBlue;
+            this.zeroitMetroSwitch1.Checked = true;
+            this.zeroitMetroSwitch1.DefaultColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(190)))), ((int)(((byte)(190)))));
+            this.zeroitMetroSwitch1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.zeroitMetroSwitch1.HoverColor = System.Drawing.Color.DodgerBlue;
+            this.zeroitMetroSwitch1.Location = new System.Drawing.Point(620, 319);
+            this.zeroitMetroSwitch1.Name = "zeroitMetroSwitch1";
+            this.zeroitMetroSwitch1.Size = new System.Drawing.Size(38, 23);
+            this.zeroitMetroSwitch1.SwitchColor = System.Drawing.Color.White;
+            this.zeroitMetroSwitch1.TabIndex = 4;
+            this.zeroitMetroSwitch1.Text = "zeroitMetroSwitch1";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1058, 654);
-            this.Controls.Add(this.zeroitMetroTrackbar1);
+            this.Controls.Add(this.zeroitMetroSwitch1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
@@ -275,7 +276,7 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private Zeroit.Framework.Metro.ZeroitMetroTrackbar zeroitMetroTrackbar1;
+        private Zeroit.Framework.Metro.ZeroitMetroSwitch zeroitMetroSwitch1;
     }
 }
 

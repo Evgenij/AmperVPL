@@ -8,6 +8,7 @@ namespace Components
 {
     class Device
     {
+        protected bool statusDevice;
         protected int X { get; set; }
         protected int Y { get; set; }
     }

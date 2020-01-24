@@ -41,7 +41,7 @@ namespace Components
             picture.Top = y - picture.Height / 2;
             picture.SizeMode = PictureBoxSizeMode.AutoSize;
             picture.BackColor = Color.Transparent;
-            picture.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\rheostat\rheostat2.png");
+            picture.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\rheostat\rheostat.png");
  
             slider.Top = 36;
             slider.Left = 37;
