@@ -15,7 +15,9 @@ namespace Components
     {
         Ammeter ammeter;
         Voltmeter voltmeter;
-        Multimetr multimetr;
+        Multimeter multimetr;
+        Resistor resistor;
+        Rheostat rheostat;
         int x, y;
 
         public MainForm()
@@ -23,7 +25,9 @@ namespace Components
             InitializeComponent();
             ammeter = new Ammeter();
             voltmeter = new Voltmeter();
-            multimetr = new Multimetr();
+            multimetr = new Multimeter();
+            resistor = new Resistor();
+            rheostat = new Rheostat();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -42,6 +46,11 @@ namespace Components
             ammeter.Calculate(50,2.5);
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            voltmeter.Calculate(12,2);
+        }
+
         private void MainForm_Click(object sender, EventArgs e)
         {
             if (radioButton1.Checked == true)
@@ -58,11 +67,11 @@ namespace Components
             }
             else if (radioButton4.Checked == true)
             {
-
+                resistor.Visualization(this, x, y);
             }
             else if (radioButton5.Checked == true)
             {
-
+                rheostat.Visualization(this, x, y);
             }
             else if (radioButton6.Checked == true)
             {

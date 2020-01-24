@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Zeroit.Framework.Metro.PenParameters penParameters5 = new Zeroit.Framework.Metro.PenParameters();
-            Zeroit.Framework.Metro.PenParameters penParameters6 = new Zeroit.Framework.Metro.PenParameters();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButton13 = new System.Windows.Forms.RadioButton();
             this.radioButton12 = new System.Windows.Forms.RadioButton();
@@ -45,7 +43,8 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
-            this.zeroitMetroKnob1 = new Zeroit.Framework.Metro.ZeroitMetroKnob();
+            this.button2 = new System.Windows.Forms.Button();
+            this.zeroitMetroTrackbar1 = new Zeroit.Framework.Metro.ZeroitMetroTrackbar();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -154,11 +153,13 @@
             // radioButton5
             // 
             this.radioButton5.AutoSize = true;
+            this.radioButton5.Checked = true;
             this.radioButton5.Location = new System.Drawing.Point(6, 111);
             this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(85, 17);
+            this.radioButton5.Size = new System.Drawing.Size(66, 17);
             this.radioButton5.TabIndex = 4;
-            this.radioButton5.Text = "radioButton5";
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "Реостат";
             this.radioButton5.UseVisualStyleBackColor = true;
             // 
             // radioButton4
@@ -166,9 +167,9 @@
             this.radioButton4.AutoSize = true;
             this.radioButton4.Location = new System.Drawing.Point(6, 88);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(85, 17);
+            this.radioButton4.Size = new System.Drawing.Size(73, 17);
             this.radioButton4.TabIndex = 3;
-            this.radioButton4.Text = "radioButton4";
+            this.radioButton4.Text = "Резистор";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
             // radioButton3
@@ -194,12 +195,10 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
             this.radioButton1.Location = new System.Drawing.Point(6, 19);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(83, 17);
             this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Амперметр";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
@@ -213,45 +212,39 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // zeroitMetroKnob1
+            // button2
             // 
-            this.zeroitMetroKnob1.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.zeroitMetroKnob1.AllowTransparency = true;
-            this.zeroitMetroKnob1.BlockedAngle = 90F;
-            this.zeroitMetroKnob1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
-            penParameters5.Alignment = System.Drawing.Drawing2D.PenAlignment.Center;
-            penParameters5.DashCap = System.Drawing.Drawing2D.DashCap.Flat;
-            penParameters5.DashOffset = 0.5F;
-            penParameters5.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
-            penParameters5.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
-            penParameters5.LineJoin = System.Drawing.Drawing2D.LineJoin.Bevel;
-            penParameters5.StartCap = System.Drawing.Drawing2D.LineCap.DiamondAnchor;
-            penParameters5.Width = 1;
-            this.zeroitMetroKnob1.CirclePen = penParameters5;
-            this.zeroitMetroKnob1.DefaultColor = System.Drawing.Color.White;
-            this.zeroitMetroKnob1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.zeroitMetroKnob1.GradientColor = System.Drawing.Color.White;
-            this.zeroitMetroKnob1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
-            penParameters6.Alignment = System.Drawing.Drawing2D.PenAlignment.Center;
-            penParameters6.DashCap = System.Drawing.Drawing2D.DashCap.Flat;
-            penParameters6.DashOffset = 0.5F;
-            penParameters6.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
-            penParameters6.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
-            penParameters6.LineJoin = System.Drawing.Drawing2D.LineJoin.Bevel;
-            penParameters6.StartCap = System.Drawing.Drawing2D.LineCap.DiamondAnchor;
-            penParameters6.Width = 1;
-            this.zeroitMetroKnob1.LinePen = penParameters6;
-            this.zeroitMetroKnob1.Location = new System.Drawing.Point(534, 320);
-            this.zeroitMetroKnob1.Name = "zeroitMetroKnob1";
-            this.zeroitMetroKnob1.Size = new System.Drawing.Size(75, 75);
-            this.zeroitMetroKnob1.TabIndex = 2;
+            this.button2.Location = new System.Drawing.Point(971, 41);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // zeroitMetroTrackbar1
+            // 
+            this.zeroitMetroTrackbar1.BackColor = System.Drawing.Color.Transparent;
+            this.zeroitMetroTrackbar1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.zeroitMetroTrackbar1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
+            this.zeroitMetroTrackbar1.GradientColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(98)))), ((int)(((byte)(163)))));
+            this.zeroitMetroTrackbar1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.zeroitMetroTrackbar1.LeftColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.zeroitMetroTrackbar1.Location = new System.Drawing.Point(441, 328);
+            this.zeroitMetroTrackbar1.Name = "zeroitMetroTrackbar1";
+            this.zeroitMetroTrackbar1.RegionColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.zeroitMetroTrackbar1.RightColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(190)))), ((int)(((byte)(190)))));
+            this.zeroitMetroTrackbar1.Size = new System.Drawing.Size(196, 23);
+            this.zeroitMetroTrackbar1.SliderColor = System.Drawing.Color.White;
+            this.zeroitMetroTrackbar1.TabIndex = 3;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1058, 654);
-            this.Controls.Add(this.zeroitMetroKnob1);
+            this.Controls.Add(this.zeroitMetroTrackbar1);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Name = "MainForm";
@@ -281,7 +274,8 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Button button1;
-        private Zeroit.Framework.Metro.ZeroitMetroKnob zeroitMetroKnob1;
+        private System.Windows.Forms.Button button2;
+        private Zeroit.Framework.Metro.ZeroitMetroTrackbar zeroitMetroTrackbar1;
     }
 }
 
