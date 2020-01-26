@@ -77,7 +77,7 @@ namespace Components
             probe.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\rheostat\probe.png");
             picture.Controls.Add(probe);
 
-            GlobalData.LoadFont();  //метод загрузки шрифта
+            GlobalData.LoadFont(12);  //метод загрузки шрифта
             labelValue.ReadOnly = true;
             labelValue.TabStop = false;
             labelValue.Font = GlobalData.DigitalFont;

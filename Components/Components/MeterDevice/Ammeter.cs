@@ -5,7 +5,7 @@ using System.Drawing.Text;
 
 namespace Components
 {
-    class Ammeter : MeterDevice, ICalculate, IVisualization
+    class Ammeter : MeterDevice, IVisualization
     {
         //компоненты формы для создания амперметра
         private PictureBox picture;
@@ -58,7 +58,7 @@ namespace Components
             picture.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\ammeter\ammeter.png");
             form.Controls.Add(picture);
 
-            GlobalData.LoadFont();  //метод загрузки шрифта
+            GlobalData.LoadFont(12);  //метод загрузки шрифта
             labelValue.ReadOnly = true;
             labelValue.TabStop = false;
             labelValue.Font = GlobalData.DigitalFont;

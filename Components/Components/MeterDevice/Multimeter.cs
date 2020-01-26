@@ -72,7 +72,7 @@ namespace Components
             status.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\multimetr\status_off.png");
             picture.Controls.Add(status);
 
-            GlobalData.LoadBigFont();  //метод загрузки шрифта
+            GlobalData.LoadFont(18);  //метод загрузки шрифта
             labelValue.ReadOnly = true;
             labelValue.TabStop = false;
             labelValue.Font = GlobalData.DigitalFont;

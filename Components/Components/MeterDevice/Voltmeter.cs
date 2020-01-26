@@ -58,7 +58,7 @@ namespace Components
             picture.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\voltmeter\voltmeter.png");
             form.Controls.Add(picture);
 
-            GlobalData.LoadFont();  //метод загрузки шрифта
+            GlobalData.LoadFont(12);  //метод загрузки шрифта
             labelValue.ReadOnly = true;
             labelValue.TabStop = false;
             labelValue.Font = GlobalData.DigitalFont;

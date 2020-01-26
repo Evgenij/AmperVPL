@@ -47,7 +47,7 @@ namespace Components
             picture.BackColor = Color.Transparent;
             picture.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\voltage\voltage.png");
             
-            GlobalData.LoadFont();  //метод загрузки шрифта
+            GlobalData.LoadFont(12);  //метод загрузки шрифта
             labelValue.Hide();
             labelValue.ReadOnly = true;
             labelValue.TabStop = false;

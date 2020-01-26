@@ -54,6 +54,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Capacitor.cs" />
     <Compile Include="MeterDevice\Ammeter.cs" />
     <Compile Include="General_Classes\Device.cs" />
     <Compile Include="Form1.cs">
@@ -101,5 +102,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

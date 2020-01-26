@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme mainColorScheme1 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButton13 = new System.Windows.Forms.RadioButton();
             this.radioButton12 = new System.Windows.Forms.RadioButton();
@@ -44,7 +45,7 @@
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.zeroitMetroSwitch1 = new Zeroit.Framework.Metro.ZeroitMetroSwitch();
+            this.zeroitMetroCheckCircle1 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,9 +76,9 @@
             this.radioButton13.AutoSize = true;
             this.radioButton13.Location = new System.Drawing.Point(6, 295);
             this.radioButton13.Name = "radioButton13";
-            this.radioButton13.Size = new System.Drawing.Size(91, 17);
+            this.radioButton13.Size = new System.Drawing.Size(53, 17);
             this.radioButton13.TabIndex = 12;
-            this.radioButton13.Text = "radioButton13";
+            this.radioButton13.Text = "Часы";
             this.radioButton13.UseVisualStyleBackColor = true;
             // 
             // radioButton12
@@ -85,9 +86,9 @@
             this.radioButton12.AutoSize = true;
             this.radioButton12.Location = new System.Drawing.Point(6, 272);
             this.radioButton12.Name = "radioButton12";
-            this.radioButton12.Size = new System.Drawing.Size(91, 17);
+            this.radioButton12.Size = new System.Drawing.Size(76, 17);
             this.radioButton12.TabIndex = 11;
-            this.radioButton12.Text = "radioButton12";
+            this.radioButton12.Text = "Лампочка";
             this.radioButton12.UseVisualStyleBackColor = true;
             // 
             // radioButton11
@@ -95,9 +96,9 @@
             this.radioButton11.AutoSize = true;
             this.radioButton11.Location = new System.Drawing.Point(6, 249);
             this.radioButton11.Name = "radioButton11";
-            this.radioButton11.Size = new System.Drawing.Size(91, 17);
+            this.radioButton11.Size = new System.Drawing.Size(138, 17);
             this.radioButton11.TabIndex = 10;
-            this.radioButton11.Text = "radioButton11";
+            this.radioButton11.Text = "Область температуры";
             this.radioButton11.UseVisualStyleBackColor = true;
             // 
             // radioButton10
@@ -105,9 +106,9 @@
             this.radioButton10.AutoSize = true;
             this.radioButton10.Location = new System.Drawing.Point(6, 226);
             this.radioButton10.Name = "radioButton10";
-            this.radioButton10.Size = new System.Drawing.Size(91, 17);
+            this.radioButton10.Size = new System.Drawing.Size(51, 17);
             this.radioButton10.TabIndex = 9;
-            this.radioButton10.Text = "radioButton10";
+            this.radioButton10.Text = "Ключ";
             this.radioButton10.UseVisualStyleBackColor = true;
             // 
             // radioButton9
@@ -115,9 +116,9 @@
             this.radioButton9.AutoSize = true;
             this.radioButton9.Location = new System.Drawing.Point(6, 203);
             this.radioButton9.Name = "radioButton9";
-            this.radioButton9.Size = new System.Drawing.Size(85, 17);
+            this.radioButton9.Size = new System.Drawing.Size(115, 17);
             this.radioButton9.TabIndex = 8;
-            this.radioButton9.Text = "radioButton9";
+            this.radioButton9.Text = "Переключ. двойн.";
             this.radioButton9.UseVisualStyleBackColor = true;
             // 
             // radioButton8
@@ -125,30 +126,30 @@
             this.radioButton8.AutoSize = true;
             this.radioButton8.Location = new System.Drawing.Point(6, 180);
             this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(85, 17);
+            this.radioButton8.Size = new System.Drawing.Size(109, 17);
             this.radioButton8.TabIndex = 7;
-            this.radioButton8.Text = "radioButton8";
+            this.radioButton8.Text = "Переключ. один.";
             this.radioButton8.UseVisualStyleBackColor = true;
             // 
             // radioButton7
             // 
             this.radioButton7.AutoSize = true;
+            this.radioButton7.Checked = true;
             this.radioButton7.Location = new System.Drawing.Point(6, 157);
             this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(85, 17);
+            this.radioButton7.Size = new System.Drawing.Size(91, 17);
             this.radioButton7.TabIndex = 6;
-            this.radioButton7.Text = "radioButton7";
+            this.radioButton7.TabStop = true;
+            this.radioButton7.Text = "Конденсатор";
             this.radioButton7.UseVisualStyleBackColor = true;
             // 
             // radioButton6
             // 
             this.radioButton6.AutoSize = true;
-            this.radioButton6.Checked = true;
             this.radioButton6.Location = new System.Drawing.Point(6, 134);
             this.radioButton6.Name = "radioButton6";
             this.radioButton6.Size = new System.Drawing.Size(138, 17);
             this.radioButton6.TabIndex = 5;
-            this.radioButton6.TabStop = true;
             this.radioButton6.Text = "Источник напряжения";
             this.radioButton6.UseVisualStyleBackColor = true;
             // 
@@ -222,29 +223,27 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // zeroitMetroSwitch1
+            // zeroitMetroCheckCircle1
             // 
-            this.zeroitMetroSwitch1.BackColor = System.Drawing.Color.Transparent;
-            this.zeroitMetroSwitch1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.zeroitMetroSwitch1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
-            this.zeroitMetroSwitch1.CheckColor = System.Drawing.Color.DodgerBlue;
-            this.zeroitMetroSwitch1.Checked = true;
-            this.zeroitMetroSwitch1.DefaultColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(190)))), ((int)(((byte)(190)))));
-            this.zeroitMetroSwitch1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.zeroitMetroSwitch1.HoverColor = System.Drawing.Color.DodgerBlue;
-            this.zeroitMetroSwitch1.Location = new System.Drawing.Point(620, 319);
-            this.zeroitMetroSwitch1.Name = "zeroitMetroSwitch1";
-            this.zeroitMetroSwitch1.Size = new System.Drawing.Size(38, 23);
-            this.zeroitMetroSwitch1.SwitchColor = System.Drawing.Color.White;
-            this.zeroitMetroSwitch1.TabIndex = 4;
-            this.zeroitMetroSwitch1.Text = "zeroitMetroSwitch1";
+            mainColorScheme1.BorderColor = System.Drawing.Color.Transparent;
+            mainColorScheme1.FillColor = System.Drawing.Color.Maroon;
+            mainColorScheme1.InnerCirclecolor = System.Drawing.Color.Maroon;
+            this.zeroitMetroCheckCircle1.ColorScheme = mainColorScheme1;
+            this.zeroitMetroCheckCircle1.Location = new System.Drawing.Point(258, 427);
+            this.zeroitMetroCheckCircle1.Name = "zeroitMetroCheckCircle1";
+            this.zeroitMetroCheckCircle1.Size = new System.Drawing.Size(127, 22);
+            this.zeroitMetroCheckCircle1.TabIndex = 3;
+            this.zeroitMetroCheckCircle1.EnabledChanged += new System.EventHandler(this.zeroitMetroCheckCircle1_EnabledChanged);
+            this.zeroitMetroCheckCircle1.StyleChanged += new System.EventHandler(this.zeroitMetroCheckCircle1_StyleChanged);
+            this.zeroitMetroCheckCircle1.Validated += new System.EventHandler(this.zeroitMetroCheckCircle1_Validated);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1058, 654);
-            this.Controls.Add(this.zeroitMetroSwitch1);
+            this.Controls.Add(this.zeroitMetroCheckCircle1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
@@ -276,7 +275,7 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private Zeroit.Framework.Metro.ZeroitMetroSwitch zeroitMetroSwitch1;
+        private Zeroit.Framework.Metro.ZeroitMetroCheckCircle zeroitMetroCheckCircle1;
     }
 }
 

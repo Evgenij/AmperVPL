@@ -41,7 +41,7 @@ namespace Components
             picture.BackColor = Color.Transparent;
             picture.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\resistor\resistor.png");
 
-            GlobalData.LoadFont();  //метод загрузки шрифта
+            GlobalData.LoadFont(12);  //метод загрузки шрифта
             labelValue.ReadOnly = true;
             labelValue.TabStop = false;
             labelValue.Font = GlobalData.DigitalFont;

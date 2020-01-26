@@ -19,6 +19,7 @@ namespace Components
         Resistor resistor;
         Rheostat rheostat;
         VoltageSource voltageSource;
+        Capacitor capacitor;
 
         int x, y;
 
@@ -31,6 +32,7 @@ namespace Components
             resistor = new Resistor();
             rheostat = new Rheostat();
             voltageSource = new VoltageSource();
+            capacitor = new Capacitor();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -52,6 +54,21 @@ namespace Components
         private void button2_Click(object sender, EventArgs e)
         {
             voltmeter.Calculate(12,2);
+        }
+
+        private void zeroitMetroCheckCircle1_StyleChanged(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void zeroitMetroCheckCircle1_EnabledChanged(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void zeroitMetroCheckCircle1_Validated(object sender, EventArgs e)
+        {
+            MessageBox.Show("1");
         }
 
         private void MainForm_Click(object sender, EventArgs e)
@@ -82,7 +99,7 @@ namespace Components
             }
             else if (radioButton7.Checked == true)
             {
-
+                capacitor.Visualization(this, x, y);
             }
             else if (radioButton8.Checked == true)
             {
