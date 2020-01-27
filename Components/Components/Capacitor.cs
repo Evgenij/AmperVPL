@@ -193,7 +193,7 @@ namespace Components
             {
                 countCapacitors++;
                 labelValue.Text = Convert.ToString(countCapacitors);
-                if (countCapacitors >= 2) 
+                if (countCapacitors == 2) 
                 {
                     pictureSeq.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\capacitors\sequentially1.png");
                     picturePar.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\capacitors\parallel0.png");

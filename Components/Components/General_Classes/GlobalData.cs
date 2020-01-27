@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Components
 {
@@ -14,6 +9,7 @@ namespace Components
         public const double multiplierValues = 3.6;
         public enum TypeCapacitor { Flat, Cylinder }
         public enum TypeConnectionCapacitors { Sequentially, Parallel }
+
         //Создание объекта, для работы с файлом
         public static INIManager iniManager = new INIManager("iniFile.ini");
 

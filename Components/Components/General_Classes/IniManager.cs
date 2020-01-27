@@ -25,31 +25,41 @@ namespace Components
             Path = new FileInfo(IniPath ?? EXE + ".ini").FullName.ToString();
         }
 
-        public string Read(string Section, string Key)
+        public string ReadString(string Section, string Key)
         {
             var RetVal = new StringBuilder(255);
             GetPrivateProfileString(Section ?? EXE, Key, "", RetVal, 255, Path);
             return RetVal.ToString();
         }
+        public int ReadInt(string Section, string Key)
+        {
+            var RetVal = new StringBuilder(255);
+            GetPrivateProfileString(Section ?? EXE, Convert.ToString(Key), "", RetVal, 255, Path);
+            return Convert.ToInt32(RetVal.ToString());
+        }
 
-        public void Write(string Section, string Key, string Value)
+        public void WriteString(string Section, string Key, string Value)
         {
             WritePrivateProfileString(Section ?? EXE, Key, Value, Path);
+        }
+        public void WriteInt(string Section, string Key, int Value)
+        {
+            WritePrivateProfileString(Section ?? EXE, Key, Convert.ToString(Value), Path);
         }
 
         public void DeleteKey(string Section, string Key)
         {
-            Write(Section ?? EXE, Key, null);
+            WriteString(Section ?? EXE, Key, null);
         }
 
         public void DeleteSection(string Section = null)
         {
-            Write(Section ?? EXE, null, null);
+            WriteString(Section ?? EXE, null, null);
         }
 
         public bool KeyExists(string Section, string Key)
         {
-            return Read(Section, Key).Length > 0;
+            return ReadString(Section, Key).Length > 0;
         }
     }
 }

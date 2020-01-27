@@ -46,11 +46,18 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -250,15 +257,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ini файлы";
             // 
-            // button4
+            // button6
             // 
-            this.button4.Location = new System.Drawing.Point(16, 65);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(138, 32);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Проверка ключа";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button6.Location = new System.Drawing.Point(16, 103);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(138, 32);
+            this.button6.TabIndex = 6;
+            this.button6.Text = "Удаление ключа";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button5
             // 
@@ -270,15 +277,75 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // button6
+            // button4
             // 
-            this.button6.Location = new System.Drawing.Point(16, 103);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(138, 32);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "Удаление ключа";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button4.Location = new System.Drawing.Point(16, 65);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(138, 32);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "Проверка ключа";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(615, 258);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 14;
+            this.button7.Text = "button7";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button8);
+            this.groupBox3.Controls.Add(this.button9);
+            this.groupBox3.Controls.Add(this.button10);
+            this.groupBox3.Controls.Add(this.button11);
+            this.groupBox3.Location = new System.Drawing.Point(187, 342);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(170, 197);
+            this.groupBox3.TabIndex = 14;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Students";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(16, 103);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(138, 32);
+            this.button8.TabIndex = 6;
+            this.button8.Text = "Удаление ключа";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(16, 142);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(138, 32);
+            this.button9.TabIndex = 5;
+            this.button9.Text = "Удаление секции";
+            this.button9.UseVisualStyleBackColor = true;
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(16, 65);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(138, 32);
+            this.button10.TabIndex = 4;
+            this.button10.Text = "Авторизация";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(16, 27);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(138, 32);
+            this.button11.TabIndex = 3;
+            this.button11.Text = "Регистрация";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // MainForm
             // 
@@ -286,6 +353,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1058, 625);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -297,6 +366,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -324,6 +394,12 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
     }
 }
 

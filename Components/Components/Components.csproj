@@ -76,8 +76,9 @@
     <Compile Include="MeterDevice\Voltmeter.cs" />
     <Compile Include="ResistanceDevice\Rheostat.cs" />
     <Compile Include="General_Classes\INIManager.cs" />
+    <Compile Include="Student\Interfaces\IAuthorization.cs" />
     <Compile Include="Student\Interfaces\IRegistration.cs" />
-    <Compile Include="Student\Student.cs" />
+    <Compile Include="Student\StudentManager.cs" />
     <Compile Include="VoltageSource.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

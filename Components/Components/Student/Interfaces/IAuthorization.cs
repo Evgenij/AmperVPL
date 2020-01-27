@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Components
 {
-    interface IRegistration
+    interface IAuthorization
     {
-        void Registration(string password, string surname, string name, string group, string pathPhoto);
+        void Authorization(string surname, string password);
     }
 }

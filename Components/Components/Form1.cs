@@ -20,6 +20,8 @@ namespace Components
         Rheostat rheostat;
         VoltageSource voltageSource;
         Capacitor capacitor;
+        StudentManager studentManager;
+        
 
         int x, y;
 
@@ -33,6 +35,7 @@ namespace Components
             rheostat = new Rheostat();
             voltageSource = new VoltageSource();
             capacitor = new Capacitor();
+            studentManager = new StudentManager();
         }
 
         private void MainForm_MouseMove(object sender, MouseEventArgs e)
@@ -56,8 +59,9 @@ namespace Components
             //Записать значение по ключу age и name в секции main
             for (int i = 1; i <= 5; i++)
             {
-                GlobalData.iniManager.Write("Section" + Convert.ToString(i), "name", Convert.ToString(i));
-                GlobalData.iniManager.Write("Section" + Convert.ToString(i), "age", "19");
+                GlobalData.iniManager.WriteString("Student_id" + Convert.ToString(i), "surname", "null");
+                GlobalData.iniManager.WriteString("Student_id" + Convert.ToString(i), "name", "null");
+                GlobalData.iniManager.WriteString("Student_id" + Convert.ToString(i), "group", "null");
             }
         }
 
@@ -69,7 +73,7 @@ namespace Components
             }
             else 
             {
-                MessageBox.Show(GlobalData.iniManager.Read("Section3", "name"));
+                MessageBox.Show(GlobalData.iniManager.ReadString("Section3", "name"));
             }
         }
 
@@ -81,6 +85,16 @@ namespace Components
         private void button5_Click(object sender, EventArgs e)
         {
             GlobalData.iniManager.DeleteSection("Section3");
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            studentManager.Registration("123","Ермоленко", "Евгений", "ИВТ-7", @"C:\...");
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            studentManager.Authorization("Ермоленко", "123");
         }
 
         private void MainForm_Click(object sender, EventArgs e)
