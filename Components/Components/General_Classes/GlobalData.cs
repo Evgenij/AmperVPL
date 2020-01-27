@@ -14,6 +14,8 @@ namespace Components
         public const double multiplierValues = 3.6;
         public enum TypeCapacitor { Flat, Cylinder }
         public enum TypeConnectionCapacitors { Sequentially, Parallel }
+        //Создание объекта, для работы с файлом
+        public static INIManager iniManager = new INIManager("iniFile.ini");
 
         public static void LoadFont(int size)
         {

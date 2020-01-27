@@ -35,18 +35,13 @@ namespace Components
             capacitor = new Capacitor();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ammeter.Visualization(this, 100, 100);
-        }
-
         private void MainForm_MouseMove(object sender, MouseEventArgs e)
         {
             x = e.X;
             y = e.Y;
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             ammeter.Calculate(50,2.5);
         }
@@ -56,19 +51,36 @@ namespace Components
             voltmeter.Calculate(12,2);
         }
 
-        private void zeroitMetroCheckCircle1_StyleChanged(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            //
+            //Записать значение по ключу age и name в секции main
+            for (int i = 1; i <= 5; i++)
+            {
+                GlobalData.iniManager.Write("Section" + Convert.ToString(i), "name", Convert.ToString(i));
+                GlobalData.iniManager.Write("Section" + Convert.ToString(i), "age", "19");
+            }
         }
 
-        private void zeroitMetroCheckCircle1_EnabledChanged(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
-            //
+            if (!GlobalData.iniManager.KeyExists("Section3", "name"))
+            {
+                MessageBox.Show("key not found...");
+            }
+            else 
+            {
+                MessageBox.Show(GlobalData.iniManager.Read("Section3", "name"));
+            }
         }
 
-        private void zeroitMetroCheckCircle1_Validated(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("1");
+            GlobalData.iniManager.DeleteKey("Section3", "name");
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            GlobalData.iniManager.DeleteSection("Section3");
         }
 
         private void MainForm_Click(object sender, EventArgs e)
