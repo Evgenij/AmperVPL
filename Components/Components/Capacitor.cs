@@ -191,7 +191,7 @@ namespace Components
         {
             if (countCapacitors != 10)
             {
-                countCapacitors++;
+                ++countCapacitors;
                 labelValue.Text = Convert.ToString(countCapacitors);
                 if (countCapacitors == 2) 
                 {
@@ -205,7 +205,7 @@ namespace Components
         {
             if (countCapacitors != 1)
             {
-                countCapacitors--;
+                --countCapacitors;
                 labelValue.Text = Convert.ToString(countCapacitors);
                 if (countCapacitors < 2) 
                 {

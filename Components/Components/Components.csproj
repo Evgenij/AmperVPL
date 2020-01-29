@@ -76,9 +76,11 @@
     <Compile Include="MeterDevice\Voltmeter.cs" />
     <Compile Include="ResistanceDevice\Rheostat.cs" />
     <Compile Include="General_Classes\INIManager.cs" />
-    <Compile Include="Student\Interfaces\IAuthorization.cs" />
-    <Compile Include="Student\Interfaces\IRegistration.cs" />
-    <Compile Include="Student\StudentManager.cs" />
+    <Compile Include="StudentManager\Interfaces\IAuthorization.cs" />
+    <Compile Include="StudentManager\Interfaces\IChange.cs" />
+    <Compile Include="StudentManager\Interfaces\IDeleting.cs" />
+    <Compile Include="StudentManager\Interfaces\IRegistration.cs" />
+    <Compile Include="StudentManager\StudentManager.cs" />
     <Compile Include="VoltageSource.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

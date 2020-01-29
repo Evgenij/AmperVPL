@@ -315,8 +315,9 @@
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(138, 32);
             this.button8.TabIndex = 6;
-            this.button8.Text = "Удаление ключа";
+            this.button8.Text = "Удаление студента";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button9
             // 
@@ -324,8 +325,9 @@
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(138, 32);
             this.button9.TabIndex = 5;
-            this.button9.Text = "Удаление секции";
+            this.button9.Text = "Изменение данных";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button10
             // 

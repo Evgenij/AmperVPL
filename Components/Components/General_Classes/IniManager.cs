@@ -47,14 +47,14 @@ namespace Components
             WritePrivateProfileString(Section ?? EXE, Key, Convert.ToString(Value), Path);
         }
 
-        public void DeleteKey(string Section, string Key)
-        {
-            WriteString(Section ?? EXE, Key, null);
-        }
-
         public void DeleteSection(string Section = null)
         {
             WriteString(Section ?? EXE, null, null);
+        }
+
+        public void DeleteKey(string Section, string Key)
+        {
+            WriteString(Section ?? EXE, Key, null);
         }
 
         public bool KeyExists(string Section, string Key)

@@ -97,6 +97,16 @@ namespace Components
             studentManager.Authorization("Ермоленко", "123");
         }
 
+        private void button8_Click(object sender, EventArgs e)
+        {
+            studentManager.Deleting(studentManager.GetId());
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            studentManager.Change(studentManager.GetId(),"null", "null", "null", "null", "null");
+        }
+
         private void MainForm_Click(object sender, EventArgs e)
         {
             if (radioButton1.Checked == true)
