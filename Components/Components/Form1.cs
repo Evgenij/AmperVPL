@@ -22,7 +22,6 @@ namespace Components
         Capacitor capacitor;
         StudentManager studentManager;
         
-
         int x, y;
 
         public MainForm()
@@ -36,6 +35,7 @@ namespace Components
             voltageSource = new VoltageSource();
             capacitor = new Capacitor();
             studentManager = new StudentManager();
+            GlobalData.reportManager = new ReportManager("Ермоленко", "Евгений", 1);
         }
 
         private void MainForm_MouseMove(object sender, MouseEventArgs e)
@@ -107,11 +107,26 @@ namespace Components
             studentManager.Change(studentManager.GetId(),"null", "null", "null", "null", "null");
         }
 
+        private void button15_Click(object sender, EventArgs e)
+        {
+            GlobalData.reportManager.AddHeader("Ермоленко", "Евгений", "ИВТ-7");
+            GlobalData.reportManager.AddFooter();
+            GlobalData.reportManager.AddReportHead("1", GlobalData.reportManager.GetLabTheme(1), GlobalData.reportManager.GetLabTarget(1));
+            GlobalData.reportManager.AddСonclusion("Текст вывода аолтоаыволтаолдвытповатямлоав...");
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            GlobalData.reportManager.AddChangingValue(GlobalData.TypeComponent.Ammeter, 29);
+        }
+
         private void MainForm_Click(object sender, EventArgs e)
         {
             if (radioButton1.Checked == true)
             {
                 ammeter.Visualization(this, x, y);
+                GlobalData.reportManager.AddComponent(ammeter);
+                GlobalData.reportManager.AddComponent(ammeter);
             }
             else if (radioButton2.Checked == true) 
             {

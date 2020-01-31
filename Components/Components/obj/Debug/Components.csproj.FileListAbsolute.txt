@@ -11,3 +11,6 @@ C:\Users\Evgenij\Amper VPL\Components\Components\Components\obj\Debug\Components
 C:\Users\Evgenij\Amper VPL\Components\Components\Components\obj\Debug\Components.exe
 C:\Users\Evgenij\Amper VPL\Components\Components\Components\obj\Debug\Components.pdb
 C:\Users\Evgenij\Amper VPL\Components\Components\Components\obj\Debug\Components.csprojAssemblyReference.cache
+C:\Users\Evgenij\Amper VPL\Components\Components\Components\bin\Debug\Xceed.Document.NET.dll
+C:\Users\Evgenij\Amper VPL\Components\Components\Components\bin\Debug\Xceed.Words.NET.dll
+C:\Users\Evgenij\Amper VPL\Components\Components\Components\obj\Debug\Components.csproj.ResolveComReference.cache

@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Drawing.Text;
+using Xceed.Words.NET;
 
 namespace Components
 {
@@ -9,6 +10,16 @@ namespace Components
         public const double multiplierValues = 3.6;
         public enum TypeCapacitor { Flat, Cylinder }
         public enum TypeConnectionCapacitors { Sequentially, Parallel }
+        public enum TypeComponent { 
+            Ammeter, 
+            Voltmeter,
+            Multimeter,
+            Resistor,
+            Rheostat,
+            VoltageSource,
+            Capacitor
+        }
+        public static ReportManager reportManager;
 
         //Создание объекта, для работы с файлом
         public static INIManager iniManager = new INIManager("iniFile.ini");

@@ -1,0 +1,4 @@
+C:\Users\Evgenij\Amper VPL\Components\Components\Components\obj\Debug\ElectronVPL.csproj.ResolveComReference.cache
+C:\Users\Evgenij\Amper VPL\Components\Components\Components\obj\Debug\ElectronVPL.MainForm.resources
+C:\Users\Evgenij\Amper VPL\Components\Components\Components\obj\Debug\Components.Properties.Resources.resources
+C:\Users\Evgenij\Amper VPL\Components\Components\Components\obj\Debug\ElectronVPL.csproj.GenerateResource.cache
