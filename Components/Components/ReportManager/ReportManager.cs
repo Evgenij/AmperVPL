@@ -143,21 +143,16 @@ namespace Components
             document.Save();
         }
 
-        public void AddComponent<T>(T component) 
+        public void AddedComponents(string action) 
         {
-            paragraph = document.InsertParagraph();
-
-            if (component is Ammeter) 
-            {
-                paragraph.Append("На схему был добавлен амперметр. ").
-                    Font("Times New Roman").
-                    FontSize(14).
-                    Color(Color.Black).
-                    SpacingLine(15.5).
-                    Kerning(14);
-                paragraph.IndentationFirstLine = 1.5f;
-                paragraph.Alignment = Alignment.both;
-            }
+            paragraph = document.InsertParagraph(action).
+                Font("Times New Roman").
+                FontSize(14).
+                Color(Color.Black).
+                SpacingLine(15.5).
+                Kerning(14);
+            paragraph.IndentationFirstLine = 1.5f;
+            paragraph.Alignment = Alignment.both;
 
             document.Save();
         }

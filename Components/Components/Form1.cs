@@ -120,63 +120,74 @@ namespace Components
             GlobalData.reportManager.AddChangingValue(GlobalData.TypeComponent.Ammeter, 29);
         }
 
+        private void zeroitMetroSwitch1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (zeroitMetroSwitch1.Checked == false) 
+            {
+                GlobalData.reportManager.AddedComponents(actions);
+            }
+        }
+
+        private string actions;  
+
         private void MainForm_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked == true)
+            if (zeroitMetroSwitch1.Checked == true)
             {
-                ammeter.Visualization(this, x, y);
-                GlobalData.reportManager.AddComponent(ammeter);
-                GlobalData.reportManager.AddComponent(ammeter);
-            }
-            else if (radioButton2.Checked == true) 
-            {
-                voltmeter.Visualization(this, x, y);
-            }
-            else if (radioButton3.Checked == true)
-            {
-                multimeter.Visualization(this, x, y);
-            }
-            else if (radioButton4.Checked == true)
-            {
-                resistor.Visualization(this, x, y);
-            }
-            else if (radioButton5.Checked == true)
-            {
-                rheostat.Visualization(this, x, y);
-            }
-            else if (radioButton6.Checked == true)
-            {
-                voltageSource.Visualization(this, x, y);
-            }
-            else if (radioButton7.Checked == true)
-            {
-                capacitor.Visualization(this, x, y);
-            }
-            else if (radioButton8.Checked == true)
-            {
+                if (radioButton1.Checked == true)
+                {
+                    ammeter.Visualization(this, x, y);
+                    actions = actions + "Добавлен элемент";
+                }
+                else if (radioButton2.Checked == true)
+                {
+                    voltmeter.Visualization(this, x, y);
+                }
+                else if (radioButton3.Checked == true)
+                {
+                    multimeter.Visualization(this, x, y);
+                }
+                else if (radioButton4.Checked == true)
+                {
+                    resistor.Visualization(this, x, y);
+                }
+                else if (radioButton5.Checked == true)
+                {
+                    rheostat.Visualization(this, x, y);
+                }
+                else if (radioButton6.Checked == true)
+                {
+                    voltageSource.Visualization(this, x, y);
+                }
+                else if (radioButton7.Checked == true)
+                {
+                    capacitor.Visualization(this, x, y);
+                }
+                else if (radioButton8.Checked == true)
+                {
 
-            }
-            else if (radioButton9.Checked == true)
-            {
+                }
+                else if (radioButton9.Checked == true)
+                {
 
-            }
-            else if (radioButton10.Checked == true)
-            {
+                }
+                else if (radioButton10.Checked == true)
+                {
 
-            }
-            else if (radioButton11.Checked == true)
-            {
+                }
+                else if (radioButton11.Checked == true)
+                {
 
-            }
-            else if (radioButton12.Checked == true)
-            {
+                }
+                else if (radioButton12.Checked == true)
+                {
 
-            }
-            else if (radioButton13.Checked == true)
-            {
+                }
+                else if (radioButton13.Checked == true)
+                {
 
+                }
             }
-
         }
     }
 }
