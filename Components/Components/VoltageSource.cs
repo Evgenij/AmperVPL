@@ -148,7 +148,8 @@ namespace Components
 
         private void Knob_ValueChanged(object sender, EventArgs e)
         {
-            labelValue.Text = Convert.ToString(knob.Value);
+            voltage = knob.Value;
+            labelValue.Text = Convert.ToString(voltage);
         }
 
         //метод для отключения выделения текста в TextBox компонента

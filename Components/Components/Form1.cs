@@ -117,18 +117,23 @@ namespace Components
 
         private void button14_Click(object sender, EventArgs e)
         {
-            GlobalData.reportManager.AddChangingValue(GlobalData.TypeComponent.Ammeter, 29);
+            //GlobalData.reportManager.AddActionStringToReport();
         }
 
         private void zeroitMetroSwitch1_CheckedChanged(object sender, EventArgs e)
         {
             if (zeroitMetroSwitch1.Checked == false) 
             {
-                GlobalData.reportManager.AddedComponents(actions);
+                GlobalData.reportManager.AddActionStringToReport();
             }
         }
 
-        private string actions;  
+        private void button7_Click(object sender, EventArgs e)
+        {
+            GlobalData.reportManager.AddSection("Секция 1");
+            GlobalData.reportManager.AddToStringChangesValue(0.1, 0.3, 0.3, 1);
+            GlobalData.reportManager.AddActionStringToReport();
+        }
 
         private void MainForm_Click(object sender, EventArgs e)
         {
@@ -137,31 +142,39 @@ namespace Components
                 if (radioButton1.Checked == true)
                 {
                     ammeter.Visualization(this, x, y);
-                    actions = actions + "Добавлен элемент";
+                    GlobalData.reportManager.AddToStringAction(ammeter, ReportManager.TypeAction.Add);
                 }
                 else if (radioButton2.Checked == true)
                 {
                     voltmeter.Visualization(this, x, y);
+                    GlobalData.reportManager.AddToStringAction(voltmeter, ReportManager.TypeAction.Add);
                 }
                 else if (radioButton3.Checked == true)
                 {
                     multimeter.Visualization(this, x, y);
+                    GlobalData.reportManager.AddToStringAction(multimeter, ReportManager.TypeAction.Add);
                 }
                 else if (radioButton4.Checked == true)
                 {
                     resistor.Visualization(this, x, y);
+                    GlobalData.reportManager.AddToStringAction(resistor, ReportManager.TypeAction.Add);
                 }
                 else if (radioButton5.Checked == true)
                 {
                     rheostat.Visualization(this, x, y);
+                    GlobalData.reportManager.AddToStringAction(rheostat, ReportManager.TypeAction.Add);
                 }
                 else if (radioButton6.Checked == true)
                 {
                     voltageSource.Visualization(this, x, y);
+                    GlobalData.reportManager.AddToStringAction(voltageSource, ReportManager.TypeAction.Add);
                 }
                 else if (radioButton7.Checked == true)
                 {
                     capacitor.Visualization(this, x, y);
+                    GlobalData.reportManager.AddToStringAction(capacitor, ReportManager.TypeAction.Add);
+                    GlobalData.reportManager.AddToStringChangesValue(2.1, 2.3, 0.3);
+                    GlobalData.reportManager.AddToStringChangesValue(0.1, 0.3, 0.3, 1);
                 }
                 else if (radioButton8.Checked == true)
                 {

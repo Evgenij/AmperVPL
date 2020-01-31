@@ -60,6 +60,7 @@ namespace Components
             slider.Width = 113;
             slider.Height = 9;
             slider.Scroll += Slider_Scroll;
+            slider.MouseUp += Slider_MouseUp;
             picture.Controls.Add(slider);
 
             tablo.Top = 10;
@@ -114,6 +115,14 @@ namespace Components
             contactMinus.BringToFront();
             contactPlus.BringToFront();
             form.Controls.Add(picture);
+        }
+
+        private void Slider_MouseUp(object sender, MouseEventArgs e)
+        {
+            GlobalData.reportManager.AddToStringChangesValue(
+                   ReportManager.TypeComponent.Rheostat,
+                   ReportManager.TypeChanges.DefautChange,
+                   resistanceValue);
         }
 
         private void Slider_Scroll(object sender, Zeroit.Framework.Metro.ZeroitMetroTrackbar.TrackbarEventArgs e)

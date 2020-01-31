@@ -66,6 +66,7 @@
             this.zeroitMetroCheckCircle2 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle();
             this.zeroitMetroCheckCircle3 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle();
             this.zeroitMetroCheckCircle4 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle();
+            this.button7 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -354,6 +355,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.button7);
             this.groupBox4.Controls.Add(this.button14);
             this.groupBox4.Controls.Add(this.button15);
             this.groupBox4.Location = new System.Drawing.Point(363, 342);
@@ -456,6 +458,16 @@
             this.zeroitMetroCheckCircle4.TabIndex = 22;
             this.zeroitMetroCheckCircle4.Text = "zeroitMetroCheckCircle4";
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(16, 103);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(138, 32);
+            this.button7.TabIndex = 5;
+            this.button7.Text = "Добавление секции";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -522,6 +534,7 @@
         private Zeroit.Framework.Metro.ZeroitMetroCheckCircle zeroitMetroCheckCircle2;
         private Zeroit.Framework.Metro.ZeroitMetroCheckCircle zeroitMetroCheckCircle3;
         private Zeroit.Framework.Metro.ZeroitMetroCheckCircle zeroitMetroCheckCircle4;
+        private System.Windows.Forms.Button button7;
     }
 }
 

@@ -25,7 +25,19 @@ namespace Components
         private Zeroit.Framework.Metro.ZeroitMetroCheckCircle checkCircleFlat;
         private Zeroit.Framework.Metro.ZeroitMetroCheckCircle checkCircleCylinder;
         private Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme colorScheme;
+        
         private int countCapacitors = 1;
+
+        private double E; // значение относительной диэлектрической проницаемости
+
+        //значения плоского конденсатора
+        private double S; // площадь пластин конденсатора
+        private double d; // расстояние между пластинами
+
+        //значения плоского конденсатора
+        private double R1; // значение внутреннего радиуса конденсатора
+        private double R2; // значение внешнего радиуса конденсатора
+        private double l; // значение высоты конденсатора
 
         public Capacitor()
         {

@@ -114,6 +114,10 @@ namespace Components
             {
                 resistanceValue++;
                 labelValue.Text = Convert.ToString(resistanceValue);
+                GlobalData.reportManager.AddToStringChangesValue(
+                    ReportManager.TypeComponent.Resistor,
+                    ReportManager.TypeChanges.Plus,
+                    resistanceValue);
             }
         }
 
@@ -123,6 +127,10 @@ namespace Components
             {
                 resistanceValue--;
                 labelValue.Text = Convert.ToString(resistanceValue);
+                GlobalData.reportManager.AddToStringChangesValue(
+                    ReportManager.TypeComponent.Resistor,
+                    ReportManager.TypeChanges.Minus,
+                    resistanceValue);
             }
         }
 

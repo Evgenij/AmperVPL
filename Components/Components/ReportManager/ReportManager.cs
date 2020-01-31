@@ -18,6 +18,19 @@ namespace Components
         private static string[] targetLabs = new string[5] {
             "цель лабы 1","цель лабы 2","цель лабы 3","цель лабы 4","цель лабы 5"
             };
+        private string actions;
+        public enum TypeAction { Add, Delete }
+        public enum TypeChanges { Plus, Minus, DefautChange }
+        public enum TypeComponent
+        {
+            Ammeter,
+            Voltmeter,
+            Multimeter,
+            Resistor,
+            Rheostat,
+            VoltageSource,
+            Capacitor
+        }
 
         public ReportManager()
         {
@@ -26,7 +39,8 @@ namespace Components
             document = DocX.Create(pathDocument);
             document.AddHeaders();
             document.AddFooters();
-            document.DifferentFirstPage = true; 
+            document.DifferentFirstPage = true;
+            actions = "";
         }
 
         /*рефакторинг - добавить группу студента как параметр 
@@ -143,9 +157,147 @@ namespace Components
             document.Save();
         }
 
-        public void AddedComponents(string action) 
+        public void AddSection(string sectionName) 
         {
-            paragraph = document.InsertParagraph(action).
+            //var headingTypes = Enum.GetValues(typeof(HeadingType));
+
+            HeadingType heading = HeadingType.Heading1;
+            var text = string.Format(sectionName, heading.EnumDescription());
+            var paragraph = document.InsertParagraph(text);
+            // Set the paragraph's heading type.
+            paragraph.Heading(heading).
+                Font("Times New Roman").
+                FontSize(14).
+                Color(Color.Black).
+                Bold().
+                SpacingLine(22).
+                Kerning(14);
+            paragraph.IndentationFirstLine = 1.5f;
+            paragraph.Alignment = Alignment.left;
+            
+            document.Save();
+        } 
+
+        public void AddToStringAction<T>(T component, TypeAction typeAction)
+        {
+            if (typeAction == TypeAction.Add)
+            {
+                if (component is Ammeter)
+                {
+                    actions = actions + "На схему был добавлен амперметр. ";
+                }
+                else if (component is Voltmeter)
+                {
+                    actions = actions + "На схему был добавлен вольтметр. ";
+                }
+                else if (component is VoltageSource)
+                {
+                    actions = actions + "На схему был добавлен источник напряжения. ";
+                }
+                else if (component is Multimeter)
+                {
+                    actions = actions + "На схему был добавлен мультиметр. ";
+                }
+                else if (component is Capacitor)
+                {
+                    actions = actions + "На схему был добавлен конденсатор. ";
+                }
+                else if (component is Resistor)
+                {
+                    actions = actions + "На схему был добавлен резистор. ";
+                }
+                else if (component is Rheostat)
+                {
+                    actions = actions + "На схему был добавлен реостат. ";
+                }
+            }
+            else if (typeAction == TypeAction.Delete)
+            {
+                if (component is Ammeter)
+                {
+                    actions = actions + "Из схемы был удален амперметр. ";
+                }
+                else if (component is Voltmeter)
+                {
+                    actions = actions + "Из схемы был удален вольтметр. ";
+                }
+                else if (component is VoltageSource)
+                {
+                    actions = actions + "Из схемы был удален источник напряжения. ";
+                }
+                else if (component is Multimeter)
+                {
+                    actions = actions + "Из схемы был удален мультиметр. ";
+                }
+                else if (component is Capacitor)
+                {
+                    actions = actions + "Из схемы был удален конденсатор. ";
+                }
+                else if (component is Resistor)
+                {
+                    actions = actions + "Из схемы был удален резистор. ";
+                }
+                else if (component is Rheostat)
+                {
+                    actions = actions + "Из схемы был удален реостат. ";
+                }
+            }
+        }
+
+        public void AddToStringChangesValue(TypeComponent typeComponent, TypeChanges typeChanges, int value) 
+        {
+            if (typeComponent == TypeComponent.Ammeter)
+            {
+                actions = actions + "Показания на амперметре были изменены до " + Convert.ToString(value) + " A. ";
+            }
+            if (typeComponent == TypeComponent.Voltmeter)
+            {
+                actions = actions + "Показания на вольтметре были изменены до " + Convert.ToString(value) + " В. ";
+            }
+            if (typeComponent == TypeComponent.Multimeter)
+            {
+                actions = actions + "Показания на мультиметре были изменены до " + Convert.ToString(value) + " A. ";
+            }
+            if (typeComponent == TypeComponent.Resistor) 
+            {
+                if (typeChanges == TypeChanges.Plus)
+                {
+                    actions = actions + "Сопротивление резистора было увеличено до " + Convert.ToString(value) + " Ом. ";
+                }
+                else if (typeChanges == TypeChanges.Minus)
+                {
+                    actions = actions + "Сопротивление резистора было уменьшено до " + Convert.ToString(value) + " Ом. ";
+                }
+            }
+            if (typeComponent == TypeComponent.Rheostat)
+            {
+                actions = actions + "Сопротивление реостата было изменено до " + Convert.ToString(value) + " Ом. ";
+            }
+            if (typeComponent == TypeComponent.VoltageSource)
+            {
+                actions = actions + "Напряжение на источнике напряжения было изменено до " + Convert.ToString(value) + " Ом. ";
+            }
+        }
+        
+        //запись измененных значений плоского конденсатора
+        public void AddToStringChangesValue(double S, double E, double d) 
+        {
+            actions = actions + "Площадь пластин плоского конденсатора изменена до " + Convert.ToString(S) + " cм^2, ";
+            actions = actions + "также значение относительной диэлектрической проницаемости изменено до " + Convert.ToString(E) + ", ";
+            actions = actions + "и расстояние между пластинами изменено до " + Convert.ToString(d) + " мм. ";
+        }
+
+        //запись измененных значений цилиндрического конденсатора
+        public void AddToStringChangesValue(double R1, double R2, double E, double l)
+        {
+            actions = actions + "Внутренний и внешний радиусы цилиндрического конденсатора изменены до " + Convert.ToString(R1) + " см и " + Convert.ToString(R2) + " см соответственно, ";
+            actions = actions + "также высота конденсатора изменена до " + Convert.ToString(l) + " см, ";
+            actions = actions + "и значение относительной диэлектрической проницаемости изменено до " + Convert.ToString(E) + ". ";
+        }
+
+        public void AddActionStringToReport() 
+        {
+            paragraph = document.InsertParagraph(actions).
                 Font("Times New Roman").
                 FontSize(14).
                 Color(Color.Black).
@@ -155,25 +307,7 @@ namespace Components
             paragraph.Alignment = Alignment.both;
 
             document.Save();
-        }
-
-        public void AddChangingValue<T>(GlobalData.TypeComponent typeComponent, T value) 
-        {
-            
-            if (typeComponent == GlobalData.TypeComponent.Ammeter) 
-            {
-                paragraph = document.
-                    InsertParagraph("Показания амперметра равны " + value + "ампер. ").
-                    Font("Times New Roman").
-                    FontSize(14).
-                    Color(Color.Black).
-                    SpacingLine(15.5).
-                    Kerning(14);
-                paragraph = document.
-                    InsertParagraph("lfkmtbkfngkjfxn");
-            }
-
-            document.Save();
+            actions = "";
         }
 
         public void AddСonclusion(string resultString) 

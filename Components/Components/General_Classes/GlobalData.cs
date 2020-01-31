@@ -8,17 +8,10 @@ namespace Components
     {
         public static Font DigitalFont;
         public const double multiplierValues = 3.6;
+        public const double PI = 3.14159265358979; 
+        private const double e0 = 8.85; //значение электрической постоянной
         public enum TypeCapacitor { Flat, Cylinder }
         public enum TypeConnectionCapacitors { Sequentially, Parallel }
-        public enum TypeComponent { 
-            Ammeter, 
-            Voltmeter,
-            Multimeter,
-            Resistor,
-            Rheostat,
-            VoltageSource,
-            Capacitor
-        }
         public static ReportManager reportManager;
 
         //Создание объекта, для работы с файлом
