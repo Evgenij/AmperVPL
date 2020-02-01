@@ -244,7 +244,7 @@ namespace Components
             }
         }
 
-        public void AddToStringChangesValue(TypeComponent typeComponent, TypeChanges typeChanges, int value) 
+        public void AddToStringChangesValue<T>(TypeComponent typeComponent, TypeChanges typeChanges, T value) 
         {
             if (typeComponent == TypeComponent.Ammeter)
             {

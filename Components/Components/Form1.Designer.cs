@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme mainColorScheme1 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme();
-            Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme mainColorScheme2 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme();
-            Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme mainColorScheme3 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme();
-            Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme mainColorScheme4 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme();
+            Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme mainColorScheme5 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme();
+            Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme mainColorScheme6 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme();
+            Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme mainColorScheme7 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme();
+            Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme mainColorScheme8 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButton13 = new System.Windows.Forms.RadioButton();
             this.radioButton12 = new System.Windows.Forms.RadioButton();
@@ -59,6 +59,7 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.zeroitMetroSwitch1 = new Zeroit.Framework.Metro.ZeroitMetroSwitch();
@@ -66,7 +67,7 @@
             this.zeroitMetroCheckCircle2 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle();
             this.zeroitMetroCheckCircle3 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle();
             this.zeroitMetroCheckCircle4 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle();
-            this.button7 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -365,6 +366,16 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "ReportManager";
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(16, 103);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(138, 32);
+            this.button7.TabIndex = 5;
+            this.button7.Text = "Добавление секции";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // button14
             // 
             this.button14.Location = new System.Drawing.Point(16, 65);
@@ -405,10 +416,10 @@
             // 
             // zeroitMetroCheckCircle1
             // 
-            mainColorScheme1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            mainColorScheme1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(164)))), ((int)(((byte)(240)))));
-            mainColorScheme1.InnerCirclecolor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
-            this.zeroitMetroCheckCircle1.ColorScheme = mainColorScheme1;
+            mainColorScheme5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            mainColorScheme5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(164)))), ((int)(((byte)(240)))));
+            mainColorScheme5.InnerCirclecolor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
+            this.zeroitMetroCheckCircle1.ColorScheme = mainColorScheme5;
             this.zeroitMetroCheckCircle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.zeroitMetroCheckCircle1.Location = new System.Drawing.Point(536, 169);
             this.zeroitMetroCheckCircle1.Name = "zeroitMetroCheckCircle1";
@@ -419,10 +430,10 @@
             // zeroitMetroCheckCircle2
             // 
             this.zeroitMetroCheckCircle2.Checked = false;
-            mainColorScheme2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            mainColorScheme2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(164)))), ((int)(((byte)(240)))));
-            mainColorScheme2.InnerCirclecolor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
-            this.zeroitMetroCheckCircle2.ColorScheme = mainColorScheme2;
+            mainColorScheme6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            mainColorScheme6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(164)))), ((int)(((byte)(240)))));
+            mainColorScheme6.InnerCirclecolor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
+            this.zeroitMetroCheckCircle2.ColorScheme = mainColorScheme6;
             this.zeroitMetroCheckCircle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.zeroitMetroCheckCircle2.Location = new System.Drawing.Point(536, 197);
             this.zeroitMetroCheckCircle2.Name = "zeroitMetroCheckCircle2";
@@ -433,10 +444,10 @@
             // zeroitMetroCheckCircle3
             // 
             this.zeroitMetroCheckCircle3.Checked = false;
-            mainColorScheme3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            mainColorScheme3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(164)))), ((int)(((byte)(240)))));
-            mainColorScheme3.InnerCirclecolor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
-            this.zeroitMetroCheckCircle3.ColorScheme = mainColorScheme3;
+            mainColorScheme7.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            mainColorScheme7.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(164)))), ((int)(((byte)(240)))));
+            mainColorScheme7.InnerCirclecolor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
+            this.zeroitMetroCheckCircle3.ColorScheme = mainColorScheme7;
             this.zeroitMetroCheckCircle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.zeroitMetroCheckCircle3.Location = new System.Drawing.Point(536, 225);
             this.zeroitMetroCheckCircle3.Name = "zeroitMetroCheckCircle3";
@@ -447,10 +458,10 @@
             // zeroitMetroCheckCircle4
             // 
             this.zeroitMetroCheckCircle4.Checked = false;
-            mainColorScheme4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            mainColorScheme4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(164)))), ((int)(((byte)(240)))));
-            mainColorScheme4.InnerCirclecolor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
-            this.zeroitMetroCheckCircle4.ColorScheme = mainColorScheme4;
+            mainColorScheme8.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            mainColorScheme8.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(164)))), ((int)(((byte)(240)))));
+            mainColorScheme8.InnerCirclecolor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
+            this.zeroitMetroCheckCircle4.ColorScheme = mainColorScheme8;
             this.zeroitMetroCheckCircle4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.zeroitMetroCheckCircle4.Location = new System.Drawing.Point(536, 253);
             this.zeroitMetroCheckCircle4.Name = "zeroitMetroCheckCircle4";
@@ -458,15 +469,13 @@
             this.zeroitMetroCheckCircle4.TabIndex = 22;
             this.zeroitMetroCheckCircle4.Text = "zeroitMetroCheckCircle4";
             // 
-            // button7
+            // textBox1
             // 
-            this.button7.Location = new System.Drawing.Point(16, 103);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(138, 32);
-            this.button7.TabIndex = 5;
-            this.button7.Text = "Добавление секции";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.textBox1.Location = new System.Drawing.Point(657, 51);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 23;
+            this.textBox1.Text = "e453454";
             // 
             // MainForm
             // 
@@ -474,6 +483,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1058, 546);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.zeroitMetroCheckCircle4);
             this.Controls.Add(this.zeroitMetroCheckCircle3);
             this.Controls.Add(this.zeroitMetroCheckCircle2);
@@ -495,6 +505,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -535,6 +546,7 @@
         private Zeroit.Framework.Metro.ZeroitMetroCheckCircle zeroitMetroCheckCircle3;
         private Zeroit.Framework.Metro.ZeroitMetroCheckCircle zeroitMetroCheckCircle4;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

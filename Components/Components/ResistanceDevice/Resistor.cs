@@ -14,16 +14,26 @@ namespace Components
         private PictureBox picture;
         private PictureBox pictureValuePlus;
         private PictureBox pictureValueMinus;
+        private PictureBox pictureGear;
+        private PictureBox picturePanel;
         private PictureBox contactMinus;
         private PictureBox contactPlus;
         private TextBox labelValue;
+        private TextBox textBoxL;
+        private TextBox textBoxD;
+        private TextBox textBoxP;
 
         public Resistor()
         {
             picture = new PictureBox();
             pictureValuePlus = new PictureBox();
             pictureValueMinus = new PictureBox();
+            pictureGear = new PictureBox();
+            picturePanel = new PictureBox();
             labelValue = new TextBox();
+            textBoxL = new TextBox();
+            textBoxD = new TextBox();
+            textBoxP = new TextBox();
             contactMinus = new PictureBox();
             contactPlus = new PictureBox();
 
@@ -83,6 +93,66 @@ namespace Components
             pictureValuePlus.Click += PictureValuePlus_Click;
             picture.Controls.Add(pictureValuePlus);
 
+            pictureGear.Width = 11;
+            pictureGear.Height = 12;
+            pictureGear.Left = 164;
+            pictureGear.Top = 9;
+            pictureGear.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureGear.BackColor = Color.Transparent;
+            pictureGear.Cursor = Cursors.Hand;
+            pictureGear.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\resistor\gear.png");
+            pictureGear.Click += PictureGear_Click;
+            picture.Controls.Add(pictureGear);
+
+            // код создания панели для ввода данных резистора
+
+            picturePanel.Width = 134;
+            picturePanel.Height = 161;
+            picturePanel.Left = picture.Left - 15;
+            picturePanel.Top = picture.Top - 61;
+            picturePanel.SizeMode = PictureBoxSizeMode.AutoSize;
+            picturePanel.BackColor = Color.Transparent;
+            picturePanel.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\resistor\panel.png");
+            form.Controls.Add(picturePanel);
+
+                GlobalData.LoadFont(11);  //метод загрузки шрифта
+                textBoxL.TabStop = false;
+                textBoxL.Font = GlobalData.DigitalFont;
+                textBoxL.Left = 10;
+                textBoxL.Top = 27;
+                textBoxL.BackColor = Color.White;
+                textBoxL.Width = 62;
+                textBoxL.ForeColor = Color.Black;
+                textBoxL.TextAlign = HorizontalAlignment.Center;
+                textBoxL.Cursor = Cursors.IBeam;
+                picturePanel.Controls.Add(textBoxL);
+
+                GlobalData.LoadFont(11);  //метод загрузки шрифта
+                textBoxD.TabStop = false;
+                textBoxD.Font = GlobalData.DigitalFont;
+                textBoxD.Left = 78;
+                textBoxD.Top = 27;
+                textBoxD.BackColor = Color.White;
+                textBoxD.Width = 62;
+                textBoxD.ForeColor = Color.Black;
+                textBoxD.TextAlign = HorizontalAlignment.Center;
+                textBoxD.Cursor = Cursors.IBeam;
+                picturePanel.Controls.Add(textBoxD);
+
+                GlobalData.LoadFont(11);  //метод загрузки шрифта
+                textBoxP.TabStop = false;
+                textBoxP.Font = GlobalData.DigitalFont;
+                textBoxP.Left = 146;
+                textBoxP.Top = 27;
+                textBoxP.BackColor = Color.White;
+                textBoxP.Width = 62;
+                textBoxP.ForeColor = Color.Black;
+                textBoxP.TextAlign = HorizontalAlignment.Center;
+                textBoxP.Cursor = Cursors.IBeam;
+                picturePanel.Controls.Add(textBoxP);
+
+            // код создания контактов для подключения
+
             contactMinus.Width = 34;
             contactMinus.Height = 12;
             contactMinus.Left = 60;
@@ -99,6 +169,8 @@ namespace Components
             contactPlus.BackColor = Color.Transparent;
             picture.Controls.Add(contactPlus);
 
+            // распределение состовляющих компонента по слоям
+
             picture.SendToBack();
             labelValue.BringToFront();
             contactMinus.BringToFront();
@@ -106,6 +178,29 @@ namespace Components
             pictureValueMinus.BringToFront();
             pictureValuePlus.BringToFront();
             form.Controls.Add(picture);
+        }
+
+        private void PictureGear_Click(object sender, EventArgs e)
+        {
+            if(picturePanel.Visible == false)
+            {
+                picturePanel.Visible = true;
+            }
+            else
+            {
+                picturePanel.Visible = false;
+                if (textBoxL.Text != "" & textBoxD.Text != "" & textBoxP.Text != "")
+                {
+                    l = Convert.ToDouble(textBoxL.Text);
+                    d = Convert.ToDouble(textBoxD.Text);
+                    p = Convert.ToDouble(textBoxP.Text);
+
+                    double S = (GlobalData.PI * Math.Pow(d, 2)) / 4;
+                    resistanceValue = p * (l / S);
+                }
+
+                //MessageBox.Show(Convert.ToString(resistanceValue));
+            }
         }
 
         private void PictureValuePlus_Click(object sender, EventArgs e)

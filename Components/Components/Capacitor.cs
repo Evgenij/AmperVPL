@@ -16,10 +16,21 @@ namespace Components
 
         private PictureBox picture;
         private TextBox labelValue;
+        private TextBox textBoxS;
+        private TextBox textBoxFlatE;
+        private TextBox textBoxCylE;
+        private TextBox textBoxD;
+        private TextBox textBoxR1;
+        private TextBox textBoxR2;
+        private TextBox textBoxL;
         private PictureBox pictureValuePlus;
         private PictureBox pictureValueMinus;
         private PictureBox pictureSeq;
         private PictureBox picturePar;
+        private PictureBox pictureGearFlat;
+        private PictureBox pictureGearCylinder;
+        private PictureBox picturePanelFlat;
+        private PictureBox picturePanelCyl;
         private PictureBox contactMinus;
         private PictureBox contactPlus;
         private Zeroit.Framework.Metro.ZeroitMetroCheckCircle checkCircleFlat;
@@ -43,10 +54,22 @@ namespace Components
         {
             picture = new PictureBox();
             labelValue = new TextBox();
+            textBoxFlatE = new TextBox();
+            textBoxCylE = new TextBox();
+            textBoxS = new TextBox(); ;
+            textBoxD = new TextBox(); ;
+            textBoxR1 = new TextBox(); ;
+            textBoxR2 = new TextBox(); ;
+            textBoxL = new TextBox(); ;
+
             pictureValuePlus = new PictureBox();
             pictureValueMinus = new PictureBox();
             pictureSeq = new PictureBox();
             picturePar = new PictureBox();
+            pictureGearFlat = new PictureBox();
+            pictureGearCylinder = new PictureBox();
+            picturePanelFlat = new PictureBox();
+            picturePanelCyl = new PictureBox();
             contactMinus = new PictureBox();
             contactPlus = new PictureBox();
             checkCircleFlat = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle();
@@ -57,6 +80,8 @@ namespace Components
             typeCapacitor = "Flat";
             checkCircleFlat.Checked = true;
             checkCircleCylinder.Checked = false;
+            picturePanelFlat.Visible = false;
+            picturePanelCyl.Visible = false;
         }
 
         //метод отображения компонента на форме
@@ -160,6 +185,136 @@ namespace Components
             checkCircleCylinder.DoubleClick += CheckCircle_DoubleClick;
             picture.Controls.Add(checkCircleCylinder);
 
+            pictureGearFlat.Width = 11;
+            pictureGearFlat.Height = 12;
+            pictureGearFlat.Left = 11;
+            pictureGearFlat.Top = 8;
+            pictureGearFlat.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureGearFlat.BackColor = Color.Transparent;
+            pictureGearFlat.Cursor = Cursors.Hand;
+            pictureGearFlat.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\capacitors\gear.png");
+            pictureGearFlat.Click += PictureGearFlat_Click;
+            picture.Controls.Add(pictureGearFlat);
+
+            pictureGearCylinder.Width = 11;
+            pictureGearCylinder.Height = 12;
+            pictureGearCylinder.Left = 165;
+            pictureGearCylinder.Top = 8;
+            pictureGearCylinder.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureGearCylinder.BackColor = Color.Transparent;
+            pictureGearCylinder.Cursor = Cursors.Hand;
+            pictureGearCylinder.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\capacitors\gear.png");
+            pictureGearCylinder.Click += PictureGearCylinder_Click;
+            picture.Controls.Add(pictureGearCylinder);
+
+            // код создания панели для ввода данных ПЛОСКОГО кондесатора
+
+            picturePanelFlat.Width = 134;
+            picturePanelFlat.Height = 161;
+            picturePanelFlat.Left = picture.Left - 130;
+            picturePanelFlat.Top = picture.Top - 28;
+            picturePanelFlat.SizeMode = PictureBoxSizeMode.AutoSize;
+            picturePanelFlat.BackColor = Color.Transparent;
+            picturePanelFlat.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\capacitors\panelFlat.png");
+            form.Controls.Add(picturePanelFlat);
+
+                GlobalData.LoadFont(10);  //метод загрузки шрифта
+                textBoxS.TabStop = false;
+                textBoxS.Font = GlobalData.DigitalFont;
+                textBoxS.Left = 15;
+                textBoxS.Top = 33;
+                textBoxS.BackColor = Color.White;
+                textBoxS.Width = 95;
+                textBoxS.ForeColor = Color.Black;
+                textBoxS.TextAlign = HorizontalAlignment.Left;
+                textBoxS.Cursor = Cursors.IBeam;
+                picturePanelFlat.Controls.Add(textBoxS);
+
+                GlobalData.LoadFont(10);  //метод загрузки шрифта
+                textBoxFlatE.TabStop = false;
+                textBoxFlatE.Font = GlobalData.DigitalFont;
+                textBoxFlatE.Left = 15;
+                textBoxFlatE.Top = 77;
+                textBoxFlatE.BackColor = Color.White;
+                textBoxFlatE.Width = 95;
+                textBoxFlatE.ForeColor = Color.Black;
+                textBoxFlatE.TextAlign = HorizontalAlignment.Left;
+                textBoxFlatE.Cursor = Cursors.IBeam;
+                picturePanelFlat.Controls.Add(textBoxFlatE);
+
+                GlobalData.LoadFont(10);  //метод загрузки шрифта
+                textBoxD.TabStop = false;
+                textBoxD.Font = GlobalData.DigitalFont;
+                textBoxD.Left = 15;
+                textBoxD.Top = 122;
+                textBoxD.BackColor = Color.White;
+                textBoxD.Width = 95;
+                textBoxD.ForeColor = Color.Black;
+                textBoxD.TextAlign = HorizontalAlignment.Left;
+                textBoxD.Cursor = Cursors.IBeam;
+                picturePanelFlat.Controls.Add(textBoxD);
+
+            // код создания панели для ввода данных ЦИЛИНДРИЧЕСКОГО кондесатора
+
+            picturePanelCyl.Width = 129;
+            picturePanelCyl.Height = 200;
+            picturePanelCyl.Left = picture.Left + picture.Width - 4;
+            picturePanelCyl.Top = picture.Top - 47;
+            picturePanelCyl.SizeMode = PictureBoxSizeMode.AutoSize;
+            picturePanelCyl.BackColor = Color.Transparent;
+            picturePanelCyl.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\capacitors\panelCyl.png");
+            form.Controls.Add(picturePanelCyl);
+
+                GlobalData.LoadFont(10);  //метод загрузки шрифта
+                textBoxR1.TabStop = false;
+                textBoxR1.Font = GlobalData.DigitalFont;
+                textBoxR1.Left = 17;
+                textBoxR1.Top = 29;
+                textBoxR1.BackColor = Color.White;
+                textBoxR1.Width = 100;
+                textBoxR1.ForeColor = Color.Black;
+                textBoxR1.TextAlign = HorizontalAlignment.Left;
+                textBoxR1.Cursor = Cursors.IBeam;
+                picturePanelCyl.Controls.Add(textBoxR1);
+
+                GlobalData.LoadFont(10);  //метод загрузки шрифта
+                textBoxR2.TabStop = false;
+                textBoxR2.Font = GlobalData.DigitalFont;
+                textBoxR2.Left = 17;
+                textBoxR2.Top = 74;
+                textBoxR2.BackColor = Color.White;
+                textBoxR2.Width = 100;
+                textBoxR2.ForeColor = Color.Black;
+                textBoxR2.TextAlign = HorizontalAlignment.Left;
+                textBoxR2.Cursor = Cursors.IBeam;
+                picturePanelCyl.Controls.Add(textBoxR2);
+
+                GlobalData.LoadFont(10);  //метод загрузки шрифта
+                textBoxCylE.TabStop = false;
+                textBoxCylE.Font = GlobalData.DigitalFont;
+                textBoxCylE.Left = 17;
+                textBoxCylE.Top = 117;
+                textBoxCylE.BackColor = Color.White;
+                textBoxCylE.Width = 100;
+                textBoxCylE.ForeColor = Color.Black;
+                textBoxCylE.TextAlign = HorizontalAlignment.Left;
+                textBoxCylE.Cursor = Cursors.IBeam;
+                picturePanelCyl.Controls.Add(textBoxCylE);
+
+                GlobalData.LoadFont(10);  //метод загрузки шрифта
+                textBoxL.TabStop = false;
+                textBoxL.Font = GlobalData.DigitalFont;
+                textBoxL.Left = 17;
+                textBoxL.Top = 164;
+                textBoxL.BackColor = Color.White;
+                textBoxL.Width = 100;
+                textBoxL.ForeColor = Color.Black;
+                textBoxL.TextAlign = HorizontalAlignment.Left;
+                textBoxL.Cursor = Cursors.IBeam;
+                picturePanelCyl.Controls.Add(textBoxL);
+
+            // код создания контактов для подключения
+
             contactMinus.Width = 34;
             contactMinus.Height = 12;
             contactMinus.Left = 60;
@@ -176,12 +331,52 @@ namespace Components
             contactPlus.BackColor = Color.Transparent;
             picture.Controls.Add(contactPlus);
 
+            // распределение состовляющих компонента по слоям
+
             picture.SendToBack();
+            picturePanelFlat.BringToFront();
             pictureSeq.BringToFront();
             labelValue.BringToFront();
             contactMinus.BringToFront();
             contactPlus.BringToFront();
             form.Controls.Add(picture);
+        }
+
+        private void PictureGearCylinder_Click(object sender, EventArgs e)
+        {
+            if (picturePanelCyl.Visible == false)
+            {
+                picturePanelCyl.Visible = true;
+            }
+            else
+            {
+                picturePanelCyl.Visible = false;
+                if (textBoxR1.Text != "" & textBoxR2.Text != "" & textBoxCylE.Text != "" & textBoxL.Text != "")
+                {
+                    R1 = Convert.ToDouble(textBoxR1.Text);
+                    R2 = Convert.ToDouble(textBoxR2.Text);
+                    E = Convert.ToDouble(textBoxCylE.Text);
+                    l = Convert.ToDouble(textBoxL.Text);
+                }
+            }
+        }
+
+        private void PictureGearFlat_Click(object sender, EventArgs e)
+        {
+            if (picturePanelFlat.Visible == false)
+            {
+                picturePanelFlat.Visible = true;
+            }
+            else 
+            {
+                picturePanelFlat.Visible = false;
+                if (textBoxS.Text != "" & textBoxFlatE.Text != "" & textBoxD.Text != "")
+                {
+                    S = Convert.ToDouble(textBoxS.Text);
+                    E = Convert.ToDouble(textBoxFlatE.Text);
+                    d = Convert.ToDouble(textBoxD.Text);
+                }
+            }
         }
 
         private void PicturePar_Click(object sender, EventArgs e)
