@@ -84,6 +84,8 @@ namespace Components
             knob.LinePen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             knob.LinePen.DashCap = System.Drawing.Drawing2D.DashCap.Flat;
             knob.ValueChanged += Knob_ValueChanged;
+            knob.MouseDown += Knob_MouseDown;
+            knob.MouseUp += Knob_MouseUp;
             picture.Controls.Add(knob);
 
             status.Width = 10;
@@ -130,6 +132,22 @@ namespace Components
             form.Controls.Add(picture);
         }
 
+        private void Knob_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (statusDevice == false)
+            {
+                MessageBox.Show(" Для изменения показаний устройства, включите его.", "Сообщение", MessageBoxButtons.OK);
+            }
+        }
+
+        private void Knob_MouseUp(object sender, MouseEventArgs e)
+        {
+            GlobalData.reportManager.AddToStringChangesValue(
+                ReportManager.TypeComponent.VoltageSource,
+                ReportManager.TypeChanges.DefautChange,
+                voltage);
+        }
+
         private void _switch_CheckedChanged(object sender, EventArgs e)
         {
             if (statusDevice == false)
@@ -148,8 +166,11 @@ namespace Components
 
         private void Knob_ValueChanged(object sender, EventArgs e)
         {
-            voltage = knob.Value;
-            labelValue.Text = Convert.ToString(voltage);
+            if (statusDevice == true)
+            {
+                voltage = knob.Value;
+                labelValue.Text = Convert.ToString(voltage);
+            }
         }
 
         //метод для отключения выделения текста в TextBox компонента

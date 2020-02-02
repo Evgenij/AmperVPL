@@ -184,62 +184,66 @@ namespace Components
             {
                 if (component is Ammeter)
                 {
-                    actions = actions + "На схему был добавлен амперметр. ";
+                    actions += "На схему был добавлен амперметр. ";
                 }
                 else if (component is Voltmeter)
                 {
-                    actions = actions + "На схему был добавлен вольтметр. ";
+                    actions += "На схему был добавлен вольтметр. ";
                 }
                 else if (component is VoltageSource)
                 {
-                    actions = actions + "На схему был добавлен источник напряжения. ";
+                    actions += "На схему был добавлен источник напряжения. ";
                 }
                 else if (component is Multimeter)
                 {
-                    actions = actions + "На схему был добавлен мультиметр. ";
+                    actions += "На схему был добавлен мультиметр. ";
                 }
                 else if (component is Capacitor)
                 {
-                    actions = actions + "На схему был добавлен конденсатор. ";
+                    actions += "На схему был добавлен конденсатор. ";
+                }
+                else if (component is Conductor)
+                {
+                    actions += "На схему был добавлен проводник. ";
                 }
                 else if (component is Resistor)
                 {
-                    actions = actions + "На схему был добавлен резистор. ";
+                    actions += "На схему был добавлен резистор. ";
                 }
                 else if (component is Rheostat)
                 {
-                    actions = actions + "На схему был добавлен реостат. ";
+                    actions += "На схему был добавлен реостат. ";
                 }
             }
             else if (typeAction == TypeAction.Delete)
             {
                 if (component is Ammeter)
                 {
-                    actions = actions + "Из схемы был удален амперметр. ";
+                    actions += "Из схемы был удален амперметр. ";
                 }
                 else if (component is Voltmeter)
                 {
-                    actions = actions + "Из схемы был удален вольтметр. ";
+                    actions += "Из схемы был удален вольтметр. ";
                 }
                 else if (component is VoltageSource)
                 {
-                    actions = actions + "Из схемы был удален источник напряжения. ";
+                    actions += "Из схемы был удален источник напряжения. ";
                 }
                 else if (component is Multimeter)
                 {
-                    actions = actions + "Из схемы был удален мультиметр. ";
+                    actions += "Из схемы был удален мультиметр. ";
                 }
                 else if (component is Capacitor)
                 {
-                    actions = actions + "Из схемы был удален конденсатор. ";
+                    actions += "Из схемы был удален конденсатор. ";
                 }
                 else if (component is Resistor)
                 {
-                    actions = actions + "Из схемы был удален резистор. ";
+                    actions += "Из схемы был удален резистор. ";
                 }
                 else if (component is Rheostat)
                 {
-                    actions = actions + "Из схемы был удален реостат. ";
+                    actions += "Из схемы был удален реостат. ";
                 }
             }
         }
@@ -248,51 +252,82 @@ namespace Components
         {
             if (typeComponent == TypeComponent.Ammeter)
             {
-                actions = actions + "Показания на амперметре были изменены до " + Convert.ToString(value) + " A. ";
+                actions += "Показания на амперметре были изменены до " + Convert.ToString(value) + " A. ";
             }
             if (typeComponent == TypeComponent.Voltmeter)
             {
-                actions = actions + "Показания на вольтметре были изменены до " + Convert.ToString(value) + " В. ";
+                actions += "Показания на вольтметре были изменены до " + Convert.ToString(value) + " В. ";
             }
             if (typeComponent == TypeComponent.Multimeter)
             {
-                actions = actions + "Показания на мультиметре были изменены до " + Convert.ToString(value) + " A. ";
+                actions += "Показания на мультиметре были изменены до " + Convert.ToString(value) + " A. ";
             }
             if (typeComponent == TypeComponent.Resistor) 
             {
                 if (typeChanges == TypeChanges.Plus)
                 {
-                    actions = actions + "Сопротивление резистора было увеличено до " + Convert.ToString(value) + " Ом. ";
+                    actions += "Сопротивление резистора было увеличено до " + Convert.ToString(value) + " Ом. ";
                 }
                 else if (typeChanges == TypeChanges.Minus)
                 {
-                    actions = actions + "Сопротивление резистора было уменьшено до " + Convert.ToString(value) + " Ом. ";
+                    actions += "Сопротивление резистора было уменьшено до " + Convert.ToString(value) + " Ом. ";
+                }
+                else 
+                {
+                    actions += "Сопротивление проводника было изменено до " + Convert.ToString(value) + " Ом. ";
                 }
             }
             if (typeComponent == TypeComponent.Rheostat)
             {
-                actions = actions + "Сопротивление реостата было изменено до " + Convert.ToString(value) + " Ом. ";
+                actions += "Сопротивление реостата было изменено до " + Convert.ToString(value) + " Ом. ";
             }
             if (typeComponent == TypeComponent.VoltageSource)
             {
-                actions = actions + "Напряжение на источнике напряжения было изменено до " + Convert.ToString(value) + " Ом. ";
+                actions += "Напряжение на источнике напряжения было изменено до " + Convert.ToString(value) + " Ом. ";
             }
         }
-        
-        //запись измененных значений плоского конденсатора
-        public void AddToStringChangesValue(double S, double E, double d) 
+
+        /// <summary>
+        /// Запись измененных значений проводника
+        /// </summary>
+        /// <param name="l">длина проводника</param>
+        /// <param name="d">диаметр проводника</param>
+        /// <param name="p">удельное электрическое сопротиволение материала</param>
+        /// <returns>Ogbcfybt возвращаемого значения</returns>
+        public void AddToStringChangesValueConductor(double l, double d, double p)
         {
-            actions = actions + "Площадь пластин плоского конденсатора изменена до " + Convert.ToString(S) + " cм^2, ";
-            actions = actions + "также значение относительной диэлектрической проницаемости изменено до " + Convert.ToString(E) + ", ";
-            actions = actions + "и расстояние между пластинами изменено до " + Convert.ToString(d) + " мм. ";
+            actions += "Длина проводника изменена до " + Convert.ToString(l) + " cм, ";
+            actions += "также диаметр изменён до " + Convert.ToString(d) + " см, ";
+            actions += "и удельное электрическое сопротивление материала проводника изменено до " + Convert.ToString(p) + ". ";
         }
 
-        //запись измененных значений цилиндрического конденсатора
+        /// <summary>
+        /// Запись измененных значений плоского конденсатора
+        /// </summary>
+        /// <param name="S">площадь пластин конденсатора</param>
+        /// <param name="E">значение относительной диэлектрической проницаемости</param>
+        /// <param name="d">расстояние между пластинами конденсатора</param>
+        /// <returns>Ogbcfybt возвращаемого значения</returns>
+        public void AddToStringChangesValue(double S, double E, double d) 
+        {
+            actions += "Площадь пластин плоского конденсатора изменена до " + Convert.ToString(S) + " cм^2, ";
+            actions += "также значение относительной диэлектрической проницаемости изменено до " + Convert.ToString(E) + ", ";
+            actions += "и расстояние между пластинами изменено до " + Convert.ToString(d) + " мм. ";
+        }
+
+        /// <summary>
+        /// Запись измененных значений цилиндрического конденсатора
+        /// </summary>
+        /// <param name="R1">внутренний радиус конденсатора</param>
+        /// <param name="R2">внешний радиус конденсатора</param>
+        /// <param name="E">значение относительной диэлектрической проницаемости</param>
+        /// <param name="l">высота конденсатора</param>
+        /// <returns>Ogbcfybt возвращаемого значения</returns>
         public void AddToStringChangesValue(double R1, double R2, double E, double l)
         {
-            actions = actions + "Внутренний и внешний радиусы цилиндрического конденсатора изменены до " + Convert.ToString(R1) + " см и " + Convert.ToString(R2) + " см соответственно, ";
-            actions = actions + "также высота конденсатора изменена до " + Convert.ToString(l) + " см, ";
-            actions = actions + "и значение относительной диэлектрической проницаемости изменено до " + Convert.ToString(E) + ". ";
+            actions += "Внутренний и внешний радиусы цилиндрического конденсатора изменены до " + Convert.ToString(R1) + " см и " + Convert.ToString(R2) + " см соответственно, ";
+            actions += "также высота конденсатора изменена до " + Convert.ToString(l) + " см, ";
+            actions += "и значение относительной диэлектрической проницаемости изменено до " + Convert.ToString(E) + ". ";
         }
 
         public void AddActionStringToReport() 

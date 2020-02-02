@@ -28,10 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme mainColorScheme5 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme();
-            Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme mainColorScheme6 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme();
-            Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme mainColorScheme7 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme();
-            Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme mainColorScheme8 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle.MainColorScheme();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButton13 = new System.Windows.Forms.RadioButton();
             this.radioButton12 = new System.Windows.Forms.RadioButton();
@@ -63,11 +59,10 @@
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.zeroitMetroSwitch1 = new Zeroit.Framework.Metro.ZeroitMetroSwitch();
-            this.zeroitMetroCheckCircle1 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle();
-            this.zeroitMetroCheckCircle2 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle();
-            this.zeroitMetroCheckCircle3 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle();
-            this.zeroitMetroCheckCircle4 = new Zeroit.Framework.Metro.ZeroitMetroCheckCircle();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
+            this.radioButton14 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -76,6 +71,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.radioButton14);
             this.groupBox1.Controls.Add(this.radioButton13);
             this.groupBox1.Controls.Add(this.radioButton12);
             this.groupBox1.Controls.Add(this.radioButton11);
@@ -91,7 +87,7 @@
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(169, 324);
+            this.groupBox1.Size = new System.Drawing.Size(169, 417);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Компоненты";
@@ -99,7 +95,7 @@
             // radioButton13
             // 
             this.radioButton13.AutoSize = true;
-            this.radioButton13.Location = new System.Drawing.Point(6, 295);
+            this.radioButton13.Location = new System.Drawing.Point(6, 318);
             this.radioButton13.Name = "radioButton13";
             this.radioButton13.Size = new System.Drawing.Size(53, 17);
             this.radioButton13.TabIndex = 12;
@@ -109,7 +105,7 @@
             // radioButton12
             // 
             this.radioButton12.AutoSize = true;
-            this.radioButton12.Location = new System.Drawing.Point(6, 272);
+            this.radioButton12.Location = new System.Drawing.Point(6, 295);
             this.radioButton12.Name = "radioButton12";
             this.radioButton12.Size = new System.Drawing.Size(76, 17);
             this.radioButton12.TabIndex = 11;
@@ -119,7 +115,7 @@
             // radioButton11
             // 
             this.radioButton11.AutoSize = true;
-            this.radioButton11.Location = new System.Drawing.Point(6, 249);
+            this.radioButton11.Location = new System.Drawing.Point(6, 272);
             this.radioButton11.Name = "radioButton11";
             this.radioButton11.Size = new System.Drawing.Size(138, 17);
             this.radioButton11.TabIndex = 10;
@@ -129,7 +125,7 @@
             // radioButton10
             // 
             this.radioButton10.AutoSize = true;
-            this.radioButton10.Location = new System.Drawing.Point(6, 226);
+            this.radioButton10.Location = new System.Drawing.Point(6, 249);
             this.radioButton10.Name = "radioButton10";
             this.radioButton10.Size = new System.Drawing.Size(51, 17);
             this.radioButton10.TabIndex = 9;
@@ -139,7 +135,7 @@
             // radioButton9
             // 
             this.radioButton9.AutoSize = true;
-            this.radioButton9.Location = new System.Drawing.Point(6, 203);
+            this.radioButton9.Location = new System.Drawing.Point(6, 226);
             this.radioButton9.Name = "radioButton9";
             this.radioButton9.Size = new System.Drawing.Size(115, 17);
             this.radioButton9.TabIndex = 8;
@@ -149,7 +145,7 @@
             // radioButton8
             // 
             this.radioButton8.AutoSize = true;
-            this.radioButton8.Location = new System.Drawing.Point(6, 180);
+            this.radioButton8.Location = new System.Drawing.Point(6, 203);
             this.radioButton8.Name = "radioButton8";
             this.radioButton8.Size = new System.Drawing.Size(109, 17);
             this.radioButton8.TabIndex = 7;
@@ -159,7 +155,7 @@
             // radioButton7
             // 
             this.radioButton7.AutoSize = true;
-            this.radioButton7.Location = new System.Drawing.Point(6, 157);
+            this.radioButton7.Location = new System.Drawing.Point(6, 180);
             this.radioButton7.Name = "radioButton7";
             this.radioButton7.Size = new System.Drawing.Size(91, 17);
             this.radioButton7.TabIndex = 6;
@@ -169,7 +165,7 @@
             // radioButton6
             // 
             this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(6, 134);
+            this.radioButton6.Location = new System.Drawing.Point(6, 157);
             this.radioButton6.Name = "radioButton6";
             this.radioButton6.Size = new System.Drawing.Size(138, 17);
             this.radioButton6.TabIndex = 5;
@@ -179,7 +175,7 @@
             // radioButton5
             // 
             this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(6, 111);
+            this.radioButton5.Location = new System.Drawing.Point(6, 134);
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(66, 17);
             this.radioButton5.TabIndex = 4;
@@ -230,21 +226,21 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(971, 12);
+            this.button1.Location = new System.Drawing.Point(539, 462);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(169, 52);
             this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
+            this.button1.Text = "Измененные данные амперметра";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(971, 41);
+            this.button2.Location = new System.Drawing.Point(539, 520);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(169, 52);
             this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
+            this.button2.Text = "Измененные данные вольтметра";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -264,7 +260,7 @@
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Location = new System.Drawing.Point(11, 342);
+            this.groupBox2.Location = new System.Drawing.Point(11, 435);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(170, 197);
             this.groupBox2.TabIndex = 13;
@@ -307,7 +303,7 @@
             this.groupBox3.Controls.Add(this.button9);
             this.groupBox3.Controls.Add(this.button10);
             this.groupBox3.Controls.Add(this.button11);
-            this.groupBox3.Location = new System.Drawing.Point(187, 342);
+            this.groupBox3.Location = new System.Drawing.Point(187, 435);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(170, 197);
             this.groupBox3.TabIndex = 14;
@@ -359,7 +355,7 @@
             this.groupBox4.Controls.Add(this.button7);
             this.groupBox4.Controls.Add(this.button14);
             this.groupBox4.Controls.Add(this.button15);
-            this.groupBox4.Location = new System.Drawing.Point(363, 342);
+            this.groupBox4.Location = new System.Drawing.Point(363, 435);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(170, 197);
             this.groupBox4.TabIndex = 15;
@@ -406,88 +402,61 @@
             this.zeroitMetroSwitch1.DefaultColor = System.Drawing.SystemColors.Highlight;
             this.zeroitMetroSwitch1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.zeroitMetroSwitch1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
-            this.zeroitMetroSwitch1.Location = new System.Drawing.Point(536, 12);
+            this.zeroitMetroSwitch1.Location = new System.Drawing.Point(198, 19);
             this.zeroitMetroSwitch1.Name = "zeroitMetroSwitch1";
-            this.zeroitMetroSwitch1.Size = new System.Drawing.Size(75, 31);
+            this.zeroitMetroSwitch1.Size = new System.Drawing.Size(75, 21);
             this.zeroitMetroSwitch1.SwitchColor = System.Drawing.Color.White;
             this.zeroitMetroSwitch1.TabIndex = 16;
             this.zeroitMetroSwitch1.Text = "zeroitMetroSwitch1";
             this.zeroitMetroSwitch1.CheckedChanged += new Zeroit.Framework.Metro.ZeroitMetroSwitch.CheckedChangedEventHandler(this.zeroitMetroSwitch1_CheckedChanged);
             // 
-            // zeroitMetroCheckCircle1
+            // button12
             // 
-            mainColorScheme5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            mainColorScheme5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(164)))), ((int)(((byte)(240)))));
-            mainColorScheme5.InnerCirclecolor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
-            this.zeroitMetroCheckCircle1.ColorScheme = mainColorScheme5;
-            this.zeroitMetroCheckCircle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.zeroitMetroCheckCircle1.Location = new System.Drawing.Point(536, 169);
-            this.zeroitMetroCheckCircle1.Name = "zeroitMetroCheckCircle1";
-            this.zeroitMetroCheckCircle1.Size = new System.Drawing.Size(21, 22);
-            this.zeroitMetroCheckCircle1.TabIndex = 19;
-            this.zeroitMetroCheckCircle1.Text = "zeroitMetroCheckCircle1";
+            this.button12.Location = new System.Drawing.Point(539, 578);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(169, 52);
+            this.button12.TabIndex = 24;
+            this.button12.Text = "Измененные данные мультиметра";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
-            // zeroitMetroCheckCircle2
+            // button16
             // 
-            this.zeroitMetroCheckCircle2.Checked = false;
-            mainColorScheme6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            mainColorScheme6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(164)))), ((int)(((byte)(240)))));
-            mainColorScheme6.InnerCirclecolor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
-            this.zeroitMetroCheckCircle2.ColorScheme = mainColorScheme6;
-            this.zeroitMetroCheckCircle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.zeroitMetroCheckCircle2.Location = new System.Drawing.Point(536, 197);
-            this.zeroitMetroCheckCircle2.Name = "zeroitMetroCheckCircle2";
-            this.zeroitMetroCheckCircle2.Size = new System.Drawing.Size(21, 22);
-            this.zeroitMetroCheckCircle2.TabIndex = 20;
-            this.zeroitMetroCheckCircle2.Text = "zeroitMetroCheckCircle2";
+            this.button16.Location = new System.Drawing.Point(714, 520);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(169, 52);
+            this.button16.TabIndex = 26;
+            this.button16.Text = "Измененные данные конденсатора";
+            this.button16.UseVisualStyleBackColor = true;
             // 
-            // zeroitMetroCheckCircle3
+            // button17
             // 
-            this.zeroitMetroCheckCircle3.Checked = false;
-            mainColorScheme7.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            mainColorScheme7.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(164)))), ((int)(((byte)(240)))));
-            mainColorScheme7.InnerCirclecolor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
-            this.zeroitMetroCheckCircle3.ColorScheme = mainColorScheme7;
-            this.zeroitMetroCheckCircle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.zeroitMetroCheckCircle3.Location = new System.Drawing.Point(536, 225);
-            this.zeroitMetroCheckCircle3.Name = "zeroitMetroCheckCircle3";
-            this.zeroitMetroCheckCircle3.Size = new System.Drawing.Size(21, 22);
-            this.zeroitMetroCheckCircle3.TabIndex = 21;
-            this.zeroitMetroCheckCircle3.Text = "zeroitMetroCheckCircle3";
+            this.button17.Location = new System.Drawing.Point(714, 462);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(169, 52);
+            this.button17.TabIndex = 25;
+            this.button17.Text = "Измененные данные ист.напряжения";
+            this.button17.UseVisualStyleBackColor = true;
             // 
-            // zeroitMetroCheckCircle4
+            // radioButton14
             // 
-            this.zeroitMetroCheckCircle4.Checked = false;
-            mainColorScheme8.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            mainColorScheme8.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(164)))), ((int)(((byte)(240)))));
-            mainColorScheme8.InnerCirclecolor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
-            this.zeroitMetroCheckCircle4.ColorScheme = mainColorScheme8;
-            this.zeroitMetroCheckCircle4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.zeroitMetroCheckCircle4.Location = new System.Drawing.Point(536, 253);
-            this.zeroitMetroCheckCircle4.Name = "zeroitMetroCheckCircle4";
-            this.zeroitMetroCheckCircle4.Size = new System.Drawing.Size(21, 22);
-            this.zeroitMetroCheckCircle4.TabIndex = 22;
-            this.zeroitMetroCheckCircle4.Text = "zeroitMetroCheckCircle4";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(657, 51);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 23;
-            this.textBox1.Text = "e453454";
+            this.radioButton14.AutoSize = true;
+            this.radioButton14.Location = new System.Drawing.Point(6, 111);
+            this.radioButton14.Name = "radioButton14";
+            this.radioButton14.Size = new System.Drawing.Size(81, 17);
+            this.radioButton14.TabIndex = 13;
+            this.radioButton14.Text = "Проводник";
+            this.radioButton14.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1058, 546);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.zeroitMetroCheckCircle4);
-            this.Controls.Add(this.zeroitMetroCheckCircle3);
-            this.Controls.Add(this.zeroitMetroCheckCircle2);
-            this.Controls.Add(this.zeroitMetroCheckCircle1);
+            this.ClientSize = new System.Drawing.Size(1231, 644);
+            this.Controls.Add(this.button16);
+            this.Controls.Add(this.button17);
+            this.Controls.Add(this.button12);
             this.Controls.Add(this.zeroitMetroSwitch1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -505,7 +474,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -541,12 +509,11 @@
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
         private Zeroit.Framework.Metro.ZeroitMetroSwitch zeroitMetroSwitch1;
-        private Zeroit.Framework.Metro.ZeroitMetroCheckCircle zeroitMetroCheckCircle1;
-        private Zeroit.Framework.Metro.ZeroitMetroCheckCircle zeroitMetroCheckCircle2;
-        private Zeroit.Framework.Metro.ZeroitMetroCheckCircle zeroitMetroCheckCircle3;
-        private Zeroit.Framework.Metro.ZeroitMetroCheckCircle zeroitMetroCheckCircle4;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.RadioButton radioButton14;
     }
 }
 

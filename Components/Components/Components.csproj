@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="General_Classes\GlobalData.cs" />
     <Compile Include="MeterDevice\Interfaces\ICalculate.cs" />
+    <Compile Include="ResistanceDevice\Conductor.cs" />
     <Compile Include="ReportManager\ReportManager.cs" />
     <Compile Include="ResistanceDevice\Interfaces\IChangeResistance.cs" />
     <Compile Include="General_Interfaces\IVisualization.cs" />

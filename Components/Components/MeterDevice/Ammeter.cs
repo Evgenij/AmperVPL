@@ -43,6 +43,12 @@ namespace Components
             {
                 valueArrow.Value = Convert.ToInt32(180 - Value * GlobalData.multiplierValues);
             }
+
+            GlobalData.reportManager.AddToStringChangesValue(
+                ReportManager.TypeComponent.Ammeter, 
+                ReportManager.TypeChanges.DefautChange, 
+                Value);
+
             return Value;
         }
 

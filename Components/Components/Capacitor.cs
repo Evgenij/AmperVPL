@@ -218,7 +218,7 @@ namespace Components
             picturePanelFlat.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\capacitors\panelFlat.png");
             form.Controls.Add(picturePanelFlat);
 
-                GlobalData.LoadFont(10);  //метод загрузки шрифта
+                GlobalData.LoadFont(11);  //метод загрузки шрифта
                 textBoxS.TabStop = false;
                 textBoxS.Font = GlobalData.DigitalFont;
                 textBoxS.Left = 15;
@@ -230,7 +230,7 @@ namespace Components
                 textBoxS.Cursor = Cursors.IBeam;
                 picturePanelFlat.Controls.Add(textBoxS);
 
-                GlobalData.LoadFont(10);  //метод загрузки шрифта
+                GlobalData.LoadFont(11);  //метод загрузки шрифта
                 textBoxFlatE.TabStop = false;
                 textBoxFlatE.Font = GlobalData.DigitalFont;
                 textBoxFlatE.Left = 15;
@@ -242,7 +242,7 @@ namespace Components
                 textBoxFlatE.Cursor = Cursors.IBeam;
                 picturePanelFlat.Controls.Add(textBoxFlatE);
 
-                GlobalData.LoadFont(10);  //метод загрузки шрифта
+                GlobalData.LoadFont(11);  //метод загрузки шрифта
                 textBoxD.TabStop = false;
                 textBoxD.Font = GlobalData.DigitalFont;
                 textBoxD.Left = 15;
@@ -265,7 +265,7 @@ namespace Components
             picturePanelCyl.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\capacitors\panelCyl.png");
             form.Controls.Add(picturePanelCyl);
 
-                GlobalData.LoadFont(10);  //метод загрузки шрифта
+                GlobalData.LoadFont(11);  //метод загрузки шрифта
                 textBoxR1.TabStop = false;
                 textBoxR1.Font = GlobalData.DigitalFont;
                 textBoxR1.Left = 17;
@@ -277,7 +277,7 @@ namespace Components
                 textBoxR1.Cursor = Cursors.IBeam;
                 picturePanelCyl.Controls.Add(textBoxR1);
 
-                GlobalData.LoadFont(10);  //метод загрузки шрифта
+                GlobalData.LoadFont(11);  //метод загрузки шрифта
                 textBoxR2.TabStop = false;
                 textBoxR2.Font = GlobalData.DigitalFont;
                 textBoxR2.Left = 17;
@@ -289,7 +289,7 @@ namespace Components
                 textBoxR2.Cursor = Cursors.IBeam;
                 picturePanelCyl.Controls.Add(textBoxR2);
 
-                GlobalData.LoadFont(10);  //метод загрузки шрифта
+                GlobalData.LoadFont(11);  //метод загрузки шрифта
                 textBoxCylE.TabStop = false;
                 textBoxCylE.Font = GlobalData.DigitalFont;
                 textBoxCylE.Left = 17;
@@ -301,7 +301,7 @@ namespace Components
                 textBoxCylE.Cursor = Cursors.IBeam;
                 picturePanelCyl.Controls.Add(textBoxCylE);
 
-                GlobalData.LoadFont(10);  //метод загрузки шрифта
+                GlobalData.LoadFont(11);  //метод загрузки шрифта
                 textBoxL.TabStop = false;
                 textBoxL.Font = GlobalData.DigitalFont;
                 textBoxL.Left = 17;
@@ -350,13 +350,26 @@ namespace Components
             }
             else
             {
-                picturePanelCyl.Visible = false;
-                if (textBoxR1.Text != "" & textBoxR2.Text != "" & textBoxCylE.Text != "" & textBoxL.Text != "")
+                if (textBoxR1.Text == "0" || textBoxR2.Text == "0" || textBoxCylE.Text == "0" || textBoxL.Text == "0")
+                {
+                    MessageBox.Show("Введите корректные значения цилиндрического конденсатора");
+                    picturePanelCyl.Visible = true;
+                }
+                else if (textBoxR1.Text != "" & textBoxR2.Text != "" & textBoxCylE.Text != "" & textBoxL.Text != "")
                 {
                     R1 = Convert.ToDouble(textBoxR1.Text);
                     R2 = Convert.ToDouble(textBoxR2.Text);
                     E = Convert.ToDouble(textBoxCylE.Text);
                     l = Convert.ToDouble(textBoxL.Text);
+
+                    GlobalData.reportManager.AddToStringChangesValue(R1, R2, E, l);
+
+                    picturePanelCyl.Visible = false;
+                }
+                else
+                {
+                    MessageBox.Show("Введите значения цилиндрического конденсатора");
+                    picturePanelCyl.Visible = true;
                 }
             }
         }
@@ -369,12 +382,25 @@ namespace Components
             }
             else 
             {
-                picturePanelFlat.Visible = false;
-                if (textBoxS.Text != "" & textBoxFlatE.Text != "" & textBoxD.Text != "")
+                if (textBoxS.Text == "0" || textBoxFlatE.Text == "0" || textBoxD.Text == "0")
+                {
+                    MessageBox.Show("Введите корректные значения плоского конденсатора");
+                    picturePanelFlat.Visible = true;
+                }
+                else if (textBoxS.Text != "" & textBoxFlatE.Text != "" & textBoxD.Text != "")
                 {
                     S = Convert.ToDouble(textBoxS.Text);
                     E = Convert.ToDouble(textBoxFlatE.Text);
                     d = Convert.ToDouble(textBoxD.Text);
+
+                    GlobalData.reportManager.AddToStringChangesValue(S, E, d);
+
+                    picturePanelFlat.Visible = false;
+                }
+                else 
+                {
+                    MessageBox.Show("Введите значения плоского конденсатора");
+                    picturePanelFlat.Visible = true;
                 }
             }
         }
@@ -396,11 +422,11 @@ namespace Components
 
         private void PictureValuePlus_Click(object sender, EventArgs e)
         {
-            if (countCapacitors != 10)
+            if (this.countCapacitors != 10)
             {
-                ++countCapacitors;
-                labelValue.Text = Convert.ToString(countCapacitors);
-                if (countCapacitors == 2) 
+                ++this.countCapacitors;
+                labelValue.Text = Convert.ToString(this.countCapacitors);
+                if (this.countCapacitors == 2) 
                 {
                     pictureSeq.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\capacitors\sequentially1.png");
                     picturePar.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\capacitors\parallel0.png");
@@ -410,11 +436,11 @@ namespace Components
 
         private void PictureValueMinus_Click(object sender, EventArgs e)
         {
-            if (countCapacitors != 1)
+            if (this.countCapacitors != 1)
             {
-                --countCapacitors;
-                labelValue.Text = Convert.ToString(countCapacitors);
-                if (countCapacitors < 2) 
+                --this.countCapacitors;
+                labelValue.Text = Convert.ToString(this.countCapacitors);
+                if (this.countCapacitors < 2) 
                 {
                     pictureSeq.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\capacitors\sequentially0.png");
                     picturePar.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\capacitors\parallel0.png");

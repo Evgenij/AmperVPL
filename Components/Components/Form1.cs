@@ -17,9 +17,11 @@ namespace Components
         Voltmeter voltmeter;
         Multimeter multimeter;
         Resistor resistor;
+        Conductor conductor;
         Rheostat rheostat;
         VoltageSource voltageSource;
         Capacitor capacitor;
+
         StudentManager studentManager;
         
         int x, y;
@@ -31,9 +33,12 @@ namespace Components
             voltmeter = new Voltmeter();
             multimeter = new Multimeter();
             resistor = new Resistor();
+            conductor = new Conductor();
             rheostat = new Rheostat();
             voltageSource = new VoltageSource();
             capacitor = new Capacitor();
+
+
             studentManager = new StudentManager();
             GlobalData.reportManager = new ReportManager("Ермоленко", "Евгений", 1);
         }
@@ -135,6 +140,11 @@ namespace Components
             GlobalData.reportManager.AddActionStringToReport();
         }
 
+        private void button12_Click(object sender, EventArgs e)
+        {
+            multimeter.Calculate();
+        }
+
         private void MainForm_Click(object sender, EventArgs e)
         {
             if (zeroitMetroSwitch1.Checked == true)
@@ -173,8 +183,8 @@ namespace Components
                 {
                     capacitor.Visualization(this, x, y);
                     GlobalData.reportManager.AddToStringAction(capacitor, ReportManager.TypeAction.Add);
-                    GlobalData.reportManager.AddToStringChangesValue(2.1, 2.3, 0.3);
-                    GlobalData.reportManager.AddToStringChangesValue(0.1, 0.3, 0.3, 1);
+                    //GlobalData.reportManager.AddToStringChangesValue(2.1, 2.3, 0.3);
+                    //GlobalData.reportManager.AddToStringChangesValue(0.1, 0.3, 0.3, 1);
                 }
                 else if (radioButton8.Checked == true)
                 {
@@ -199,6 +209,11 @@ namespace Components
                 else if (radioButton13.Checked == true)
                 {
 
+                }
+                else if (radioButton14.Checked == true)
+                {
+                    conductor.Visualization(this, x, y);
+                    GlobalData.reportManager.AddToStringAction(conductor, ReportManager.TypeAction.Add);
                 }
             }
         }

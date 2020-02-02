@@ -33,7 +33,14 @@ namespace Components
 
         public double Calculate()
         {
-            return 10.0;
+            Value = 10.0;
+
+            GlobalData.reportManager.AddToStringChangesValue(
+                ReportManager.TypeComponent.Multimeter, 
+                ReportManager.TypeChanges.DefautChange, 
+                Value);
+
+            return Value;
         }
 
         public void Visualization(Form form, int x, int y)
