@@ -59,7 +59,6 @@ namespace Components
             picture.Height = 125;
             picture.Left = x - picture.Width / 2;
             picture.Top = y - picture.Height / 2;
-            picture.SizeMode = PictureBoxSizeMode.AutoSize;
             picture.BackColor = Color.Transparent;
             picture.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\ammeter\ammeter.png");
             form.Controls.Add(picture);

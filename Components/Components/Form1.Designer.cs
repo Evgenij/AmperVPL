@@ -56,6 +56,7 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button18 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
@@ -64,7 +65,6 @@
             this.button12 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -137,10 +137,12 @@
             // radioButton10
             // 
             this.radioButton10.AutoSize = true;
+            this.radioButton10.Checked = true;
             this.radioButton10.Location = new System.Drawing.Point(6, 249);
             this.radioButton10.Name = "radioButton10";
             this.radioButton10.Size = new System.Drawing.Size(51, 17);
             this.radioButton10.TabIndex = 9;
+            this.radioButton10.TabStop = true;
             this.radioButton10.Text = "Ключ";
             this.radioButton10.UseVisualStyleBackColor = true;
             // 
@@ -227,12 +229,10 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
             this.radioButton1.Location = new System.Drawing.Point(6, 19);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(83, 17);
             this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Амперметр";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
@@ -376,6 +376,16 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "ReportManager";
             // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(16, 180);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(138, 42);
+            this.button18.TabIndex = 7;
+            this.button18.Text = "Добавление контр.вопросов";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
+            // 
             // button13
             // 
             this.button13.Location = new System.Drawing.Point(16, 142);
@@ -461,16 +471,6 @@
             this.button17.TabIndex = 25;
             this.button17.Text = "Измененные данные ист.напряжения";
             this.button17.UseVisualStyleBackColor = true;
-            // 
-            // button18
-            // 
-            this.button18.Location = new System.Drawing.Point(16, 180);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(138, 42);
-            this.button18.TabIndex = 7;
-            this.button18.Text = "Добавление контр.вопросов";
-            this.button18.UseVisualStyleBackColor = true;
-            this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // MainForm
             // 

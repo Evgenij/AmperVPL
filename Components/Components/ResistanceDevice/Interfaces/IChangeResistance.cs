@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Components
 {
-    public interface IChangeResistance
+    interface IChangeResistance
     {
         void ChangeResistance(int resistance);
     }

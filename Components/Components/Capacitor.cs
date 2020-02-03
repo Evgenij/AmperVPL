@@ -10,7 +10,7 @@ namespace Components
 {
     class Capacitor : IVisualization
     {
-        //компоненты формы для создания амперметра
+        //компоненты формы для создания конденсатора
         private string typeCapacitor;
         private string typeConnectionCapacitors;
 

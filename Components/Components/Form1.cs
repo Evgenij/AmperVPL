@@ -21,6 +21,10 @@ namespace Components
         Rheostat rheostat;
         VoltageSource voltageSource;
         Capacitor capacitor;
+        SingleSwitch singleSwitch;
+        DoubleSwitch doubleSwitch;
+        Toggle toggle;
+
 
         StudentManager studentManager;
         
@@ -37,7 +41,9 @@ namespace Components
             rheostat = new Rheostat();
             voltageSource = new VoltageSource();
             capacitor = new Capacitor();
-
+            singleSwitch = new SingleSwitch();
+            doubleSwitch = new DoubleSwitch();
+            toggle = new Toggle();
 
             studentManager = new StudentManager();
             GlobalData.reportManager = new ReportManager("Ермоленко", "Евгений", 1);
@@ -215,15 +221,15 @@ namespace Components
                 }
                 else if (radioButton8.Checked == true)
                 {
-
+                    singleSwitch.Visualization(this, x, y);
                 }
                 else if (radioButton9.Checked == true)
                 {
-
+                    doubleSwitch.Visualization(this, x, y);
                 }
                 else if (radioButton10.Checked == true)
                 {
-
+                    toggle.Visualization(this, x, y);
                 }
                 else if (radioButton11.Checked == true)
                 {

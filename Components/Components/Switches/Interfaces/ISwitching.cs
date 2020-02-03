@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Components
 {
-    interface ICalculate
+    public interface ISwitching
     {
-        double Calculate(double volt, double resist);
+        void Switching(); 
     }
 }
