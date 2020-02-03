@@ -145,6 +145,33 @@ namespace Components
             multimeter.Calculate();
         }
 
+        private void button13_Click(object sender, EventArgs e)
+        {
+            GlobalData.reportManager.AddToStringAction(ammeter, ReportManager.TypeAction.Add);
+            GlobalData.reportManager.AddActionStringToReport();
+            string[] pole = new string[] { "first", "second", "third" };
+            int[] values = new int[] { 1, 2, 3, 4, 5 };
+            GlobalData.reportManager.AddTable(pole);
+            GlobalData.reportManager.AddValuesToTable(values);
+
+            GlobalData.reportManager.AddToStringAction(ammeter, ReportManager.TypeAction.Add);
+            GlobalData.reportManager.AddActionStringToReport();
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            string[] questions = new string[] {
+                "Вопрос №1",
+                "Вопрос №2"
+            };
+            string[] answers = new string[] {
+                "Ответ 1",
+                "Ответ 2"
+            };
+            GlobalData.reportManager.AddSection("Контрольные вопросы:");
+            GlobalData.reportManager.AddControlQuestionsToReport(questions, answers);
+        }
+
         private void MainForm_Click(object sender, EventArgs e)
         {
             if (zeroitMetroSwitch1.Checked == true)

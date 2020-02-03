@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton14 = new System.Windows.Forms.RadioButton();
             this.radioButton13 = new System.Windows.Forms.RadioButton();
             this.radioButton12 = new System.Windows.Forms.RadioButton();
             this.radioButton11 = new System.Windows.Forms.RadioButton();
@@ -55,6 +56,7 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button13 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
@@ -62,7 +64,7 @@
             this.button12 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
-            this.radioButton14 = new System.Windows.Forms.RadioButton();
+            this.button18 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -91,6 +93,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Компоненты";
+            // 
+            // radioButton14
+            // 
+            this.radioButton14.AutoSize = true;
+            this.radioButton14.Location = new System.Drawing.Point(6, 111);
+            this.radioButton14.Name = "radioButton14";
+            this.radioButton14.Size = new System.Drawing.Size(81, 17);
+            this.radioButton14.TabIndex = 13;
+            this.radioButton14.Text = "Проводник";
+            this.radioButton14.UseVisualStyleBackColor = true;
             // 
             // radioButton13
             // 
@@ -352,15 +364,27 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.button18);
+            this.groupBox4.Controls.Add(this.button13);
             this.groupBox4.Controls.Add(this.button7);
             this.groupBox4.Controls.Add(this.button14);
             this.groupBox4.Controls.Add(this.button15);
-            this.groupBox4.Location = new System.Drawing.Point(363, 435);
+            this.groupBox4.Location = new System.Drawing.Point(363, 404);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(170, 197);
+            this.groupBox4.Size = new System.Drawing.Size(170, 228);
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "ReportManager";
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(16, 142);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(138, 32);
+            this.button13.TabIndex = 6;
+            this.button13.Text = "Добавление таблицы";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // button7
             // 
@@ -438,15 +462,15 @@
             this.button17.Text = "Измененные данные ист.напряжения";
             this.button17.UseVisualStyleBackColor = true;
             // 
-            // radioButton14
+            // button18
             // 
-            this.radioButton14.AutoSize = true;
-            this.radioButton14.Location = new System.Drawing.Point(6, 111);
-            this.radioButton14.Name = "radioButton14";
-            this.radioButton14.Size = new System.Drawing.Size(81, 17);
-            this.radioButton14.TabIndex = 13;
-            this.radioButton14.Text = "Проводник";
-            this.radioButton14.UseVisualStyleBackColor = true;
+            this.button18.Location = new System.Drawing.Point(16, 180);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(138, 42);
+            this.button18.TabIndex = 7;
+            this.button18.Text = "Добавление контр.вопросов";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // MainForm
             // 
@@ -514,6 +538,8 @@
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.RadioButton radioButton14;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button18;
     }
 }
 
