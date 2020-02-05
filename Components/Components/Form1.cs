@@ -57,6 +57,8 @@ namespace Components
         {
             x = e.X;
             y = e.Y;
+            label1.Text = Convert.ToString(x);
+            label2.Text = Convert.ToString(y);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -205,21 +207,8 @@ namespace Components
 
         private void button21_Click(object sender, EventArgs e)
         {
-            resistor[1].Visualization(this, 550, 300);
-
-            Graphics graphics = this.CreateGraphics();
-
-            Pen pen = new Pen(Brushes.Red, 3);
-            pen.DashStyle = DashStyle.Dash;
-
-            graphics.DrawRectangle(
-                pen, 
-                resistor[0].GetX() - 20,
-                resistor[0].GetY() - 20, 
-                resistor[1].GetX(), 
-                resistor[1].GetY());
-
-            graphics.Dispose();
+            resistor[1].Visualization(this, 500, 250);
+            heatingArea.DrawHeatingArea(this, resistor);
         }
 
         private void MainForm_Click(object sender, EventArgs e)
@@ -278,7 +267,7 @@ namespace Components
                 }
                 else if (radioButton11.Checked == true)
                 {
-                    heatingArea.Visualization(this, x, y);
+                    heatingArea.DrawHeatingArea(this, resistor);
                 }
                 else if (radioButton12.Checked == true)
                 {

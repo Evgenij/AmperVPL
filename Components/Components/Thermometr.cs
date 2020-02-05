@@ -14,19 +14,19 @@ namespace Components
         private Zeroit.Framework.Metro.ZeroitMetroProgressbar scale;
 
 
-        public Thermometr(PictureBox picture,int x, int y) 
+        public Thermometr(Form picture,int x, int y) 
         {
             scale = new Zeroit.Framework.Metro.ZeroitMetroProgressbar();
             pictureThermometr = new PictureBox();
 
             pictureThermometr.Width = 44;
             pictureThermometr.Height = 250;
-            pictureThermometr.Left = x + 230;
-            pictureThermometr.Top = y - 10;
+            pictureThermometr.Left = x;
+            pictureThermometr.Top = y;
             pictureThermometr.BackColor = Color.Transparent;
             pictureThermometr.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\heating_area\thermometr.png");
 
-            scale.Left = x;
+            scale.Left = pictureThermometr.Left;
             scale.Top = y + 5;
             scale.Width = 220;
             scale.Height = 7;

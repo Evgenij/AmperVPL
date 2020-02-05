@@ -35,12 +35,12 @@ namespace Components
 
         public int GetX() 
         {
-            return picture.Left;
+            return X;
         }
 
         public int GetY()
         {
-            return picture.Top;
+            return Y;
         }
 
         public int GetWidth()
@@ -55,7 +55,7 @@ namespace Components
 
 
         public virtual void Visualization(Form form, int x, int y)
-        { 
+        {
             picture.Width = 188;
             picture.Height = 103;
             picture.Left = x - picture.Width / 2;
@@ -63,6 +63,9 @@ namespace Components
             picture.SizeMode = PictureBoxSizeMode.AutoSize;
             picture.BackColor = Color.Transparent;
             picture.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\resistor\resistor.png");
+
+            this.X = picture.Left;
+            this.Y = picture.Top;
 
             GlobalData.LoadFont(12);  //метод загрузки шрифта
             labelValue.ReadOnly = true;
