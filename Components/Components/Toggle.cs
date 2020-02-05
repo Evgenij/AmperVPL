@@ -11,14 +11,18 @@ namespace Components
     class Toggle : IVisualization
     {
         private PictureBox picture;
+        private PictureBox handle;
         private PictureBox contactMinus;
         private PictureBox contactPlus;
+        private bool status = false;
 
         public Toggle()
         {
             picture = new PictureBox();
+            handle = new PictureBox();
             contactMinus = new PictureBox();
             contactPlus = new PictureBox();
+            status = false;
         }
 
         public void Visualization(Form form, int x, int y)
@@ -30,6 +34,16 @@ namespace Components
             picture.BackColor = Color.Transparent;
             picture.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\toggle\toggle_off.png");
             form.Controls.Add(picture);
+
+            handle.Width = 23;
+            handle.Height = 19;
+            handle.Left = 91;
+            handle.Top = 15;
+            handle.Cursor = Cursors.Hand;
+            handle.BackColor = Color.Transparent;
+            handle.Cursor = Cursors.PanSouth;
+            handle.Click += Handle_Click;
+            picture.Controls.Add(handle);
 
             // код создания контактов для подключения
 
@@ -55,6 +69,26 @@ namespace Components
             contactMinus.BringToFront();
             contactPlus.BringToFront();
             form.Controls.Add(picture);
+        }
+
+        private void Handle_Click(object sender, EventArgs e)
+        {
+            if (status == false)
+            {
+                picture.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\toggle\toggle_on.png");
+                handle.Left = 98;
+                handle.Top = 28;
+                status = true;
+                handle.Cursor = Cursors.PanNorth;
+            }
+            else
+            {
+                picture.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\toggle\toggle_off.png");
+                handle.Left = 91;
+                handle.Top = 15;
+                status = false;
+                handle.Cursor = Cursors.PanSouth;
+            }
         }
     }
 }

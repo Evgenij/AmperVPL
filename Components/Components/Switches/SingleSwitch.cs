@@ -10,17 +10,18 @@ namespace Components
 {
     class SingleSwitch : Switch
     {
-        private PictureBox handle; 
         private PictureBox contactLeft; 
         private PictureBox contactTop;  
-        private PictureBox contactBottom; 
+        private PictureBox contactBottom;
+        private enum Position { Top, Center, Bottom }
+        private Position position;
 
         public SingleSwitch() 
         {
-            handle = new PictureBox();
             contactLeft = new PictureBox();
             contactTop = new PictureBox();
             contactBottom = new PictureBox();
+            position = Position.Center;
         }
 
         public override void Switching()
@@ -35,16 +36,10 @@ namespace Components
             picture.Left = x - picture.Width / 2;
             picture.Top = y - picture.Height / 2;
             picture.BackColor = Color.Transparent;
+            picture.MouseMove += Picture_MouseMove;
+            picture.Click += Picture_Click;
             picture.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\switches\s_switch0.png");
             form.Controls.Add(picture);
-
-            handle.Width = 16;
-            handle.Height = 18;
-            handle.Left = 46;
-            handle.Top = 36;
-            handle.Cursor = Cursors.Hand;
-            handle.BackColor = Color.Transparent;
-            picture.Controls.Add(handle);
 
             // код создания контактов для подключения
 
@@ -79,6 +74,82 @@ namespace Components
             contactTop.BringToFront();
             contactBottom.BringToFront();
             form.Controls.Add(picture);
+        }
+
+        private void Picture_Click(object sender, EventArgs e)
+        {
+            if (position == Position.Top)
+            {
+                position = Position.Center;
+                picture.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\switches\s_switch0.png");
+            }
+            else if (position == Position.Bottom)
+            {
+                position = Position.Center;
+                picture.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\switches\s_switch0.png");
+            }
+            else
+            {
+                if (picture.Cursor == Cursors.PanNorth)
+                {
+                    position = Position.Top;
+                    picture.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\switches\s_switch1.png");
+                }
+                else if (picture.Cursor == Cursors.PanSouth)
+                {
+                    position = Position.Bottom;
+                    picture.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\switches\s_switch2.png");
+                }
+            }
+        }
+
+        private void Picture_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Y <= 40)
+            {
+                if (position == Position.Top)
+                {
+                    picture.Cursor = Cursors.PanSouth;
+                }
+                else if (position == Position.Center)
+                {
+                    picture.Cursor = Cursors.PanNorth;
+                }
+                else 
+                {
+                    picture.Cursor = Cursors.PanNorth;
+                }
+            }
+            else if (e.Y <= 63)
+            {
+                if (position == Position.Center)
+                {
+                    picture.Cursor = Cursors.NoMoveVert;
+                }
+                else if (position == Position.Top)
+                {
+                    picture.Cursor = Cursors.PanSouth;
+                }
+                else 
+                {
+                    picture.Cursor = Cursors.PanNorth;
+                }
+            }
+            else 
+            {
+                if (position == Position.Bottom)
+                {
+                    picture.Cursor = Cursors.PanNorth;
+                }
+                else if (position == Position.Center)
+                {
+                    picture.Cursor = Cursors.PanSouth;
+                }
+                else 
+                {
+                    picture.Cursor = Cursors.PanSouth;
+                }
+            }
         }
     }
 }

@@ -158,10 +158,12 @@
             // radioButton8
             // 
             this.radioButton8.AutoSize = true;
+            this.radioButton8.Checked = true;
             this.radioButton8.Location = new System.Drawing.Point(6, 203);
             this.radioButton8.Name = "radioButton8";
             this.radioButton8.Size = new System.Drawing.Size(109, 17);
             this.radioButton8.TabIndex = 7;
+            this.radioButton8.TabStop = true;
             this.radioButton8.Text = "Переключ. один.";
             this.radioButton8.UseVisualStyleBackColor = true;
             // 
@@ -228,12 +230,10 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
             this.radioButton1.Location = new System.Drawing.Point(6, 19);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(83, 17);
             this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Амперметр";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 

@@ -14,3 +14,19 @@ C:\Users\Evgenij\Amper VPL\Components\Components\Components\obj\Debug\Components
 C:\Users\Evgenij\Amper VPL\Components\Components\Components\bin\Debug\Xceed.Document.NET.dll
 C:\Users\Evgenij\Amper VPL\Components\Components\Components\bin\Debug\Xceed.Words.NET.dll
 C:\Users\Evgenij\Amper VPL\Components\Components\Components\obj\Debug\Components.csproj.ResolveComReference.cache
+C:\Users\Evgenij\GitHub\ElectronVPL\Components\Components\bin\Debug\Components.exe.config
+C:\Users\Evgenij\GitHub\ElectronVPL\Components\Components\bin\Debug\Components.exe
+C:\Users\Evgenij\GitHub\ElectronVPL\Components\Components\bin\Debug\Components.pdb
+C:\Users\Evgenij\GitHub\ElectronVPL\Components\Components\bin\Debug\CircleAnglePicker.dll
+C:\Users\Evgenij\GitHub\ElectronVPL\Components\Components\bin\Debug\Xceed.Document.NET.dll
+C:\Users\Evgenij\GitHub\ElectronVPL\Components\Components\bin\Debug\Xceed.Words.NET.dll
+C:\Users\Evgenij\GitHub\ElectronVPL\Components\Components\bin\Debug\Zeroit.Framework.Metro.dll
+C:\Users\Evgenij\GitHub\ElectronVPL\Components\Components\bin\Debug\CircleAnglePicker.xml
+C:\Users\Evgenij\GitHub\ElectronVPL\Components\Components\obj\Debug\Components.csprojAssemblyReference.cache
+C:\Users\Evgenij\GitHub\ElectronVPL\Components\Components\obj\Debug\Components.csproj.ResolveComReference.cache
+C:\Users\Evgenij\GitHub\ElectronVPL\Components\Components\obj\Debug\Components.MainForm.resources
+C:\Users\Evgenij\GitHub\ElectronVPL\Components\Components\obj\Debug\Components.Properties.Resources.resources
+C:\Users\Evgenij\GitHub\ElectronVPL\Components\Components\obj\Debug\Components.csproj.GenerateResource.cache
+C:\Users\Evgenij\GitHub\ElectronVPL\Components\Components\obj\Debug\Components.csproj.CopyComplete
+C:\Users\Evgenij\GitHub\ElectronVPL\Components\Components\obj\Debug\Components.exe
+C:\Users\Evgenij\GitHub\ElectronVPL\Components\Components\obj\Debug\Components.pdb
