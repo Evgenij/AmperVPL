@@ -10,7 +10,8 @@ namespace Components
 {
     class Switch : ISwitching, IVisualization
     {
-        protected enum Position { First, Second }
+        protected enum Position { Top, Center, Bottom, Left, Right }
+        protected Position position;
         public virtual void Switching() { }
 
         //компоненты формы для создания амперметра

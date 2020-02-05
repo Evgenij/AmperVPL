@@ -13,8 +13,6 @@ namespace Components
         private PictureBox contactLeft; 
         private PictureBox contactTop;  
         private PictureBox contactBottom;
-        private enum Position { Top, Center, Bottom }
-        private Position position;
 
         public SingleSwitch() 
         {

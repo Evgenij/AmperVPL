@@ -33,6 +33,8 @@ namespace Components
             contactPlusPosBottom = new PictureBox();
 
             _switch = new Zeroit.Framework.Metro.ZeroitMetroSwitch();
+
+            position = Position.Left;
         }
 
         public override void Switching()
@@ -58,7 +60,7 @@ namespace Components
             _switch.DefaultColor = Color.ForestGreen;
             _switch.CheckColor = Color.DodgerBlue;
             _switch.HoverColor = Color.DodgerBlue;
-            //_switch.CheckedChanged += _switch_CheckedChanged;
+            _switch.CheckedChanged += _switch_CheckedChanged;
             picture.Controls.Add(_switch);
 
             // код создания контактов для подключения
@@ -130,6 +132,18 @@ namespace Components
 
             _switch.BringToFront();
             form.Controls.Add(picture);
+        }
+
+        private void _switch_CheckedChanged(object sender, EventArgs e)
+        {
+            if (position == Position.Left)
+            {
+                position = Position.Right;
+            }
+            else 
+            {
+                position = Position.Left;
+            }
         }
     }
 }
