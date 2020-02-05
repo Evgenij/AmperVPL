@@ -77,6 +77,7 @@ namespace Components
             labelValue.Cursor = Cursors.Hand;
             labelValue.MouseMove += LabelValue_MouseMove;
             labelValue.TextChanged += LabelValue_TextChanged;
+            labelValue.Click += LabelValue_Click;
             picture.Controls.Add(labelValue);
  
             valueArrow.Parent = picture;
@@ -113,7 +114,18 @@ namespace Components
             contactPlus.BringToFront();
             form.Controls.Add(picture);
         }
-        
+
+        private void LabelValue_Click(object sender, EventArgs e)
+        {
+            Delete(this);
+        }
+
+        public void Delete(Ammeter ammeter) 
+        {
+            this.picture.Dispose();
+            ammeter = null;
+        }
+
         //метод для отключения выделения текста в TextBox компонента
         private void LabelValue_TextChanged(object sender, EventArgs e)
         {

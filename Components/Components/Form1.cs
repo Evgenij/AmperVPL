@@ -33,7 +33,6 @@ namespace Components
         public MainForm()
         {
             InitializeComponent();
-            ammeter = new Ammeter();
             voltmeter = new Voltmeter();
             multimeter = new Multimeter();
             resistor = new Resistor();
@@ -178,12 +177,25 @@ namespace Components
             GlobalData.reportManager.AddControlQuestionsToReport(questions, answers);
         }
 
+        private void button19_Click(object sender, EventArgs e)
+        {
+            if (ammeter != null)
+            {
+                MessageBox.Show("1");
+            }
+            else 
+            {
+                MessageBox.Show("0");
+            }
+        }
+
         private void MainForm_Click(object sender, EventArgs e)
         {
             if (zeroitMetroSwitch1.Checked == true)
             {
                 if (radioButton1.Checked == true)
                 {
+                    ammeter = new Ammeter();
                     ammeter.Visualization(this, x, y);
                     GlobalData.reportManager.AddToStringAction(ammeter, ReportManager.TypeAction.Add);
                 }

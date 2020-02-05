@@ -14,7 +14,6 @@ namespace Components
         private PictureBox picturePanel; //
         private TextBox textBoxL;  //
         private TextBox textBoxD; //
-        private TextBox textBoxP; //
 
         public Conductor()
         {
@@ -24,10 +23,10 @@ namespace Components
             labelValue = new TextBox();
             textBoxL = new TextBox();
             textBoxD = new TextBox();
-            textBoxP = new TextBox();
             contactMinus = new PictureBox();
             contactPlus = new PictureBox();
 
+            picturePanel.Visible = false;
             labelValue.Text = "0";
             this.resistanceValue = 0;
         }
@@ -60,7 +59,7 @@ namespace Components
 
             pictureGear.Width = 11;
             pictureGear.Height = 12;
-            pictureGear.Left = 164;
+            pictureGear.Left = 12;
             pictureGear.Top = 9;
             pictureGear.SizeMode = PictureBoxSizeMode.AutoSize;
             pictureGear.BackColor = Color.Transparent;
@@ -69,13 +68,12 @@ namespace Components
             pictureGear.Click += PictureGear_Click;
             picture.Controls.Add(pictureGear);
 
-            // код создания панели для ввода данных резистора
+            // код создания панели для ввода данных проводника
 
-            picturePanel.Visible = false;
-            picturePanel.Width = 134;
-            picturePanel.Height = 161;
-            picturePanel.Left = picture.Left - 15;
-            picturePanel.Top = picture.Top - 61;
+            picturePanel.Width = 133;
+            picturePanel.Height = 131;
+            picturePanel.Left = picture.Left - 130;
+            picturePanel.Top = picture.Top - 14;
             picturePanel.SizeMode = PictureBoxSizeMode.AutoSize;
             picturePanel.BackColor = Color.Transparent;
             picturePanel.Image = Image.FromFile(@"C:\Users\Evgenij\Amper VPL\Components\conductor\panel.png");
@@ -84,38 +82,26 @@ namespace Components
                 GlobalData.LoadFont(11);  //метод загрузки шрифта
                 textBoxL.TabStop = false;
                 textBoxL.Font = GlobalData.DigitalFont;
-                textBoxL.Left = 10;
-                textBoxL.Top = 27;
+                textBoxL.Left = 15;
+                textBoxL.Top = 33;
                 textBoxL.BackColor = Color.White;
-                textBoxL.Width = 62;
+                textBoxL.Width = 95;
                 textBoxL.ForeColor = Color.Black;
-                textBoxL.TextAlign = HorizontalAlignment.Center;
+                textBoxL.TextAlign = HorizontalAlignment.Left;
                 textBoxL.Cursor = Cursors.IBeam;
                 picturePanel.Controls.Add(textBoxL);
 
                 GlobalData.LoadFont(11);  //метод загрузки шрифта
                 textBoxD.TabStop = false;
                 textBoxD.Font = GlobalData.DigitalFont;
-                textBoxD.Left = 78;
-                textBoxD.Top = 27;
+                textBoxD.Left = 15;
+                textBoxD.Top = 87;
                 textBoxD.BackColor = Color.White;
-                textBoxD.Width = 62;
+                textBoxD.Width = 95;
                 textBoxD.ForeColor = Color.Black;
-                textBoxD.TextAlign = HorizontalAlignment.Center;
+                textBoxD.TextAlign = HorizontalAlignment.Left;
                 textBoxD.Cursor = Cursors.IBeam;
                 picturePanel.Controls.Add(textBoxD);
-
-                GlobalData.LoadFont(11);  //метод загрузки шрифта
-                textBoxP.TabStop = false;
-                textBoxP.Font = GlobalData.DigitalFont;
-                textBoxP.Left = 146;
-                textBoxP.Top = 27;
-                textBoxP.BackColor = Color.White;
-                textBoxP.Width = 62;
-                textBoxP.ForeColor = Color.Black;
-                textBoxP.TextAlign = HorizontalAlignment.Center;
-                textBoxP.Cursor = Cursors.IBeam;
-                picturePanel.Controls.Add(textBoxP);
 
             // код создания контактов для подключения
 
@@ -152,16 +138,15 @@ namespace Components
             }
             else
             {
-                if (textBoxL.Text == "0" || textBoxD.Text == "0" || textBoxP.Text == "0")
+                if (textBoxL.Text == "0" || textBoxD.Text == "0")
                 {
                     MessageBox.Show("Введите корректные значения проводника");
                     picturePanel.Visible = true;
                 }
-                else if (textBoxL.Text != "" & textBoxD.Text != "" & textBoxP.Text != "")
+                else if (textBoxL.Text != "" & textBoxD.Text != "")
                 {
                     l = Convert.ToDouble(textBoxL.Text);
                     d = Convert.ToDouble(textBoxD.Text);
-                    p = Convert.ToDouble(textBoxP.Text);
 
                     double S = (GlobalData.PI * Math.Pow(d, 2)) / 4;
                     this.resistanceValue = p * (l / S);

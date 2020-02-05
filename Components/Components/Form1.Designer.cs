@@ -65,6 +65,7 @@
             this.button12 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -89,7 +90,7 @@
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(169, 417);
+            this.groupBox1.Size = new System.Drawing.Size(169, 434);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Компоненты";
@@ -137,12 +138,10 @@
             // radioButton10
             // 
             this.radioButton10.AutoSize = true;
-            this.radioButton10.Checked = true;
             this.radioButton10.Location = new System.Drawing.Point(6, 249);
             this.radioButton10.Name = "radioButton10";
             this.radioButton10.Size = new System.Drawing.Size(51, 17);
             this.radioButton10.TabIndex = 9;
-            this.radioButton10.TabStop = true;
             this.radioButton10.Text = "Ключ";
             this.radioButton10.UseVisualStyleBackColor = true;
             // 
@@ -229,16 +228,18 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
             this.radioButton1.Location = new System.Drawing.Point(6, 19);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(83, 17);
             this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Амперметр";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(539, 462);
+            this.button1.Location = new System.Drawing.Point(539, 477);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(169, 52);
             this.button1.TabIndex = 1;
@@ -248,7 +249,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(539, 520);
+            this.button2.Location = new System.Drawing.Point(539, 535);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(169, 52);
             this.button2.TabIndex = 2;
@@ -272,7 +273,7 @@
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Location = new System.Drawing.Point(11, 435);
+            this.groupBox2.Location = new System.Drawing.Point(11, 452);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(170, 197);
             this.groupBox2.TabIndex = 13;
@@ -315,7 +316,7 @@
             this.groupBox3.Controls.Add(this.button9);
             this.groupBox3.Controls.Add(this.button10);
             this.groupBox3.Controls.Add(this.button11);
-            this.groupBox3.Location = new System.Drawing.Point(187, 435);
+            this.groupBox3.Location = new System.Drawing.Point(187, 452);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(170, 197);
             this.groupBox3.TabIndex = 14;
@@ -369,7 +370,7 @@
             this.groupBox4.Controls.Add(this.button7);
             this.groupBox4.Controls.Add(this.button14);
             this.groupBox4.Controls.Add(this.button15);
-            this.groupBox4.Location = new System.Drawing.Point(363, 404);
+            this.groupBox4.Location = new System.Drawing.Point(363, 421);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(170, 228);
             this.groupBox4.TabIndex = 15;
@@ -446,7 +447,7 @@
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(539, 578);
+            this.button12.Location = new System.Drawing.Point(539, 593);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(169, 52);
             this.button12.TabIndex = 24;
@@ -456,7 +457,7 @@
             // 
             // button16
             // 
-            this.button16.Location = new System.Drawing.Point(714, 520);
+            this.button16.Location = new System.Drawing.Point(714, 535);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(169, 52);
             this.button16.TabIndex = 26;
@@ -465,19 +466,30 @@
             // 
             // button17
             // 
-            this.button17.Location = new System.Drawing.Point(714, 462);
+            this.button17.Location = new System.Drawing.Point(714, 477);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(169, 52);
             this.button17.TabIndex = 25;
             this.button17.Text = "Измененные данные ист.напряжения";
             this.button17.UseVisualStyleBackColor = true;
             // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(1141, 12);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(131, 36);
+            this.button19.TabIndex = 27;
+            this.button19.Text = "button19";
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1231, 644);
+            this.ClientSize = new System.Drawing.Size(1284, 662);
+            this.Controls.Add(this.button19);
             this.Controls.Add(this.button16);
             this.Controls.Add(this.button17);
             this.Controls.Add(this.button12);
@@ -540,6 +552,7 @@
         private System.Windows.Forms.RadioButton radioButton14;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Button button19;
     }
 }
 
