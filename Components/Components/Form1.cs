@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -16,7 +17,7 @@ namespace Components
         Ammeter ammeter;
         Voltmeter voltmeter;
         Multimeter multimeter;
-        Resistor resistor;
+        Resistor[] resistor = new Resistor[2];
         Conductor conductor;
         Rheostat rheostat;
         VoltageSource voltageSource;
@@ -24,6 +25,7 @@ namespace Components
         SingleSwitch singleSwitch;
         DoubleSwitch doubleSwitch;
         Toggle toggle;
+        HeatingArea heatingArea;
 
 
         StudentManager studentManager;
@@ -35,7 +37,8 @@ namespace Components
             InitializeComponent();
             voltmeter = new Voltmeter();
             multimeter = new Multimeter();
-            resistor = new Resistor();
+            resistor[0] = new Resistor();
+            resistor[1] = new Resistor();
             conductor = new Conductor();
             rheostat = new Rheostat();
             voltageSource = new VoltageSource();
@@ -43,6 +46,8 @@ namespace Components
             singleSwitch = new SingleSwitch();
             doubleSwitch = new DoubleSwitch();
             toggle = new Toggle();
+            heatingArea = new HeatingArea();
+
 
             studentManager = new StudentManager();
             GlobalData.reportManager = new ReportManager("Ермоленко", "Евгений", 1);
@@ -189,6 +194,34 @@ namespace Components
             }
         }
 
+        private void button20_Click(object sender, EventArgs e)
+        {
+            resistor[0].Visualization(this, 500, 150);
+
+            //Graphics graphics = this.CreateGraphics();
+            //graphics.DrawLine(new Pen(Color.Red, 3), 0, 0, 1000, 700);
+            //graphics.Dispose();
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            resistor[1].Visualization(this, 550, 300);
+
+            Graphics graphics = this.CreateGraphics();
+
+            Pen pen = new Pen(Brushes.Red, 3);
+            pen.DashStyle = DashStyle.Dash;
+
+            graphics.DrawRectangle(
+                pen, 
+                resistor[0].GetX() - 20,
+                resistor[0].GetY() - 20, 
+                resistor[1].GetX(), 
+                resistor[1].GetY());
+
+            graphics.Dispose();
+        }
+
         private void MainForm_Click(object sender, EventArgs e)
         {
             if (zeroitMetroSwitch1.Checked == true)
@@ -211,7 +244,7 @@ namespace Components
                 }
                 else if (radioButton4.Checked == true)
                 {
-                    resistor.Visualization(this, x, y);
+                    resistor[0].Visualization(this, x, y);
                     GlobalData.reportManager.AddToStringAction(resistor, ReportManager.TypeAction.Add);
                 }
                 else if (radioButton5.Checked == true)
@@ -245,7 +278,7 @@ namespace Components
                 }
                 else if (radioButton11.Checked == true)
                 {
-
+                    heatingArea.Visualization(this, x, y);
                 }
                 else if (radioButton12.Checked == true)
                 {

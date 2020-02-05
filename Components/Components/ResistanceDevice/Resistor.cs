@@ -17,7 +17,8 @@ namespace Components
         protected PictureBox contactMinus;
         protected PictureBox contactPlus;
         protected TextBox labelValue;
-        
+        private int Width;
+        private int Height;
 
         public Resistor()
         {
@@ -32,8 +33,29 @@ namespace Components
             this.resistanceValue = 0;
         }
 
-        public virtual void Visualization(Form form, int x, int y) 
+        public int GetX() 
         {
+            return picture.Left;
+        }
+
+        public int GetY()
+        {
+            return picture.Top;
+        }
+
+        public int GetWidth()
+        {
+            return picture.Width;
+        }
+
+        public int GetHeight()
+        {
+            return picture.Height;
+        }
+
+
+        public virtual void Visualization(Form form, int x, int y)
+        { 
             picture.Width = 188;
             picture.Height = 103;
             picture.Left = x - picture.Width / 2;
