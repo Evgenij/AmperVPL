@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Capacitor.cs" />
     <Compile Include="HeatingArea.cs" />
+    <Compile Include="Lamp.cs" />
     <Compile Include="MeterDevice\Ammeter.cs" />
     <Compile Include="General_Classes\Device.cs" />
     <Compile Include="Form1.cs">
@@ -85,6 +86,7 @@
     <Compile Include="MeterDevice\Voltmeter.cs" />
     <Compile Include="ResistanceDevice\Rheostat.cs" />
     <Compile Include="General_Classes\INIManager.cs" />
+    <Compile Include="Stopwatch.cs" />
     <Compile Include="StudentManager\Interfaces\IAuthorization.cs" />
     <Compile Include="StudentManager\Interfaces\IChange.cs" />
     <Compile Include="StudentManager\Interfaces\IDeleting.cs" />

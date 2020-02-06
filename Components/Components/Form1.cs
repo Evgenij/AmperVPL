@@ -26,7 +26,8 @@ namespace Components
         DoubleSwitch doubleSwitch;
         Toggle toggle;
         HeatingArea heatingArea;
-
+        Stopwatch stopwatch;
+        Lamp lamp;
 
         StudentManager studentManager;
         
@@ -47,7 +48,8 @@ namespace Components
             doubleSwitch = new DoubleSwitch();
             toggle = new Toggle();
             heatingArea = new HeatingArea();
-
+            stopwatch = new Stopwatch();
+            lamp = new Lamp();
 
             studentManager = new StudentManager();
             GlobalData.reportManager = new ReportManager("Ермоленко", "Евгений", 1);
@@ -271,11 +273,12 @@ namespace Components
                 }
                 else if (radioButton12.Checked == true)
                 {
-
+                    stopwatch.Visualization(this, x, y);
+                    stopwatch.Start();
                 }
                 else if (radioButton13.Checked == true)
                 {
-
+                    lamp.Visualization(this, x, y); 
                 }
                 else if (radioButton14.Checked == true)
                 {

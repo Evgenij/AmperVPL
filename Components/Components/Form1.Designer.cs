@@ -112,11 +112,13 @@
             // radioButton13
             // 
             this.radioButton13.AutoSize = true;
+            this.radioButton13.Checked = true;
             this.radioButton13.Location = new System.Drawing.Point(6, 318);
             this.radioButton13.Name = "radioButton13";
-            this.radioButton13.Size = new System.Drawing.Size(53, 17);
+            this.radioButton13.Size = new System.Drawing.Size(76, 17);
             this.radioButton13.TabIndex = 12;
-            this.radioButton13.Text = "Часы";
+            this.radioButton13.TabStop = true;
+            this.radioButton13.Text = "Лампочка";
             this.radioButton13.UseVisualStyleBackColor = true;
             // 
             // radioButton12
@@ -124,20 +126,18 @@
             this.radioButton12.AutoSize = true;
             this.radioButton12.Location = new System.Drawing.Point(6, 295);
             this.radioButton12.Name = "radioButton12";
-            this.radioButton12.Size = new System.Drawing.Size(76, 17);
+            this.radioButton12.Size = new System.Drawing.Size(87, 17);
             this.radioButton12.TabIndex = 11;
-            this.radioButton12.Text = "Лампочка";
+            this.radioButton12.Text = "Секундомер";
             this.radioButton12.UseVisualStyleBackColor = true;
             // 
             // radioButton11
             // 
             this.radioButton11.AutoSize = true;
-            this.radioButton11.Checked = true;
             this.radioButton11.Location = new System.Drawing.Point(6, 272);
             this.radioButton11.Name = "radioButton11";
             this.radioButton11.Size = new System.Drawing.Size(138, 17);
             this.radioButton11.TabIndex = 10;
-            this.radioButton11.TabStop = true;
             this.radioButton11.Text = "Область температуры";
             this.radioButton11.UseVisualStyleBackColor = true;
             // 
