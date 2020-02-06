@@ -207,7 +207,7 @@ namespace Components
 
         private void button21_Click(object sender, EventArgs e)
         {
-            resistor[1].Visualization(this, 500, 250);
+            resistor[1].Visualization(this, 500, 300);
             heatingArea.DrawHeatingArea(this, resistor);
         }
 

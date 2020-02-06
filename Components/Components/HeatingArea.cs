@@ -26,20 +26,20 @@ namespace Components
 
             Point[] points = new Point[5]
             {
-                new Point(resistor[0].GetX() - 20,resistor[0].GetY() - 20),
-                new Point(resistor[1].GetX() + resistor[1].GetWidth() + 20,resistor[0].GetY() - 20),
-                new Point(resistor[1].GetX() + resistor[1].GetWidth() + 20,resistor[1].GetY() + resistor[1].GetHeight() + 20),
-                new Point(resistor[0].GetX() - 20,resistor[1].GetY() + resistor[1].GetHeight() + 20),
-                new Point(resistor[0].GetX() - 20,resistor[0].GetY() - 20)
+                new Point(resistor[0].GetX() - 25,resistor[0].GetY() - 25),
+                new Point(resistor[1].GetX() + resistor[1].GetWidth() + 25,resistor[0].GetY() - 25),
+                new Point(resistor[1].GetX() + resistor[1].GetWidth() + 25,resistor[1].GetY() + resistor[1].GetHeight() + 25),
+                new Point(resistor[0].GetX() - 25,resistor[1].GetY() + resistor[1].GetHeight() + 25),
+                new Point(resistor[0].GetX() - 25,resistor[0].GetY() - 25)
             };
 
             graphics.DrawLines(pen, points);
             graphics.Dispose();
 
             thermometr = new Thermometr(
-                form, 
-                resistor[1].GetX() + resistor[1].GetWidth() + 10,
-                resistor[0].GetY() - 30);
+               form,
+               resistor[1].GetX() + resistor[1].GetWidth() + 15,
+               resistor[0].GetY() - 30);
         }
 
     }
