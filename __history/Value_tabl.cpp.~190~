@@ -1,0 +1,267 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Value_tabl.h"
+#include "Elements.h"
+#include "lab1_info.h"
+#include "MainMenu.h"
+#include "MainWindow.h"
+#include "Projects.h"
+#include "AmperPCH1.h"
+#include "Value_for_6.h"
+#include "Answer.h"
+#include "Menu.h"
+#include "Lab.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TFValue *FValue;
+
+extern int type,r1,r2,r3,r01, r02, temp;
+extern float i,p,v,r12,ro1, ro2;
+extern float u1_7,u2_7,r1_7,r2_7,i1_7,i2_7,r_7,Ei_7;
+int l=1;
+extern int nlab;
+
+extern Battery B;
+extern Reostat Reost;
+extern Resistor *Res;
+extern Amper A;
+extern Volt *V;
+extern Perekl P;
+extern Lamp L;
+extern Fire F;
+extern Temp T;
+extern Dir D;
+extern RLC RLC;
+extern Dir2 D2;
+extern Condens C;
+
+extern float alfa;
+
+void  __fastcall TFValue::InExcel(TStringGrid *SGt)
+{
+	AnsiString s="";
+	for(int i=0;i<SGt->RowCount;i++)
+	{
+		for(int j=0;j<SGt->ColCount;j++) s=s+SGt->Cells[j][i]+"\t";
+		if (s[s.Length()]=='\t')
+		s.Delete(s.Length(),1); s=s+"\r\n";
+	}
+	Clipboard()->AsText=s;
+}
+
+//---------------------------------------------------------------------------
+__fastcall TFValue::TFValue(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TFValue::Button1Click(TObject *Sender)
+{
+    if(l<6)
+	{
+		if(nlab==1)
+		{
+			if(type==1)
+			{
+				SG->Cells[1][l]=FloatToStr(B.Volt);
+				SG->Cells[2][l]=FloatToStrF(r1,ffFixed,9,2);
+				SG->Cells[3][l]=FloatToStrF(r2,ffFixed,9,2);
+				SG->Cells[4][l]=FloatToStrF(v,ffFixed,9,2);
+				SG->Cells[5][l]=FloatToStrF(i,ffFixed,9,2);
+				SG->Cells[6][l]=FloatToStrF(r12,ffFixed,9,2);
+				SG->Cells[7][l]=FloatToStrF(p,ffFixed,9,2);
+			}
+			else if(type==2)
+			{
+				SG->Cells[1][l]=FloatToStr(B.Volt);
+				SG->Cells[2][l]=FloatToStrF(r1,ffFixed,9,2);
+				SG->Cells[3][l]=FloatToStrF(r2,ffFixed,9,2);
+				SG->Cells[4][l]=FloatToStrF(r3,ffFixed,9,2);
+				SG->Cells[5][l]=FloatToStrF(v,ffFixed,9,2);
+				SG->Cells[6][l]=FloatToStrF(i,ffFixed,9,2);
+				SG->Cells[7][l]=FloatToStrF(r12,ffFixed,9,2);
+				SG->Cells[8][l]=FloatToStrF(p,ffFixed,9,2);
+			}
+		}
+        else if(nlab==2)
+		{
+			SG->Cells[1][l]=FloatToStr(B.Volt);
+			SG->Cells[2][l]=FloatToStr(Reost.R);
+			SG->Cells[3][l]=A.l->Caption;
+			SG->Cells[4][l]=V[0].l->Caption;
+			SG->Cells[5][l]=FloatToStrF((pow((StrToFloat(V[0].l->Caption)),2))/(2),ffFixed,9,3);
+		}
+		else if(nlab==3)
+		{
+			SG->Cells[1][l]=FloatToStr(B.Volt);
+			SG->Cells[2][l]=A.l->Caption;
+			SG->Cells[3][l]=FloatToStr(Res[0].d);
+			SG->Cells[4][l]=FloatToStr(Res[0].l);
+			SG->Cells[5][l]=FloatToStr(Res[1].d);
+			SG->Cells[6][l]=FloatToStr(Res[1].l);
+			SG->Cells[7][l]=FloatToStrF(ro1,ffFixed,9,2);
+			SG->Cells[8][l]=FloatToStrF(ro2,ffFixed,9,2);
+			SG->Cells[9][l]=FloatToStrF((StrToFloat(A.l->Caption))*ro1,ffFixed,9,2);
+			SG->Cells[10][l]=FloatToStrF((StrToFloat(A.l->Caption))*ro2,ffFixed,9,2);
+		}
+		else if(nlab==4)
+		{
+            if(D.value==1)
+			{
+				SG->Cells[1][l]=FloatToStr(B.Volt);
+				SG->Cells[2][l]=FloatToStr(Reost.R);
+				SG->Cells[3][l]=FloatToStr(Res[0].R);
+				SG->Cells[4][l]="-//-";
+				SG->Cells[5][l]=FProjects->temp1->Caption;
+				SG->Cells[6][l]="-//-";
+				SG->Cells[7][l]=FloatToStrF(r01*(1+alfa*temp),ffFixed,9,2);
+				SG->Cells[8][l]="-//-";
+				SG->Cells[9][l]=A.l->Caption;
+			}
+			else if(D.value==2)
+			{
+                SG->Cells[1][l]=FloatToStr(B.Volt);
+				SG->Cells[2][l]=FloatToStr(Reost.R);
+				SG->Cells[3][l]="-//-";
+				SG->Cells[4][l]=FloatToStr(Res[1].R);
+				SG->Cells[5][l]="-//-";
+				SG->Cells[6][l]=FProjects->temp2->Caption;
+				SG->Cells[7][l]="-//-";
+				SG->Cells[8][l]=FloatToStrF(r02*(1+alfa*temp),ffFixed,9,2);
+				SG->Cells[9][l]=A.l->Caption;
+			}
+		}
+		else if(nlab==5)
+		{
+			float Ckon=StrToFloat(RLC.c->Caption);
+			float qkon=StrToFloat(RLC.q->Caption);
+			if(C.type==1)
+			{
+				SG->Cells[1][l]="плоский";
+				SG->Cells[2][l]=IntToStr(C.kol);
+				SG->Cells[3][l]="последоват.";
+				if(C.soed==2)
+				{
+					SG->Cells[3][l]="параллельное";
+				}
+				SG->Cells[4][l]=FProjects->ed2->Text;
+				SG->Cells[5][l]=FProjects->ed1->Text;
+				SG->Cells[6][l]=FProjects->ed3->Text;
+				SG->Cells[7][l]="-//-";
+				SG->Cells[8][l]="-//-";
+				SG->Cells[9][l]="-//-";
+				SG->Cells[10][l]=FloatToStrF(Ckon,ffFixed,9,4);
+				SG->Cells[11][l]=FloatToStrF(qkon,ffFixed,9,4);
+			}
+			if(C.type==2)
+			{
+				SG->Cells[1][l]="цилиндрич.";
+				SG->Cells[2][l]=IntToStr(C.kol);
+				SG->Cells[3][l]="последоват.";
+				if(C.soed==2)
+				{
+					SG->Cells[3][l]="параллельное";
+				}
+				SG->Cells[4][l]=FProjects->ed5->Text;
+				SG->Cells[5][l]="-//-";
+				SG->Cells[6][l]="-//-";
+				SG->Cells[7][l]=FProjects->ed4->Text;
+				SG->Cells[8][l]=FProjects->ed6->Text;
+				SG->Cells[9][l]=FProjects->ed7->Text;
+				SG->Cells[10][l]=FloatToStrF(Ckon,ffFixed,9,4);
+				SG->Cells[11][l]=FloatToStrF(qkon,ffFixed,9,4);
+			}
+		}
+		else if(nlab==6)
+		{
+			if(l==1)
+			{
+				SG->Cells[1][1]=FProjects->sg1->Cells[1][1];
+				SG->Cells[2][1]=FProjects->sg1->Cells[2][1];
+				SG->Cells[3][1]=FProjects->sg1->Cells[3][1];
+
+				SG->Cells[1][2]=FProjects->sg1->Cells[1][2];
+				SG->Cells[2][2]=FProjects->sg1->Cells[2][2];
+				SG->Cells[3][2]=FProjects->sg1->Cells[3][2];
+
+				SG2->Cells[1][1]=FProjects->sg2->Cells[1][1];
+				SG2->Cells[1][2]=FProjects->sg2->Cells[1][2];
+			}
+			else if(l==2)
+			{
+				ShowMessage("«начени€ занесены, если необходимо их обновить, очистите таблицу");
+                l--;
+			}
+		}
+		else if(nlab==7)
+		{
+            SG->Cells[1][l]=FloatToStr(B.Volt);
+			SG->Cells[2][l]=FloatToStr(Reost.R);
+			SG->Cells[3][l]=A.l->Caption;
+			SG->Cells[4][l]=FloatToStrF(Ei_7,ffFixed,9,3);
+			SG->Cells[5][l]=FloatToStrF((Ei_7/B.Volt)*100,ffFixed,9,2);
+		}
+		l++;
+	}
+	else if(l==6)
+	{
+		ShowMessage(" оличество опытов исчерпано. ≈сли необходимо добавить опыт, очистите таблицу");
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFValue::SGDrawCell(TObject *Sender, int ACol, int ARow, TRect &Rect,
+		  TGridDrawState State)
+{
+	String Text;
+	Text = SG->Cells[ACol][ARow];
+	SG->Canvas->FillRect(Rect);
+	DrawText(SG->Canvas->Handle, Text.c_str(), Text.Length(), &Rect, DT_WORDBREAK);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFValue::FormActivate(TObject *Sender)
+{
+	SG->RowHeights[0]=45;
+	SG->ColWidths[0]=55;
+
+	for(int i=1;i<6;i++)
+	{
+        SG->Cells[0][i]=IntToStr(i);
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFValue::Button2Click(TObject *Sender)
+{
+    l=1;
+	for(int i=1;i<=FValue->SG->RowCount;i++)
+	{
+		for(int j=1;j<=FValue->SG->ColCount;j++)
+		{
+			FValue->SG->Cells[j][i]="";
+		}
+	}
+	if(nlab==6)
+	{
+		for(int i=1;i<=FValue->SG2->RowCount;i++)
+		{
+			for(int j=1;j<=FValue->SG2->ColCount;j++)
+			{
+				FValue->SG2->Cells[j][i]="";
+			}
+		}
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFValue::Button3Click(TObject *Sender)
+{
+    InExcell(SG);
+}
+//---------------------------------------------------------------------------
+

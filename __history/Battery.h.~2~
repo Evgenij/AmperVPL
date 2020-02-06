@@ -1,0 +1,58 @@
+//---------------------------------------------------------------------------
+
+#ifndef Unit2H
+#define Unit2H
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Vcl.Menus.hpp>
+#include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Imaging.pngimage.hpp>
+#include <Vcl.ComCtrls.hpp>
+//---------------------------------------------------------------------------
+class Battery
+{
+public:
+	TGroupBox *gb;
+	TImage *im;
+	TTrackBar *tb;
+	TLabel *a;
+	void __fastcall tbChange(TObject *Sender);
+	void create(int x,int y)
+	{
+		gb=new TGroupBox(Main);
+		gb->Parent=Main;
+		gb->Caption="";
+		gb->Width=150;
+		gb->Height=110;
+		gb->Left=x-gb->Width/2;
+		gb->Top=y-gb->Height/2;
+
+		im=new TImage(Main);
+		im->Parent=gb;
+		im->Center=true;
+		im->Proportional=true;
+		im->Height=55;
+		im->Width=150;
+		im->Picture->LoadFromFile("batt.png");
+
+		tb=new TTrackBar(Main);
+		tb->Parent=gb;
+		tb->Top=50;
+		tb->Width=150;
+		tb->Position=10;
+        tb->Frequency=10;
+		tb->Max=100;
+		SetWindowRgn(tb->Handle,CreateRectRgn(1,1,tb->Width-1,tb->Height-1),true);
+		tb->OnChange=tbChange;
+
+		a=new TLabel(Main);
+		a->Parent=gb;
+		a->Align=alBottom;
+        a->Width=150;
+		a->Alignment=taCenter;
+		a->Caption=IntToStr(tb->Position)+"A";
+	}
+};

@@ -1,0 +1,60 @@
+//---------------------------------------------------------------------------
+
+#pragma hdrstop
+#include "Battery.h"
+class Battery
+{
+public:
+	TPanel *p;
+	TImage *im;
+	TTrackBar *tb;
+	TLabel *a;
+	int bx,by;
+	void __fastcall tbChange(TObject *Sender);
+	void create(int x,int y)
+	{
+		p=new TPanel(Main);
+		p->Parent=Main;
+		p->Caption="";
+		p->Width=150;
+		p->Height=110;
+		p->Left=x-p->Width/2;
+		p->Top=y-p->Height/2;
+        p->BevelOuter=bvNone;
+
+		bx=x;
+        by=y;
+
+		im=new TImage(Main);
+		im->Parent=p;
+		im->Center=true;
+		im->Proportional=true;
+		im->Height=55;
+		im->Width=150;
+		im->Picture->LoadFromFile("batt.png");
+
+		tb=new TTrackBar(Main);
+		tb->Parent=p;
+		tb->Top=50;
+		tb->Width=150;
+		tb->Position=10;
+        tb->Frequency=10;
+		tb->Max=100;
+		SetWindowRgn(tb->Handle,CreateRectRgn(1,1,tb->Width-1,tb->Height-1),true);
+		tb->OnChange=tbChange;
+
+		a=new TLabel(Main);
+		a->Parent=p;
+		a->Align=alBottom;
+		a->Width=150;
+		a->Alignment=taCenter;
+		a->Caption=IntToStr(tb->Position)+"A";
+	}
+	void paint()
+	{
+		Main->Canvas->MoveTo(bx,by);
+		Main->Canvas->LineTo(bx+120,by);
+	}
+};
+//---------------------------------------------------------------------------
+#pragma package(smart_init)

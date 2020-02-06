@@ -1,0 +1,91 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit3.h"
+#include "Project1PCH1.h"
+#include "Unit1.h"
+#include "Unit2.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TFormMenu *FormMenu;
+//---------------------------------------------------------------------------
+__fastcall TFormMenu::TFormMenu(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormMenu::FormActivate(TObject *Sender)
+{
+	FormMenu->Font->Color=0x00FF5F00;
+	/*Label1->Font->Color=0x00FF5F00;
+	Label2->Font->Color=0x00FF5F00;
+	Label3->Font->Color=0x00FF5F00;
+	Label4->Font->Color=0x00FF5F00;
+	Label5->Font->Color=0x00FF5F00;
+	Label6->Font->Color=0x00FF5F00;
+	Label7->Font->Color=0x00FF5F00; */
+	Load->ShowModal();
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormMenu::Label3MouseMove(TObject *Sender, TShiftState Shift, int X,
+          int Y)
+{
+	Label3->Font->Color=0x00FFD3B2;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMenu::Label3MouseLeave(TObject *Sender)
+{
+	Label3->Font->Color=0x00FF5F00;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMenu::Label4MouseMove(TObject *Sender, TShiftState Shift, int X,
+          int Y)
+{
+	Label4->Font->Color=0x00FFD3B2;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMenu::Label4MouseLeave(TObject *Sender)
+{
+	Label4->Font->Color=0x00FF5F00;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMenu::Label5MouseMove(TObject *Sender, TShiftState Shift, int X,
+          int Y)
+{
+	Label5->Font->Color=0x00FFD3B2;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMenu::Label5MouseLeave(TObject *Sender)
+{
+	Label5->Font->Color=0x00FF5F00;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMenu::Label6MouseMove(TObject *Sender, TShiftState Shift, int X,
+          int Y)
+{
+	Label6->Font->Color=0x00FFD3B2;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMenu::Label6MouseLeave(TObject *Sender)
+{
+	Label6->Font->Color=0x00FF5F00;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMenu::Label3Click(TObject *Sender)
+{
+    FormMenu->Hide();
+	Main->Show();
+}
+//---------------------------------------------------------------------------
+

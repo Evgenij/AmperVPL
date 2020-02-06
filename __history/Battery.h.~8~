@@ -1,0 +1,18 @@
+//---------------------------------------------------------------------------
+
+#ifndef BatteryH
+#define BatteryH
+class Battery :: public TMain
+{
+public:
+	TPanel *p;
+	TImage *im;
+	TTrackBar *tb;
+	TLabel *a;
+	int bx,by;
+	void __fastcall tbChange(TObject *Sender);
+	void create(int x,int y){}
+	void paint(){}
+};
+//---------------------------------------------------------------------------
+#endif

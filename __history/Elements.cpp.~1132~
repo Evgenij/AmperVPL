@@ -1,0 +1,2177 @@
+//---------------------------------------------------------------------------
+
+#pragma hdrstop
+#include <vcl.h>
+#include "Elements.h"
+#include "lab1_info.h"
+#include "MainMenu.h"
+#include "MainWindow.h"
+#include "Projects.h"
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Vcl.Menus.hpp>
+#include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Imaging.pngimage.hpp>
+#include <Vcl.ComCtrls.hpp>
+#include <System.Sensors.Components.hpp>
+#include <System.Sensors.hpp>
+#include <Vcl.Grids.hpp>
+#include <Vcl.WinXCtrls.hpp>
+#include "Value_tabl.h"
+#include "AmperPCH1.h"
+#include "Answer.h"
+#include "Menu.h"
+#include "Lab.h"
+
+Battery B;
+Reostat Reost;
+Resistor *Res=new Resistor[3];
+Amper A;
+Volt *V=new Volt[2];
+Perekl P;
+Lamp L;
+Fire F;
+Temp T;
+Dir D;
+RLC RLC;
+Dir2 D2;
+Condens C;
+Lines Lns;
+
+extern int type;
+int r1,r2,r3;
+float i,p,v,r12, ro1, ro2, Ck, qk;
+extern int nlab;
+extern int r01, r02, temp, count;
+extern bool go;
+extern float Ei_7;
+float Sk=0,dk=0,lk=0,Ek=0,R1k=0,R2k=0;
+
+float pi=3.1415926535, alfa=0.0046, E0=8.85;
+
+double I(double V,double R)//расчет силы тока для цепи
+{
+	double I=V/R;
+	i=I;
+	return I;
+};
+
+double Rt()//расчет общего сопротивления резисторов
+{
+	float R_t;
+	if(type==1)
+	{
+		r12=Res[0].R+Res[1].R+Reost.R;
+		r1=Res[0].R;
+		r2=Res[1].R;
+		R_t=Res[0].R+Res[1].R;
+	}
+	else if(type==2)
+	{
+		R_t=1/((1/Res[0].R)+(1/Res[1].R)+(1/Res[2].R));
+		r12=R_t+Reost.R;
+		r1=Res[0].R;
+		r2=Res[1].R;
+		r3=Res[2].R;
+	}
+	return R_t;
+}
+
+double Vr()
+{
+	return v=(I(B.Volt,Reost.R+Rt()))*Rt();
+}
+
+double Pm()
+{
+	return p=(pow(I(B.Volt,Reost.R+Rt()),2))*Rt();
+}
+
+void Battery::create(int x,int y)
+{
+	p_b=new TPanel(FProjects->lab);
+	batt=new TImage(FProjects->lab);
+	tb_b=new TTrackBar(FProjects->lab);
+	l_b=new TLabel(FProjects->lab);
+	tabl_b=new TImage(FProjects->lab);
+
+	p_b->Parent=FProjects->lab;
+	p_b->Width=120;
+	p_b->Height=120;
+	p_b->Left=x;
+	p_b->Top=y;
+	p_b->BevelOuter=bvNone;
+
+	batt->Parent=p_b;
+	batt->Picture->LoadFromFile("batt.png");
+	batt->Width=p_b->Width;
+	batt->Top=36;
+	batt->Proportional=true;
+
+	tabl_b->Parent=p_b;
+	tabl_b->Picture->LoadFromFile("tablo.png");
+	tabl_b->Width=p_b->Width;
+	tabl_b->Top=-30;
+	tabl_b->Proportional=true;
+	tabl_b->Center=true;
+
+	tb_b->Parent=p_b;
+	tb_b->Width=120;
+	tb_b->Top=90;
+	tb_b->Min=3;
+	tb_b->Max=50;
+	tb_b->Position=3;
+	tb_b->TickMarks=tmBottomRight;
+	tb_b->Frequency=10;
+	tb_b->TickStyle=None;
+	SetWindowRgn(tb_b->Handle,CreateRectRgn(1,1,tb_b->Width-1,tb_b->Height-1),true);
+	tb_b->OnChange=tb_bChange;
+
+	l_b->Parent=p_b;
+	l_b->Top=13;
+	l_b->Alignment=taRightJustify;
+	l_b->Width=155/2;
+	l_b->Font->Size=11;
+	l_b->StyleElements<<seFont;
+	l_b->Font->Color=clRed;
+	l_b->Font->Style=TFontStyles() << fsBold;
+	l_b->Caption="3 В";
+
+    Volt=3;
+}
+
+void Reostat::create(int x,int y)
+{
+	p_r=new TPanel(FProjects->lab);
+	tb_r=new TTrackBar(FProjects->lab);
+	reost=new TImage(FProjects->lab);
+	l_r=new TLabel(FProjects->lab);
+	tabl_r=new TImage(FProjects->lab);
+
+	p_r->Parent=FProjects->lab;
+	p_r->Width=140;
+	p_r->Height=110;
+	p_r->Left=x;
+	p_r->Top=y;
+	p_r->BevelOuter=bvNone;
+
+	reost->Parent=p_r;
+	reost->Picture->LoadFromFile("reost.png");
+	reost->Width=p_r->Width;
+	reost->Top=2;
+	reost->Proportional=true;
+
+	tb_r->Parent=p_r;
+	tb_r->Width=120;
+	tb_r->Left=10;
+    tb_r->Top=8;
+	tb_r->Min=1;
+	tb_r->Max=20;
+	tb_r->TickMarks=tmTopLeft;
+	tb_r->Frequency=10;
+	tb_r->Position=1;
+	tb_r->TickStyle=None;
+	SetWindowRgn(tb_r->Handle,CreateRectRgn(1,1,tb_r->Width-1,tb_r->Height-1),true);
+	tb_r->OnChange=tb_rChange;
+
+	tabl_r->Parent=p_r;
+	tabl_r->Picture->LoadFromFile("tablo.png");
+	tabl_r->Width=p_r->Width;
+	tabl_r->Top=20;
+	tabl_r->Proportional=true;
+	tabl_r->Center=true;
+
+	l_r->Parent=p_r;
+	l_r->Alignment=taRightJustify;
+	l_r->Top=62;
+	l_r->Width=185/2.0;
+	l_r->Font->Size=11;
+	l_r->Font->Style=TFontStyles() << fsBold;
+	l_r->Caption="1 Oм";
+
+	R=1;
+}
+
+void Resistor::create(int x, int y)
+{
+	p_res=new TPanel(FProjects->lab);
+	resist=new TImage(FProjects->lab);
+	l_res=new TLabel(FProjects->lab);
+	tabl_res=new TImage(FProjects->lab);
+	r1=new TRadioButton(FProjects->lab);
+	r2=new TRadioButton(FProjects->lab);
+	r3=new TRadioButton(FProjects->lab);
+	r4=new TRadioButton(FProjects->lab);
+	r5=new TRadioButton(FProjects->lab);
+	l1=new TLabel(FProjects->lab);
+	l2=new TLabel(FProjects->lab);
+	l3=new TLabel(FProjects->lab);
+	l4=new TLabel(FProjects->lab);
+	l5=new TLabel(FProjects->lab);
+
+	p_res->Parent=FProjects->lab;
+	p_res->Width=120;
+	p_res->Height=120;
+	p_res->Left=x;
+	p_res->Top=y;
+	p_res->BevelOuter=bvNone;
+
+	resist->Parent=p_res;
+	resist->Picture->LoadFromFile("resist.png");
+	resist->Width=p_res->Width;
+	resist->Top=36;
+	resist->Proportional=true;
+
+	tabl_res->Parent=p_res;
+	tabl_res->Picture->LoadFromFile("tablo.png");
+	tabl_res->Width=p_res->Width;
+	tabl_res->Top=-30;
+	tabl_res->Proportional=true;
+	tabl_res->Center=true;
+
+	l_res->Parent=p_res;
+	l_res->Top=13;
+	l_res->Alignment=taRightJustify;
+	l_res->Width=155/2;
+	l_res->Font->Size=11;
+	l_res->Font->Style=TFontStyles() << fsBold;
+	l_res->Caption="1 Ом";
+
+	r1->Parent=p_res;
+	r1->Top=85;
+	r1->Checked=true;
+	SetWindowRgn(r1->Handle,CreateRectRgn(1,1,r1->Left+18,r1->Height-1),true);
+	r1->OnClick=r1Click;
+
+	r2->Parent=p_res;
+	r2->Top=85;
+	r2->Left=27;
+	SetWindowRgn(r2->Handle,CreateRectRgn(1,1,r2->Left-9,r2->Height-1),true);
+	r2->OnClick=r2Click;
+
+	r3->Parent=p_res;
+	r3->Top=85;
+	r3->Left=54;
+	SetWindowRgn(r3->Handle,CreateRectRgn(1,1,r3->Left-36,r3->Height-1),true);
+	r3->OnClick=r3Click;
+
+	r4->Parent=p_res;
+	r4->Top=85;
+	r4->Left=79;
+	SetWindowRgn(r4->Handle,CreateRectRgn(1,1,r4->Left-63,r4->Height-1),true);
+	r4->OnClick=r4Click;
+
+	r5->Parent=p_res;
+	r5->Top=85;
+	r5->Left=103;
+	SetWindowRgn(r5->Handle,CreateRectRgn(1,1,r5->Left+18,r5->Height-1),true);
+	r5->OnClick=r5Click;
+
+	l1->Parent=p_res;
+	l1->Top=101;
+	l1->Left=4;
+	l1->Alignment=taLeftJustify;
+	l1->Font->Size=10;
+	l1->Font->Style=TFontStyles() << fsBold;
+	l1->Caption="1";
+
+	l2->Parent=p_res;
+	l2->Top=101;
+	l2->Left=31;
+	l2->Alignment=taLeftJustify;
+	l2->Font->Size=10;
+	l2->Font->Style=TFontStyles() << fsBold;
+	l2->Caption="3";
+
+	l3->Parent=p_res;
+	l3->Top=101;
+	l3->Left=59;
+	l3->Alignment=taLeftJustify;
+	l3->Font->Size=10;
+	l3->Font->Style=TFontStyles() << fsBold;
+	l3->Caption="5";
+
+	l4->Parent=p_res;
+	l4->Top=101;
+	l4->Left=83;
+	l4->Alignment=taLeftJustify;
+	l4->Font->Size=10;
+	l4->Font->Style=TFontStyles() << fsBold;
+	l4->Caption="7";
+
+	l5->Parent=p_res;
+	l5->Top=101;
+	l5->Left=108;
+	l5->Alignment=taLeftJustify;
+	l5->Font->Size=10;
+	l5->Font->Style=TFontStyles() << fsBold;
+	l5->Caption="9";
+
+	R=1;
+	d=0;
+    l=0;
+}
+
+void Amper::create(int x,int y)
+{
+	p=new TPanel(FProjects->lab);
+	im=new TImage(FProjects->lab);
+	pb=new TProgressBar(FProjects->lab);
+	l=new TLabel(FProjects->lab);
+
+	p->Parent=FProjects->lab;
+	p->Top=y;
+	p->Left=x;
+	p->Height=100;
+	p->Width=150;
+	p->BevelOuter=bvNone;
+
+	im->Parent=p;
+	im->Picture->LoadFromFile("a.png");
+	im->Align=alClient;
+
+	pb->Parent=p;
+	pb->Position=1;
+    pb->Max=50;
+	pb->Top=52;
+	pb->Height=8;
+	pb->Left=10;
+	pb->Width=130;
+
+	l->Parent=p;
+	l->Top=72;
+	l->Font->Size=10;
+	l->Caption="1,00";
+	l->Font->Style=TFontStyles() << fsBold;
+	l->Left=56;
+}
+
+void Volt::create(int x, int y)
+{
+	p=new TPanel(FProjects->lab);
+	im=new TImage(FProjects->lab);
+	pb=new TProgressBar(FProjects->lab);
+	l=new TLabel(FProjects->lab);
+
+	p->Parent=FProjects->lab;
+	p->Top=y;
+	p->Left=x;
+	p->Height=100;
+	p->Width=150;
+	p->BevelOuter=bvNone;
+
+	im->Parent=p;
+	im->Picture->LoadFromFile("v.png");
+	im->Align=alClient;
+
+	pb->Parent=p;
+	pb->Position=2;
+    pb->Max=50;
+	pb->Top=52;
+	pb->Height=8;
+	pb->Left=10;
+	pb->Width=130;
+
+	l->Parent=p;
+	l->Top=72;
+	l->Font->Size=10;
+	l->Caption="1,00";
+	l->Font->Style=TFontStyles() << fsBold;
+	l->Left=56;
+}
+
+void Perekl::create(int x, int y)
+{
+	p=new TPanel(FProjects->lab);
+	im=new TImage(FProjects->lab);
+
+	p->Parent=FProjects->lab;
+	p->Left=x;
+	p->Top=y;
+	p->Width=120;
+	p->Height=100;
+	p->BevelOuter=bvNone;
+
+	im->Parent=p;
+	im->Picture->LoadFromFile("perekl_0.png");
+	im->Width=p->Width;
+	im->Proportional=true;
+	im->Center=true;
+	im->Top=-15;
+	im->OnClick=Click;
+}
+
+void Lamp::create(int x, int y)
+{
+    p=new TPanel(FProjects->lab);
+	im=new TImage(FProjects->lab);
+
+	p->Parent=FProjects->lab;
+	p->Left=x;
+	p->Top=y;
+	p->Width=150;
+	p->Height=100;
+	p->BevelOuter=bvNone;
+
+	im->Parent=p;
+	im->Picture->LoadFromFile("lamp_off.png");
+	im->Width=p->Width;
+	im->Proportional=true;
+	im->Center=true;
+}
+
+void Fire::create(int x, int y, int w, int h)
+{
+	im=new TImage(FProjects->lab);
+
+	im->Parent=FProjects->lab;
+	im->Picture->LoadFromFile("fire.png");
+	im->Left=x;
+	im->Top=y;
+	im->Width=w;
+	im->Height=h;
+	im->Stretch=true;
+}
+
+String s="C";
+
+void Temp::create(int x, int y)
+{
+	p=new TPanel(FProjects->lab);
+	im=new TImage(FProjects->lab);
+	tb=new TTrackBar(FProjects->lab);
+	l=new TLabel(FProjects->lab);
+
+    p->Parent=FProjects->lab;
+	p->Left=x;
+	p->Top=y;
+	p->Width=200;
+	p->Height=30;
+	p->BevelOuter=bvNone;
+
+	im->Parent=p;
+	im->Picture->LoadFromFile("temp.png");
+	im->Width=200;
+
+	l->Parent=p;
+	l->Font->Size=10;
+	l->Caption="0\xB0"+s;
+	l->Font->Style=TFontStyles() << fsBold;
+	l->Left=150;
+	l->Top=7;
+
+	tb->Parent=p;
+	tb->Top=7;
+	tb->Left=5;
+	tb->Width=140;
+	tb->Max=100;
+	tb->Min=-30;
+	tb->Position=0;
+	tb->TickStyle=None;
+	tb->OnChange=tbtemp;
+	SetWindowRgn(tb->Handle,CreateRectRgn(1,1,tb->Width-1,tb->Height-10),true);
+}
+
+void Dir::create(int x, int y)
+{
+	im=new TImage(FProjects->lab);
+	im->Parent=FProjects->lab;
+	im->Left=x;
+	im->Top=y;
+	im->Picture->LoadFromFile("perekl_1.png");
+	im->OnClick=imClick;
+	im->Height=70;
+	im->Width=70;
+    value=1;
+}
+
+void RLC::create(int x, int y)
+{
+	p=new TPanel(FProjects->lab);
+	im=new TImage(FProjects->lab);
+	c=new TLabel(FProjects->lab);
+	q=new TLabel(FProjects->lab);
+
+	p->Parent=FProjects->lab;
+	p->Left=x;
+	p->Top=y;
+	p->Width=250;
+	p->Height=159;
+	p->BevelOuter=bvNone;
+
+	im->Parent=p;
+	im->Width=p->Width;
+	im->Height=p->Height;
+	im->Picture->LoadFromFile("rlc.png");
+
+	c->Parent=p;
+	c->Font->Size=10;
+	c->Caption="";
+	c->Font->Style=TFontStyles() << fsBold;
+	c->Left=55;
+	c->Top=67;
+
+	q->Parent=p;
+	q->Font->Size=10;
+	q->Caption="";
+	q->Font->Style=TFontStyles() << fsBold;
+	q->Left=55;
+	q->Top=118;
+}
+
+void Dir2::create(int x, int y)
+{
+	im=new TImage(FProjects->lab);
+	p=new TPanel(FProjects->lab);
+
+	p->Parent=FProjects->lab;
+	p->Left=x;
+	p->Top=y;
+	p->Width=150;
+	p->Height=80;
+	p->BevelOuter=bvNone;
+
+	im->Parent=p;
+	im->Width=p->Width;
+	im->Height=p->Height;
+    im->Proportional=true;
+	im->Picture->LoadFromFile("dir_l.png");
+	im->OnClick=imClick;
+    value=1;
+}
+
+void Condens::create(int x, int y)
+{
+	p=new TPanel(FProjects->lab);
+	im=new TImage(FProjects->lab);
+	im2=new TImage(FProjects->lab);
+	im3=new TImage(FProjects->lab);
+	up=new TUpDown(FProjects->lab);
+	l=new TLabel(FProjects->lab);
+
+	p->Parent=FProjects->lab;
+	p->Left=x;
+	p->Top=y;
+	p->Width=150;
+	p->Height=159;
+	p->BevelOuter=bvNone;
+
+	im->Parent=p;
+	im->Width=200;
+	im->Height=89;
+	im->Top=40;
+	im->Picture->LoadFromFile("plosk.png");
+	im->OnClick=im1Click;
+
+	im2->Parent=p;
+	im2->Width=150;
+	im2->Height=50;
+	im2->Picture->LoadFromFile("panel_1.png");
+	im2->Center=true;
+	im2->SendToBack();
+
+	im3->Parent=p;
+	im3->Top=115;
+	im3->Width=150;
+	im3->Height=50;
+	im3->Picture->LoadFromFile("panel_20.png");
+	im3->Center=true;
+	im3->SendToBack();
+	im3->OnClick=im3Click;
+
+	up->Parent=p;
+	up->Min=1;
+	up->Max=100;
+    up->Position=1;
+	up->Left=90;
+	up->Top=13;
+	up->OnMouseUp=OnMouseUp;
+	up->OnMouseDown=OnMouseDown;
+
+    l->Parent=p;
+	l->Top=14;
+	l->Left=61;
+	l->Font->Size=14;
+	l->Caption="1";
+	l->Font->Style=TFontStyles() << fsBold;
+
+	type=1;
+	kol=1;
+}
+
+float Plamp;
+
+void __fastcall Battery::tb_bChange(TObject *Sender)
+{
+	B.Volt=tb_b->Position;
+	l_b->Caption=FloatToStr(B.Volt)+" В";
+
+	if(P.active==true)
+	{
+		if(nlab==1)
+		{
+			A.l->Caption=FloatToStrF(I(B.Volt,Reost.R+Rt()),ffFixed,9,2);
+			A.pb->Position=I(B.Volt,Reost.R+Rt());
+
+			V[0].pb->Position=StrToFloat(A.l->Caption)*Rt();
+			V[0].l->Caption=FloatToStrF(Vr(),ffFixed,9,2);
+			Pm();
+
+			lab_inf->I->Caption=A.l->Caption+" A";
+
+			lab_inf->U->Caption=V[0].l->Caption+" В";
+		}
+		else if(nlab==2)
+		{
+			A.l->Caption=FloatToStrF(I(B.Volt,Reost.R+2),ffFixed,9,2);
+			A.pb->Position=I(B.Volt,Reost.R+2);
+
+			V[0].pb->Position=StrToFloat(A.l->Caption)*2;
+			V[0].l->Caption=FloatToStrF((I(B.Volt,Reost.R+2)*2),ffFixed,9,2);
+
+			FProjects->Pl->Caption=FloatToStrF((pow((StrToFloat(V[0].l->Caption)),2))/(2),ffFixed,9,3)+" Вт";
+
+			FProjects->I->Caption=A.l->Caption+" A";
+
+			FProjects->U->Caption=V[0].l->Caption+" В";
+		}
+		else if(nlab==3)
+		{
+			ro1=Res[0].ro=(Res[0].R*pi*pow(Res[0].d,2))/(4*Res[0].l);
+			ro2=Res[1].ro=(Res[1].R*pi*pow(Res[1].d,2))/(4*Res[1].l);
+			Pm();
+
+			Res[0].l_res->Caption=FloatToStrF(ro1,ffFixed,9,2);
+			Res[1].l_res->Caption=FloatToStrF(ro2,ffFixed,9,2);
+
+			A.l->Caption=FloatToStrF(I(B.Volt,Reost.R+ro1+ro2),ffFixed,9,2);
+			A.pb->Position=I(B.Volt,Reost.R+ro1+ro2);
+
+			V[0].pb->Position=StrToFloat(A.l->Caption)*ro1;
+			V[0].l->Caption=FloatToStrF((StrToFloat(A.l->Caption))*ro1,ffFixed,9,2);
+
+			V[1].pb->Position=StrToFloat(A.l->Caption)*ro2;
+			V[1].l->Caption=FloatToStrF((StrToFloat(A.l->Caption))*ro2,ffFixed,9,2);
+
+			FProjects->two->Caption=FloatToStrF(ro1,ffFixed,9,5);
+			FProjects->four->Caption=FloatToStrF(ro2,ffFixed,9,5);
+		}
+		else if(nlab==4)
+		{
+			if(D.value==1)
+			{
+				A.l->Caption=FloatToStrF(((B.Volt)/(Reost.R+Res[0].R)),ffFixed,9,2);
+				A.pb->Position=B.Volt/(Reost.R+Res[0].R);
+			}
+			else if(D.value==2)
+			{
+				A.l->Caption=FloatToStrF(((B.Volt)/(Reost.R+Res[1].R)),ffFixed,9,2);
+				A.pb->Position=B.Volt/(Reost.R+Res[1].R);
+			}
+		}
+		else if(nlab==5)
+		{
+
+		}
+		else if(nlab==6)
+		{
+			A.l->Caption=FloatToStrF(B.Volt/Reost.R,ffFixed,9,2);
+			A.pb->Position=B.Volt/Reost.R;
+		}
+		else if(nlab==7)
+		{
+            A.l->Caption=FloatToStrF(B.Volt/Reost.R,ffFixed,9,2);
+			A.pb->Position=B.Volt/Reost.R;
+
+			if(go==1)
+			{
+				FProjects->kpd->Caption=FloatToStrF((Ei_7/B.Volt)*100,ffFixed,9,2)+" %";
+			}
+		}
+	}
+}
+
+void __fastcall Resistor::r1Click(TObject *Sender)
+{
+	R=1;
+	l_res->Caption="1 Ом";
+
+	if(P.active==true)
+	{
+		if(nlab==1)
+		{
+			A.pb->Position=I(B.Volt,Reost.R+Rt());
+			A.l->Caption=FloatToStrF(I(B.Volt,Reost.R+Rt()),ffFixed,9,2);
+
+			V[0].pb->Position=StrToFloat(A.l->Caption)*Rt();
+			V[0].l->Caption=FloatToStrF(Vr(),ffFixed,9,2);
+			Pm();
+
+			lab_inf->t3->Caption=FloatToStr(Res[0].R)+" Ом";
+			lab_inf->t4->Caption=FloatToStr(Res[1].R)+" Ом";
+			lab_inf->t5->Caption=FloatToStr(Res[2].R)+" Ом";
+
+			if(type==1)
+			{
+				lab_inf->R->Caption=FloatToStr(Res[0].R+Res[1].R+Reost.R)+" Ом";
+			}
+			else if(type==2)
+			{
+				lab_inf->R->Caption=FloatToStrF(Rt()+Reost.R,ffFixed,9,3)+" Ом";
+			}
+
+			lab_inf->I->Caption=A.l->Caption+" A";
+
+			lab_inf->U->Caption=V[0].l->Caption+" В";
+		}
+		else if(nlab==2)
+		{
+
+		}
+		else if(nlab==3)
+		{
+
+		}
+		else if(nlab==4)
+		{
+			r01=Res[0].R;
+			r02=Res[1].R;
+            if(D.value==1)
+			{
+				FProjects->R1->Caption=FloatToStrF((r01*(1+alfa*temp)),ffFixed,9,3)+" Ом";
+                A.l->Caption=FloatToStrF(((B.Volt)/(Reost.R+Res[0].R)),ffFixed,9,2);
+				A.pb->Position=B.Volt/(Reost.R+Res[0].R);
+			}
+			else if(D.value==2)
+			{
+				FProjects->R2->Caption=FloatToStrF((r02*(1+alfa*temp)),ffFixed,9,3)+" Ом";
+				A.l->Caption=FloatToStrF(((B.Volt)/(Reost.R+Res[1].R)),ffFixed,9,2);
+				A.pb->Position=B.Volt/(Reost.R+Res[1].R);
+			}
+		}
+		else if(nlab==5)
+		{
+
+		}
+		else if(nlab==6)
+		{
+
+		}
+		else if(nlab==7)
+		{
+
+		}
+	}
+}
+void __fastcall Resistor::r2Click(TObject *Sender)
+{
+	R=3;
+	l_res->Caption="3 Ом";
+
+	if(P.active==true)
+	{
+		if(nlab==1)
+		{
+			A.pb->Position=I(B.Volt,Reost.R+Rt());
+			A.l->Caption=FloatToStrF(I(B.Volt,Reost.R+Rt()),ffFixed,9,2);
+
+			V[0].pb->Position=StrToFloat(A.l->Caption)*Rt();
+			V[0].l->Caption=FloatToStrF(Vr(),ffFixed,9,2);
+
+			Pm();
+
+			lab_inf->t3->Caption=FloatToStr(Res[0].R)+" Ом";
+			lab_inf->t4->Caption=FloatToStr(Res[1].R)+" Ом";
+			lab_inf->t5->Caption=FloatToStr(Res[2].R)+" Ом";
+
+			if(type==1)
+			{
+				lab_inf->R->Caption=FloatToStr(Res[0].R+Res[1].R+Reost.R)+" Ом";
+			}
+			else if(type==2)
+			{
+				lab_inf->R->Caption=FloatToStrF(Rt()+Reost.R,ffFixed,9,3)+" Ом";
+			}
+
+			lab_inf->I->Caption=A.l->Caption+" A";
+
+			lab_inf->U->Caption=V[0].l->Caption+" В";
+		}
+		else if(nlab==2)
+		{
+
+		}
+		else if(nlab==3)
+		{
+
+		}
+		else if(nlab==4)
+		{
+            r01=Res[0].R;
+			r02=Res[1].R;
+            if(D.value==1)
+			{
+				FProjects->R1->Caption=FloatToStrF((r01*(1+alfa*temp)),ffFixed,9,3)+" Ом";
+				A.l->Caption=FloatToStrF(((B.Volt)/(Reost.R+Res[0].R)),ffFixed,9,2);
+				A.pb->Position=B.Volt/(Reost.R+Res[0].R);
+			}
+			else if(D.value==2)
+			{
+				FProjects->R2->Caption=FloatToStrF((r02*(1+alfa*temp)),ffFixed,9,3)+" Ом";
+                A.l->Caption=FloatToStrF(((B.Volt)/(Reost.R+Res[1].R)),ffFixed,9,2);
+				A.pb->Position=B.Volt/(Reost.R+Res[1].R);
+			}
+		}
+		else if(nlab==5)
+		{
+
+		}
+		else if(nlab==6)
+		{
+
+		}
+		else if(nlab==7)
+		{
+
+		}
+	}
+}
+void __fastcall Resistor::r3Click(TObject *Sender)
+{
+	R=5;
+	l_res->Caption="5 Ом";
+
+	if(P.active==true)
+	{
+		if(nlab==1)
+		{
+			A.pb->Position=I(B.Volt,Reost.R+Rt());
+			A.l->Caption=FloatToStrF(I(B.Volt,Reost.R+Rt()),ffFixed,9,2);
+
+			V[0].pb->Position=StrToFloat(A.l->Caption)*Rt();
+			V[0].l->Caption=FloatToStrF(Vr(),ffFixed,9,2);
+			Pm();
+
+			lab_inf->t3->Caption=FloatToStr(Res[0].R)+" Ом";
+			lab_inf->t4->Caption=FloatToStr(Res[1].R)+" Ом";
+			lab_inf->t5->Caption=FloatToStr(Res[2].R)+" Ом";
+
+			if(type==1)
+			{
+				lab_inf->R->Caption=FloatToStr(Res[0].R+Res[1].R+Reost.R)+" Ом";
+			}
+			else if(type==2)
+			{
+				lab_inf->R->Caption=FloatToStrF(Rt()+Reost.R,ffFixed,9,3)+" Ом";
+			}
+
+			lab_inf->I->Caption=A.l->Caption+" A";
+
+			lab_inf->U->Caption=V[0].l->Caption+" В";
+		}
+		else if(nlab==2)
+		{
+
+		}
+		else if(nlab==3)
+		{
+
+		}
+		else if(nlab==4)
+		{
+            r01=Res[0].R;
+			r02=Res[1].R;
+            if(D.value==1)
+			{
+				FProjects->R1->Caption=FloatToStrF((r01*(1+alfa*temp)),ffFixed,9,3)+" Ом";
+				A.l->Caption=FloatToStrF(((B.Volt)/(Reost.R+Res[0].R)),ffFixed,9,2);
+				A.pb->Position=B.Volt/(Reost.R+Res[0].R);
+			}
+			else if(D.value==2)
+			{
+				FProjects->R2->Caption=FloatToStrF((r02*(1+alfa*temp)),ffFixed,9,3)+" Ом";
+				A.l->Caption=FloatToStrF(((B.Volt)/(Reost.R+Res[1].R)),ffFixed,9,2);
+				A.pb->Position=B.Volt/(Reost.R+Res[1].R);
+			}
+		}
+		else if(nlab==5)
+		{
+
+		}
+		else if(nlab==6)
+		{
+
+		}
+		else if(nlab==7)
+		{
+
+		}
+	}
+}
+void __fastcall Resistor::r4Click(TObject *Sender)
+{
+	R=7;
+	l_res->Caption="7 Ом";
+
+	if(P.active==true)
+	{
+		if(nlab==1)
+		{
+			A.pb->Position=I(B.Volt,Reost.R+Rt());
+			A.l->Caption=FloatToStrF(I(B.Volt,Reost.R+Rt()),ffFixed,9,2);
+
+			V[0].pb->Position=StrToFloat(A.l->Caption)*Rt();
+			V[0].l->Caption=FloatToStrF(Vr(),ffFixed,9,2);
+			Pm();
+
+			lab_inf->t3->Caption=FloatToStr(Res[0].R)+" Ом";
+			lab_inf->t4->Caption=FloatToStr(Res[1].R)+" Ом";
+			lab_inf->t5->Caption=FloatToStr(Res[2].R)+" Ом";
+
+			if(type==1)
+			{
+				lab_inf->R->Caption=FloatToStr(Res[0].R+Res[1].R+Reost.R)+" Ом";
+			}
+			else if(type==2)
+			{
+				lab_inf->R->Caption=FloatToStrF(Rt()+Reost.R,ffFixed,9,3)+" Ом";
+			}
+
+			lab_inf->I->Caption=A.l->Caption+" A";
+
+			lab_inf->U->Caption=V[0].l->Caption+" В";
+		}
+		else if(nlab==2)
+		{
+
+		}
+		else if(nlab==3)
+		{
+
+		}
+		else if(nlab==4)
+		{
+            r01=Res[0].R;
+			r02=Res[1].R;
+			if(D.value==1)
+			{
+				FProjects->R1->Caption=FloatToStrF((r01*(1+alfa*temp)),ffFixed,9,3)+" Ом";
+				A.l->Caption=FloatToStrF(((B.Volt)/(Reost.R+Res[0].R)),ffFixed,9,2);
+				A.pb->Position=B.Volt/(Reost.R+Res[0].R);
+			}
+			else if(D.value==2)
+			{
+				FProjects->R2->Caption=FloatToStrF((r02*(1+alfa*temp)),ffFixed,9,3)+" Ом";
+				A.l->Caption=FloatToStrF(((B.Volt)/(Reost.R+Res[1].R)),ffFixed,9,2);
+				A.pb->Position=B.Volt/(Reost.R+Res[1].R);
+			}
+		}
+		else if(nlab==5)
+		{
+
+		}
+		else if(nlab==6)
+		{
+
+		}
+		else if(nlab==7)
+		{
+
+		}
+	}
+}
+void __fastcall Resistor::r5Click(TObject *Sender)
+{
+	R=9;
+	l_res->Caption="9 Ом";
+
+	if(P.active==true)
+	{
+		if(nlab==1)
+		{
+			A.pb->Position=I(B.Volt,Reost.R+Rt());
+			A.l->Caption=FloatToStrF(I(B.Volt,Reost.R+Rt()),ffFixed,9,2);
+
+			V[0].pb->Position=StrToFloat(A.l->Caption)*Rt();
+			V[0].l->Caption=FloatToStrF(Vr(),ffFixed,9,2);
+			Pm();
+
+			lab_inf->t3->Caption=FloatToStr(Res[0].R)+" Ом";
+			lab_inf->t4->Caption=FloatToStr(Res[1].R)+" Ом";
+			lab_inf->t5->Caption=FloatToStr(Res[2].R)+" Ом";
+
+			if(type==1)
+			{
+				lab_inf->R->Caption=FloatToStr(Res[0].R+Res[1].R+Reost.R)+" Ом";
+			}
+			else if(type==2)
+			{
+				lab_inf->R->Caption=FloatToStrF(Rt()+Reost.R,ffFixed,9,3)+" Ом";
+			}
+
+			lab_inf->I->Caption=A.l->Caption+" A";
+
+			lab_inf->U->Caption=V[0].l->Caption+" В";
+
+		}
+		else if(nlab==2)
+		{
+
+		}
+		else if(nlab==3)
+		{
+			
+		}
+		else if(nlab==4)
+		{
+            r01=Res[0].R;
+			r02=Res[1].R;
+			if(D.value==1)
+			{
+				FProjects->R1->Caption=FloatToStrF((r01*(1+alfa*temp)),ffFixed,9,3)+" Ом";
+				A.l->Caption=FloatToStrF(((B.Volt)/(Reost.R+Res[0].R)),ffFixed,9,2);
+				A.pb->Position=B.Volt/(Reost.R+Res[0].R);
+			}
+			else if(D.value==2)
+			{
+				FProjects->R2->Caption=FloatToStrF((r02*(1+alfa*temp)),ffFixed,9,3)+" Ом";
+				A.l->Caption=FloatToStrF(((B.Volt)/(Reost.R+Res[1].R)),ffFixed,9,2);
+				A.pb->Position=B.Volt/(Reost.R+Res[1].R);
+			}
+		}
+		else if(nlab==5)
+		{
+
+		}
+		else if(nlab==6)
+		{
+
+		}
+		else if(nlab==7)
+		{
+
+		}
+	}
+}
+
+void __fastcall Reostat::tb_rChange(TObject *Sender)
+{
+	Reost.R=tb_r->Position;
+	l_r->Caption=FloatToStr(Reost.R)+" Ом";
+
+	if(P.active==true)
+	{
+		if(nlab==1)
+		{
+			A.pb->Position=I(B.Volt,Reost.R+Rt());
+			A.l->Caption=FloatToStrF(I(B.Volt,Reost.R+Rt()),ffFixed,9,2);
+
+			V[0].pb->Position=StrToFloat(A.l->Caption)*Rt();
+			V[0].l->Caption=FloatToStrF(Vr(),ffFixed,9,2);
+			Pm();
+
+			if(type==1)
+			{
+				lab_inf->R->Caption=FloatToStr(Res[0].R+Res[1].R+Reost.R)+" Ом";
+			}
+			else if(type==2)
+			{
+				lab_inf->R->Caption=FloatToStrF(Rt()+Reost.R,ffFixed,9,3)+" Ом";
+			}
+
+			lab_inf->I->Caption=A.l->Caption+" A";
+			lab_inf->U->Caption=V[0].l->Caption+" В";
+		}
+		else if(nlab==2)
+		{
+            A.l->Caption=FloatToStrF(I(B.Volt,Reost.R+2),ffFixed,9,2);
+			A.pb->Position=I(B.Volt,Reost.R+2);
+
+			V[0].pb->Position=StrToFloat(A.l->Caption)*2;
+			V[0].l->Caption=FloatToStrF((I(B.Volt,Reost.R+2)*2),ffFixed,9,2);
+
+			FProjects->Pl->Caption=FloatToStrF((pow((StrToFloat(V[0].l->Caption)),2))/(2),ffFixed,9,3)+" Вт";
+
+			FProjects->I->Caption=A.l->Caption+" A";
+
+			FProjects->U->Caption=V[0].l->Caption+" В";
+		}
+		else if(nlab==3)
+		{
+			ro1=Res[0].ro=(Res[0].R*pi*pow(Res[0].d,2))/(4*Res[0].l);
+			ro2=Res[1].ro=(Res[1].R*pi*pow(Res[1].d,2))/(4*Res[1].l);
+			Pm();
+
+			Res[0].l_res->Caption=FloatToStrF(ro1,ffFixed,9,2);
+			Res[1].l_res->Caption=FloatToStrF(ro2,ffFixed,9,2);
+
+			A.l->Caption=FloatToStrF(I(B.Volt,Reost.R+ro1+ro2),ffFixed,9,2);
+			A.pb->Position=I(B.Volt,Reost.R+ro1+ro2);
+
+			V[0].pb->Position=StrToFloat(A.l->Caption)*ro1;
+			V[0].l->Caption=FloatToStrF((StrToFloat(A.l->Caption))*ro1,ffFixed,9,2);
+
+			V[1].pb->Position=StrToFloat(A.l->Caption)*ro2;
+			V[1].l->Caption=FloatToStrF((StrToFloat(A.l->Caption))*ro2,ffFixed,9,2);
+
+			FProjects->two->Caption=FloatToStrF(ro1,ffFixed,9,5);
+			FProjects->four->Caption=FloatToStrF(ro2,ffFixed,9,5);
+		}
+		else if(nlab==4)
+		{
+            if(D.value==1)
+			{
+				A.l->Caption=FloatToStrF(((B.Volt)/(Reost.R+Res[0].R)),ffFixed,9,2);
+				A.pb->Position=B.Volt/(Reost.R+Res[0].R);
+			}
+			else if(D.value==2)
+			{
+				A.l->Caption=FloatToStrF(((B.Volt)/(Reost.R+Res[1].R)),ffFixed,9,2);
+				A.pb->Position=B.Volt/(Reost.R+Res[1].R);
+			}
+		}
+		else if(nlab==5)
+		{
+
+		}
+		else if(nlab==6)
+		{
+            A.l->Caption=FloatToStrF(B.Volt/Reost.R,ffFixed,9,2);
+			A.pb->Position=B.Volt/Reost.R;
+		}
+		else if(nlab==7)
+		{
+            A.l->Caption=FloatToStrF(B.Volt/Reost.R,ffFixed,9,2);
+			A.pb->Position=B.Volt/Reost.R;
+		}
+	}
+}
+
+void __fastcall Perekl::Click(TObject *Sender)
+{
+	if(P.active==true)
+	{
+		P.active=false;
+		im->Picture->LoadFromFile("perekl_0.png");
+		Lns.paint("r");
+		if(nlab==2)
+		{
+			L.im->Picture->LoadFromFile("lamp_off.png");
+		}
+	}
+	else if(P.active==false)
+	{
+		P.active=true;
+        im->Picture->LoadFromFile("perekl_01.png");
+        Lns.paint("b");
+
+		if(nlab==1)
+		{
+			A.l->Caption=FloatToStrF(I(B.Volt,Reost.R+Rt()),ffFixed,9,2);
+			A.pb->Position=I(B.Volt,Reost.R+Rt());
+
+			V[0].pb->Position=StrToFloat(A.l->Caption)*Rt();
+			V[0].l->Caption=FloatToStrF(Vr(),ffFixed,9,2);
+			Pm();
+
+			lab_inf->I->Caption=A.l->Caption+" A";
+
+			lab_inf->U->Caption=V[0].l->Caption+" В";
+
+			if(FProjects->memo!=NULL)
+			{
+				FProjects->memo->Lines->Add(IntToStr(count)+". Установил напряжение на источнике тока равное "+FloatToStr(B.Volt)+" В");
+				count++;
+				FProjects->memo->Lines->Add(IntToStr(count)+". Установил сопротивление на реостате равное "+FloatToStr(Reost.R)+" Ом");
+				count++;
+
+				if(type==1)
+				{
+					FProjects->memo->Lines->Add(IntToStr(count)+". Установил сопротивление на первом резисторе равное "+FloatToStr(Res[0].R)+" Ом");
+					count++;
+					FProjects->memo->Lines->Add(IntToStr(count)+". Установил сопротивление на втором резисторе равное "+FloatToStr(Res[1].R)+" Ом");
+					count++;
+				}
+				else if(type==2)
+				{
+					FProjects->memo->Lines->Add(IntToStr(count)+". Установил сопротивление на первом резисторе равное "+FloatToStr(Res[0].R)+" Ом");
+					count++;
+					FProjects->memo->Lines->Add(IntToStr(count)+". Установил сопротивление на втором резисторе равное "+FloatToStr(Res[1].R)+" Ом");
+					count++;
+					FProjects->memo->Lines->Add(IntToStr(count)+". Установил сопротивление на третьем резисторе равное "+FloatToStr(Res[2].R)+" Ом");
+					count++;
+				}
+				FProjects->memo->Lines->Add(IntToStr(count)+". Значение на амперметре: "+A.l->Caption+" A");
+				count++;
+				FProjects->memo->Lines->Add(IntToStr(count)+". Напряжение на резисторах: "+V[0].l->Caption+" A");
+				count++;
+
+				FProjects->memo->Lines->SaveToFile(FProjects->SD->FileName);
+			}
+		}
+		else if(nlab==2)
+		{
+            A.l->Caption=FloatToStrF(I(B.Volt,Reost.R+2),ffFixed,9,2);
+			A.pb->Position=I(B.Volt,Reost.R+2);
+
+			V[0].pb->Position=StrToFloat(A.l->Caption)*2;
+			V[0].l->Caption=FloatToStrF((I(B.Volt,Reost.R+2)*2),ffFixed,9,2);
+
+            L.im->Picture->LoadFromFile("lamp_on.png");
+
+			FProjects->Pl->Caption=FloatToStrF((pow((StrToFloat(V[0].l->Caption)),2))/(2),ffFixed,9,3)+" Вт";
+
+			FProjects->I->Caption=A.l->Caption+" A";
+
+			FProjects->U->Caption=V[0].l->Caption+" В";
+
+            if(FProjects->memo!=NULL)
+			{
+				FProjects->memo->Lines->Add(IntToStr(count)+". Установил напряжение на источнике тока равное "+FloatToStr(B.Volt)+" В");
+				count++;
+				FProjects->memo->Lines->Add(IntToStr(count)+". Установил сопротивление на реостате равное "+FloatToStr(Reost.R)+" Ом");
+				count++;
+				FProjects->memo->Lines->Add(IntToStr(count)+". Значение на амперметре: "+A.l->Caption+" A");
+				count++;
+				FProjects->memo->Lines->Add(IntToStr(count)+". Напряжение на лампе равно "+V[0].l->Caption+" В");
+				count++;
+				FProjects->memo->Lines->Add(IntToStr(count)+". Мощность лампы при данной силе тока и напряжении равно "+FloatToStrF((pow((StrToFloat(V[0].l->Caption)),2))/(2),ffFixed,9,3)+" В");
+				count++;
+				FProjects->memo->Lines->SaveToFile(FProjects->SD->FileName);
+			}
+		}
+		else if(nlab==3)
+		{
+			if(Res[0].d==0 || Res[0].l==0 || Res[1].d==0 || Res[1].l==0)
+			{
+				P.active=false;
+				P.im->Picture->LoadFromFile("perekl_0.png");
+                Lns.paint("r");
+				MessageDlg("Вы не ввели значения проводников", mtError, TMsgDlgButtons()<<mbOK,0);
+			}
+			else
+			{
+				ro1=Res[0].ro=(Res[0].R*pi*pow(Res[0].d,2))/(4*Res[0].l);
+				ro2=Res[1].ro=(Res[1].R*pi*pow(Res[1].d,2))/(4*Res[1].l);
+				Pm();
+
+				Res[0].l_res->Caption=FloatToStrF(ro1,ffFixed,9,2);
+				Res[1].l_res->Caption=FloatToStrF(ro2,ffFixed,9,2);
+
+				A.l->Caption=FloatToStrF(I(B.Volt,Reost.R+ro1+ro2),ffFixed,9,2);
+				A.pb->Position=I(B.Volt,Reost.R+ro1+ro2);
+
+				V[0].pb->Position=StrToFloat(A.l->Caption)*ro1;
+				V[0].l->Caption=FloatToStrF((StrToFloat(A.l->Caption))*ro1,ffFixed,9,2);
+
+				V[1].pb->Position=StrToFloat(A.l->Caption)*ro2;
+				V[1].l->Caption=FloatToStrF((StrToFloat(A.l->Caption))*ro2,ffFixed,9,2);
+
+				FProjects->two->Caption=FloatToStrF(ro1,ffFixed,9,5);
+				FProjects->four->Caption=FloatToStrF(ro2,ffFixed,9,5);
+
+				if(FProjects->memo!=NULL)
+				{
+					FProjects->memo->Lines->Add(IntToStr(count)+". Установил напряжение на источнике тока равное "+FloatToStr(B.Volt)+" В");
+					count++;
+					FProjects->memo->Lines->Add(IntToStr(count)+". Установил сопротивление на реостате равное "+FloatToStr(Reost.R)+" Ом");
+					count++;
+					FProjects->memo->Lines->Add(IntToStr(count)+". Установил диаметр проводника "+FProjects->ed1->Text+" см");
+					count++;
+					FProjects->memo->Lines->Add(IntToStr(count)+". Установил длинну проводника "+FProjects->ed2->Text+" см");
+					count++;
+					FProjects->memo->Lines->Add(IntToStr(count)+". Установил диаметр проводника "+FProjects->ed3->Text+" см");
+					count++;
+					FProjects->memo->Lines->Add(IntToStr(count)+". Установил длинну проводника "+FProjects->ed4->Text+" см");
+					count++;
+					FProjects->memo->Lines->Add(IntToStr(count)+". Напряжение на 1-ом проводнике равно "+V[0].l->Caption+" В");
+					count++;
+					FProjects->memo->Lines->Add(IntToStr(count)+". Напряжение на 2-ом проводнике равно "+V[1].l->Caption+" В");
+					count++;
+					FProjects->memo->Lines->Add(IntToStr(count)+". Сила тока в цепи: "+A.l->Caption+" A");
+					count++;
+					FProjects->memo->Lines->SaveToFile(FProjects->SD->FileName);
+				}
+			}
+		}
+		else if(nlab==4)
+		{
+            r01=Res[0].R;
+			r02=Res[1].R;
+			FProjects->R1->Caption=FloatToStrF((r01*(1+alfa*temp)),ffFixed,9,3)+" Ом";
+			FProjects->R2->Caption=FloatToStrF((r02*(1+alfa*temp)),ffFixed,9,3)+" Ом";
+			if(FProjects->memo!=NULL)
+			{
+				FProjects->memo->Lines->Add(IntToStr(count)+". Установил напряжение на источнике тока равное "+FloatToStr(B.Volt)+" В");
+				count++;
+				FProjects->memo->Lines->Add(IntToStr(count)+". Установил сопротивление на реостате равное "+FloatToStr(Reost.R)+" Ом");
+				count++;
+			}
+            if(D.value==1)
+			{
+				if(FProjects->memo!=NULL)
+				{
+					FProjects->memo->Lines->Add(IntToStr(count)+". Переключил цепь на первый резистор для дальнейшей работы с ним");
+					count++;
+					FProjects->memo->Lines->Add(IntToStr(count)+". Установил изначальное сопротивление на резисторе равное "+FloatToStr(Res[0].R)+" Ом");
+					count++;
+					FProjects->memo->Lines->Add(IntToStr(count)+". Затем изменил температуру внешней среды резистора до "+IntToStr(temp)+"\xB0"+s);
+					count++;
+					FProjects->memo->Lines->Add(IntToStr(count)+". После изменения температуры внешней среды сопротивление резистора изменилось до "+FloatToStrF((r01*(1+alfa*temp)),ffFixed,9,3)+" Ом");
+					count++;
+				}
+				A.l->Caption=FloatToStrF(((B.Volt)/(Reost.R+Res[0].R)),ffFixed,9,2);
+				A.pb->Position=B.Volt/(Reost.R+Res[0].R);
+			}
+			else if(D.value==2)
+			{
+				if(FProjects->memo!=NULL)
+				{
+					FProjects->memo->Lines->Add(IntToStr(count)+". Переключил цепь на второй резистор для дальнейшей работы с ним");
+					count++;
+					FProjects->memo->Lines->Add(IntToStr(count)+". Установил изначальное сопротивление на резисторе равное "+FloatToStr(Res[1].R)+" Ом");
+					count++;
+					FProjects->memo->Lines->Add(IntToStr(count)+". Затем изменил температуру внешней среды резистора до "+IntToStr(temp)+"\xB0"+s);
+					count++;
+					FProjects->memo->Lines->Add(IntToStr(count)+". После изменения температуры внешней среды сопротивление резистора изменилось до "+FloatToStrF((r02*(1+alfa*temp)),ffFixed,9,3)+" Ом");
+					count++;
+				}
+				A.l->Caption=FloatToStrF(((B.Volt)/(Reost.R+Res[1].R)),ffFixed,9,2);
+				A.pb->Position=B.Volt/(Reost.R+Res[1].R);
+			}
+            if(FProjects->memo!=NULL)
+			{
+                FProjects->memo->Lines->Add(IntToStr(count)+". Сила тока в цепи: "+A.l->Caption+" A");
+				count++;
+				FProjects->memo->Lines->SaveToFile(FProjects->SD->FileName);
+			}
+		}
+		else if(nlab==5)
+		{
+			if(D2.value==1)//переключатель на участкок цепи для установки заряда конденсатора
+			{
+				if(FProjects->memo!=NULL)
+				{
+					FProjects->memo->Lines->Add(IntToStr(count)+". Истановил напряжение на источнике питания равное "+FloatToStr(B.Volt)+" В");
+					count++;
+				}
+				if(C.type==1)//выбран плоский конденсатор
+				{
+					if(FProjects->memo!=NULL)
+					{
+						FProjects->memo->Lines->Add(IntToStr(count)+". Для расчетов выбрал плоский конденсатор");
+						count++;
+					}
+					if(Sk!=0 && Ek!=0 && dk!=0)//проверка на ввод значений конденсатора
+					{
+						Ck=0;
+						qk=0;
+						if(C.kol>=2)//проверка количества конденсаторов для установки батареи конденсаторов
+						{
+							if(FProjects->memo!=NULL)
+							{
+								FProjects->memo->Lines->Add(IntToStr(count)+". Для создания батареи конденсаторов установил кол-во конденсаторов равное "+IntToStr(C.kol));
+								count++;
+							}
+							if(C.soed==1)//установлено последовательное соединение
+							{
+								if(FProjects->memo!=NULL)
+								{
+									FProjects->memo->Lines->Add(IntToStr(count)+". Выбрал последовательный тип соединения ");
+									count++;
+								}
+								float Cn=0;
+								for(int i=0;i<C.kol;i++)
+								{
+									Cn=Cn+1/((Ek*E0*Sk)/(dk));
+								}
+								Ck=1/Cn;
+							}
+							if(C.soed==2)
+							{
+								if(FProjects->memo!=NULL)
+								{
+									FProjects->memo->Lines->Add(IntToStr(count)+". Выбрал параллельный тип соединения ");
+									count++;
+								}
+								float Cn=0;
+								for(int i=0;i<C.kol;i++)
+								{
+									Cn=Cn+((Ek*E0*Sk)/(dk));
+								}
+								Ck=Cn;
+							}
+						}
+						else
+						{
+							if(FProjects->memo!=NULL)
+							{
+								FProjects->memo->Lines->Add(IntToStr(count)+". Батарея конденсаторов не была создана, так как установил кол-во конденсаторов равное "+IntToStr(C.kol));
+								count++;
+								FProjects->memo->Lines->Add(IntToStr(count)+". Тип соединения для одного конденсатора - последовательный ");
+								count++;
+							}
+							Ck=(Ek*E0*Sk)/(dk);
+						}
+					}
+					else
+					{
+						ShowMessage("Введите значения плоского конденсатора");
+						P.active=false;
+						im->Picture->LoadFromFile("perekl_0.png");
+					}
+				}
+				else if(C.type==2)
+				{
+                    if(FProjects->memo!=NULL)
+					{
+						FProjects->memo->Lines->Add(IntToStr(count)+". Для расчетов выбрал цилиндрический конденсатор");
+						count++;
+					}
+					if(Ek!=0 && R1k!=0 && R2k!=0 && lk!=0)
+					{
+						Ck=0;
+						qk=0;
+                        if(C.kol>=2)
+						{
+                            if(FProjects->memo!=NULL)
+							{
+								FProjects->memo->Lines->Add(IntToStr(count)+". Для создания батареи конденсаторов установил кол-во конденсаторов равное "+IntToStr(C.kol));
+								count++;
+							}
+							if(C.soed==1)
+							{
+                                if(FProjects->memo!=NULL)
+								{
+									FProjects->memo->Lines->Add(IntToStr(count)+". Выбрал последовательный тип соединения ");
+									count++;
+								}
+								float Cn=0;
+								for(int i=0;i<C.kol;i++)
+								{
+									Cn=Cn+1/((Ek*E0*Sk)/(dk));
+								}
+								Ck=1/Cn;
+							}
+							if(C.soed==2)
+							{
+                                if(FProjects->memo!=NULL)
+								{
+									FProjects->memo->Lines->Add(IntToStr(count)+". Выбрал параллельный тип соединения ");
+									count++;
+								}
+								float Cn=0;
+								for(int i=0;i<C.kol;i++)
+								{
+									Cn=Cn+(2*pi*Ek*E0*((lk)/(log((R2k)/(R1k)))));
+								}
+								Ck=Cn;
+							}
+						}
+						else
+						{
+							if(FProjects->memo!=NULL)
+							{
+								FProjects->memo->Lines->Add(IntToStr(count)+". Батарея конденсаторов не была создана, так как установил кол-во конденсаторов равное "+IntToStr(C.kol));
+								count++;
+								FProjects->memo->Lines->Add(IntToStr(count)+". Тип соединения для одного конденсатора - последовательный ");
+								count++;
+							}
+							Ck=2*pi*Ek*E0*((lk)/(log((R2k)/(R1k))));
+						}
+					}
+					else
+					{
+						ShowMessage("Введите значения цилиндрического конденсатора");
+						P.active=false;
+						im->Picture->LoadFromFile("perekl_0.png");
+					}
+				}
+
+			}
+			else if(D2.value==2)
+			{
+				ShowMessage("Электрическая цепь не замкнута,\nконденсатор не примет заряд");
+				P.active=false;
+				im->Picture->LoadFromFile("perekl_0.png");
+			}
+            if(FProjects->memo!=NULL)
+			{
+				FProjects->memo->Lines->SaveToFile(FProjects->SD->FileName);
+			}
+		}
+		else if(nlab==6)
+		{
+			A.l->Caption=FloatToStrF(B.Volt/Reost.R,ffFixed,9,2);
+			A.pb->Position=B.Volt/Reost.R;
+		}
+		else if(nlab==7)
+		{
+            A.l->Caption=FloatToStrF(B.Volt/Reost.R,ffFixed,9,2);
+			A.pb->Position=B.Volt/Reost.R;
+		}
+	}
+}
+
+
+void __fastcall Temp::tbtemp(TObject *Sender)
+{
+	l->Caption=IntToStr(tb->Position)+"\xB0"+s;
+	temp=tb->Position;
+    if(P.active==true)
+	{
+		if(D.value==1)
+		{
+			float R1=r01*(1+alfa*temp);
+			FProjects->R1->Caption=FloatToStrF(R1,ffFixed,9,3)+" Ом";
+			FProjects->temp1->Caption=IntToStr(temp)+"\xB0"+s;
+
+			A.l->Caption=FloatToStrF(B.Volt/(Reost.R+R1),ffFixed,9,2);
+			A.pb->Position=B.Volt/(Reost.R+R1);
+		}
+		else if(D.value==2)
+		{
+			float R2=r02*(1+alfa*temp);
+			FProjects->R2->Caption=FloatToStrF(R2,ffFixed,9,3)+" Ом";
+			FProjects->temp2->Caption=IntToStr(temp)+"\xB0"+s;
+
+			A.l->Caption=FloatToStrF(B.Volt/(Reost.R+R2),ffFixed,9,2);
+			A.pb->Position=B.Volt/(Reost.R+R2);
+		}
+	}
+}
+
+void __fastcall Dir::imClick(TObject *Sender)
+{
+	if(value==1)
+	{
+		im->Picture->LoadFromFile("perekl_2.png");
+		value=2;
+		if(P.active==true)
+		{
+			Lns.paint("b");
+		}
+	}
+	else if(value==2)
+	{
+		im->Picture->LoadFromFile("perekl_1.png");
+		value=1;
+		if(P.active==true)
+		{
+			Lns.paint("b");
+		}
+	}
+}
+
+void __fastcall Dir2::imClick(TObject *Sender)
+{
+	if(value==1)
+	{
+		im->Picture->LoadFromFile("dir_r.png");
+		qk=B.Volt*Ck;
+		RLC.c->Caption=FloatToStr(Ck);
+		RLC.q->Caption=FloatToStr(qk);
+		P.active=false;
+		P.im->Picture->LoadFromFile("perekl_0.png");
+		value=2;
+		Lns.paint("b");
+		if(FProjects->memo!=NULL)
+		{
+			if(C.kol==1)
+			{
+				FProjects->memo->Lines->Add(IntToStr(count)+". После того, как конденсатор принял заряд, установил переключатель в положение, в котором конденсатор отдал свой заряд измерительному прибору ");
+				count++;
+				FProjects->memo->Lines->Add(IntToStr(count)+". Измерительный прибор показал такие значения:");
+				count++;
+				FProjects->memo->Lines->Add(IntToStr(count)+". Eмкость конденсатора: "+FloatToStr(Ck)+" пФ и заряд конденсатора: "+FloatToStr(qk)+" пКл");
+				count++;
+				FProjects->memo->Lines->SaveToFile(FProjects->SD->FileName);
+			}
+			if(C.kol>=2)
+			{
+				FProjects->memo->Lines->Add(IntToStr(count)+". После того, как батарея конденсаторов приняла заряд, установил переключатель в положение, в котором она отдала свой заряд измерительному прибору ");
+				count++;
+				FProjects->memo->Lines->Add(IntToStr(count)+". Измерительный прибор показал такие значения:");
+				count++;
+				FProjects->memo->Lines->Add(IntToStr(count)+". Eмкость батареи конденсаторов: "+FloatToStr(Ck)+" пФ и заряд батареи: "+FloatToStr(qk)+" пКл");
+				count++;
+				FProjects->memo->Lines->SaveToFile(FProjects->SD->FileName);
+			}
+		}
+	}
+	else if(value==2)
+	{
+		P.active=false;
+		P.im->Picture->LoadFromFile("perekl_0.png");
+		im->Picture->LoadFromFile("dir_l.png");
+		value=1;
+		Lns.paint("b");
+	}
+}
+
+void __fastcall Condens::im1Click(TObject *Sender)
+{
+	if(type==1)
+	{
+		im->Picture->LoadFromFile("cilindr.png");
+		type=2;
+	}
+	else if(type==2)
+	{
+		im->Picture->LoadFromFile("plosk.png");
+		type=1;
+	}
+}
+
+void __fastcall Condens::im3Click(TObject *Sender)
+{
+	if(up->Position>=2)
+	{
+		if(soed==1)
+		{
+			im3->Picture->LoadFromFile("panel_22.png");
+			soed=2;
+		}
+		else if(soed==2)
+		{
+			im3->Picture->LoadFromFile("panel_21.png");
+			soed=1;
+		}
+	}
+	else
+	{
+		ShowMessage("Количество конденсаторов не позволяет применить одно из соединений");
+	}
+}
+
+void __fastcall Condens::OnMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
+		  int X, int Y)
+{
+	l->Caption=IntToStr(up->Position);
+	kol=up->Position;
+	if(kol==2)
+	{
+		C.soed=1;
+		C.im3->Picture->LoadFromFile("panel_21.png");
+	}
+}
+void __fastcall Condens::OnMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          int X, int Y)
+{
+	l->Caption=IntToStr(up->Position);
+	kol=up->Position;
+	if(kol==1)
+	{
+		C.im3->Picture->LoadFromFile("panel_20.png");
+	}
+}
+
+void Lines::paint(String color)
+{
+	FProjects->lab->Canvas->Pen->Width=3;
+
+	if(nlab==1)
+	{
+		if(type==1)
+		{
+			if(color=="r")
+			{
+				FProjects->lab->Canvas->Pen->Color=0x002C24DA;
+				FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width-1,B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(Res[0].p_res->Left,Res[0].p_res->Top+62);
+				FProjects->lab->Canvas->LineTo(Res[1].p_res->Left,Res[1].p_res->Top+62);
+				FProjects->lab->Canvas->MoveTo(Res[1].p_res->Left+Res[1].p_res->Width-1,Res[1].p_res->Top+62);
+				FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2,Res[1].p_res->Top+62);
+				FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2,Res[1].p_res->Top+A.p->Height);
+				FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2,Reost.p_r->Top+20);
+				FProjects->lab->Canvas->LineTo(Reost.p_r->Left+Reost.p_r->Width,Reost.p_r->Top+20);
+				FProjects->lab->Canvas->MoveTo(Reost.p_r->Left,Reost.p_r->Top+35);
+				FProjects->lab->Canvas->LineTo(B.p_b->Left-50,Reost.p_r->Top+35);
+				FProjects->lab->Canvas->LineTo(B.p_b->Left-50,B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(B.p_b->Left,B.p_b->Top+62);
+				FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width+70,B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(B.p_b->Left+B.p_b->Width+70,V[0].p->Top+V[0].p->Height/2);
+				FProjects->lab->Canvas->LineTo(V[0].p->Left,V[0].p->Top+V[0].p->Height/2);
+				FProjects->lab->Canvas->LineTo(V[0].p->Left+V[0].p->Width+130,V[0].p->Top+V[0].p->Height/2);
+				FProjects->lab->Canvas->LineTo(V[0].p->Left+V[0].p->Width+130,B.p_b->Top+62);
+			}
+			else if(color=="b")
+			{
+				FProjects->lab->Canvas->Pen->Color=0x00FF7B00;
+				FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width-1,B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(Res[0].p_res->Left,Res[0].p_res->Top+62);
+				FProjects->lab->Canvas->LineTo(Res[1].p_res->Left,Res[1].p_res->Top+62);
+				FProjects->lab->Canvas->MoveTo(Res[1].p_res->Left+Res[1].p_res->Width-1,Res[1].p_res->Top+62);
+				FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2,Res[1].p_res->Top+62);
+				FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2,Res[1].p_res->Top+A.p->Height);
+				FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2,Reost.p_r->Top+20);
+				FProjects->lab->Canvas->LineTo(Reost.p_r->Left+Reost.p_r->Width,Reost.p_r->Top+20);
+				FProjects->lab->Canvas->MoveTo(Reost.p_r->Left,Reost.p_r->Top+35);
+				FProjects->lab->Canvas->LineTo(B.p_b->Left-50,Reost.p_r->Top+35);
+				FProjects->lab->Canvas->LineTo(B.p_b->Left-50,B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(B.p_b->Left,B.p_b->Top+62);
+				FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width+70,B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(B.p_b->Left+B.p_b->Width+70,V[0].p->Top+V[0].p->Height/2);
+				FProjects->lab->Canvas->LineTo(V[0].p->Left,V[0].p->Top+V[0].p->Height/2);
+				FProjects->lab->Canvas->LineTo(V[0].p->Left+V[0].p->Width+130,V[0].p->Top+V[0].p->Height/2);
+				FProjects->lab->Canvas->LineTo(V[0].p->Left+V[0].p->Width+130,B.p_b->Top+62);
+			}
+		}
+		else if(type==2)
+		{
+            if(color=="r")
+			{
+				FProjects->lab->Canvas->Pen->Color=0x002C24DA;
+				FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width-1, B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+160, B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+160, Res[0].p_res->Top+63);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+380, Res[0].p_res->Top+63);
+
+				FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width, B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+380, B.p_b->Top+62);
+
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+160, B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+160, Res[2].p_res->Top+63);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+380, Res[2].p_res->Top+63);
+
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+380, B.p_b->Top+62);
+				FProjects->lab->Canvas->MoveTo(B.p_b->Top+B.p_b->Width+380, Res[0].p_res->Top+63);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+380, B.p_b->Top+62);
+				FProjects->lab->Canvas->MoveTo(B.p_b->Top+B.p_b->Width+380, B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2, B.p_b->Top+62 );
+
+
+				FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2, Reost.p_r->Top+20);
+				FProjects->lab->Canvas->LineTo(Reost.p_r->Left+Reost.p_r->Width,Reost.p_r->Top+20);
+				FProjects->lab->Canvas->MoveTo(Reost.p_r->Left,Reost.p_r->Top+35);
+				FProjects->lab->Canvas->LineTo(B.p_b->Left-50,Reost.p_r->Top+35);
+				FProjects->lab->Canvas->LineTo(B.p_b->Left-50,B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(B.p_b->Left,B.p_b->Top+62);
+
+				FProjects->lab->Canvas->MoveTo(V[0].p->Left+V[0].p->Width/2, V[0].p->Top);
+				FProjects->lab->Canvas->LineTo(V[0].p->Left+V[0].p->Width/2, V[0].p->Top-40);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+80, V[0].p->Top-40);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+80,  B.p_b->Top+62);
+
+				FProjects->lab->Canvas->MoveTo(V[0].p->Left+V[0].p->Width/2, V[0].p->Top+V[0].p->Height);
+				FProjects->lab->Canvas->LineTo(V[0].p->Left+V[0].p->Width/2, V[0].p->Top+V[0].p->Height+40);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+450, V[0].p->Top+V[0].p->Height+40);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+450,  B.p_b->Top+62);
+			}
+			else if(color=="b")
+			{
+				FProjects->lab->Canvas->Pen->Color=0x00FF7B00;
+				FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width-1, B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+160, B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+160, Res[0].p_res->Top+63);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+380, Res[0].p_res->Top+63);
+
+				FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width, B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+380, B.p_b->Top+62);
+
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+160, B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+160, Res[2].p_res->Top+63);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+380, Res[2].p_res->Top+63);
+
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+380, B.p_b->Top+62);
+				FProjects->lab->Canvas->MoveTo(B.p_b->Top+B.p_b->Width+380, Res[0].p_res->Top+63);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+380, B.p_b->Top+62);
+				FProjects->lab->Canvas->MoveTo(B.p_b->Top+B.p_b->Width+380, B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2, B.p_b->Top+62 );
+
+
+				FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2, Reost.p_r->Top+20);
+				FProjects->lab->Canvas->LineTo(Reost.p_r->Left+Reost.p_r->Width,Reost.p_r->Top+20);
+				FProjects->lab->Canvas->MoveTo(Reost.p_r->Left,Reost.p_r->Top+35);
+				FProjects->lab->Canvas->LineTo(B.p_b->Left-50,Reost.p_r->Top+35);
+				FProjects->lab->Canvas->LineTo(B.p_b->Left-50,B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(B.p_b->Left,B.p_b->Top+62);
+
+				FProjects->lab->Canvas->MoveTo(V[0].p->Left+V[0].p->Width/2, V[0].p->Top);
+				FProjects->lab->Canvas->LineTo(V[0].p->Left+V[0].p->Width/2, V[0].p->Top-40);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+80, V[0].p->Top-40);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+80,  B.p_b->Top+62);
+
+				FProjects->lab->Canvas->MoveTo(V[0].p->Left+V[0].p->Width/2, V[0].p->Top+V[0].p->Height);
+				FProjects->lab->Canvas->LineTo(V[0].p->Left+V[0].p->Width/2, V[0].p->Top+V[0].p->Height+40);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+450, V[0].p->Top+V[0].p->Height+40);
+				FProjects->lab->Canvas->LineTo(B.p_b->Top+B.p_b->Width+450,  B.p_b->Top+62);
+			}
+		}
+	}
+	else if(nlab==2)
+	{
+		if(color=="r")
+		{
+			FProjects->lab->Canvas->Pen->Color=0x002C24DA;
+			FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width-1, B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2, Reost.p_r->Top+20);
+			FProjects->lab->Canvas->LineTo(Reost.p_r->Left+Reost.p_r->Width, Reost.p_r->Top+20);
+			FProjects->lab->Canvas->MoveTo(Reost.p_r->Left,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-50,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-50,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left,B.p_b->Top+62);
+
+			FProjects->lab->Canvas->MoveTo(V[0].p->Left, V[0].p->Top+V[0].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[0].p->Left-50, V[0].p->Top+V[0].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[0].p->Left-50, B.p_b->Top+62);
+
+			FProjects->lab->Canvas->MoveTo(V[0].p->Left+V[0].p->Width, V[0].p->Top+V[0].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[0].p->Left+V[0].p->Width+50, V[0].p->Top+V[0].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[0].p->Left+V[0].p->Width+50, B.p_b->Top+62);
+		}
+		else if(color=="b")
+		{
+			FProjects->lab->Canvas->Pen->Color=0x00FF7B00;
+            FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width-1, B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2, Reost.p_r->Top+20);
+			FProjects->lab->Canvas->LineTo(Reost.p_r->Left+Reost.p_r->Width, Reost.p_r->Top+20);
+			FProjects->lab->Canvas->MoveTo(Reost.p_r->Left,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-50,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-50,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left,B.p_b->Top+62);
+
+			FProjects->lab->Canvas->MoveTo(V[0].p->Left, V[0].p->Top+V[0].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[0].p->Left-50, V[0].p->Top+V[0].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[0].p->Left-50, B.p_b->Top+62);
+
+			FProjects->lab->Canvas->MoveTo(V[0].p->Left+V[0].p->Width, V[0].p->Top+V[0].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[0].p->Left+V[0].p->Width+50, V[0].p->Top+V[0].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[0].p->Left+V[0].p->Width+50, B.p_b->Top+62);
+		}
+	}
+	else if(nlab==3)
+	{
+        if(color=="r")
+		{
+			FProjects->lab->Canvas->Pen->Color=0x002C24DA;
+			FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width-1, B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(Res[1].p_res->Left+300,Res[1].p_res->Top+62);
+			FProjects->lab->Canvas->LineTo(Res[1].p_res->Left+300,Reost.p_r->Top+20);
+			FProjects->lab->Canvas->LineTo(Reost.p_r->Left+Reost.p_r->Width, Reost.p_r->Top+20);
+			FProjects->lab->Canvas->MoveTo(Reost.p_r->Left,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(Reost.p_r->Left-365,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(Reost.p_r->Left-365,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left,B.p_b->Top+62);
+
+            FProjects->lab->Canvas->MoveTo(V[0].p->Left, V[0].p->Top+V[0].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[0].p->Left-40, V[0].p->Top+V[0].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[0].p->Left-40, B.p_b->Top+62);
+
+			FProjects->lab->Canvas->MoveTo(V[0].p->Left+V[0].p->Width, V[0].p->Top+V[0].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[0].p->Left+V[0].p->Width+40, V[0].p->Top+V[0].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[0].p->Left+V[0].p->Width+40, B.p_b->Top+62);
+
+			FProjects->lab->Canvas->MoveTo(V[1].p->Left, V[1].p->Top+V[1].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[1].p->Left-40, V[1].p->Top+V[1].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[1].p->Left-40, B.p_b->Top+62);
+
+			FProjects->lab->Canvas->MoveTo(V[1].p->Left+V[1].p->Width, V[1].p->Top+V[1].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[1].p->Left+V[1].p->Width+40, V[1].p->Top+V[1].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[1].p->Left+V[1].p->Width+40, B.p_b->Top+62);
+		}
+		else if(color=="b")
+		{
+			FProjects->lab->Canvas->Pen->Color=0x00FF7B00;
+			FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width-1, B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(Res[1].p_res->Left+300,Res[1].p_res->Top+62);
+			FProjects->lab->Canvas->LineTo(Res[1].p_res->Left+300,Reost.p_r->Top+20);
+			FProjects->lab->Canvas->LineTo(Reost.p_r->Left+Reost.p_r->Width, Reost.p_r->Top+20);
+			FProjects->lab->Canvas->MoveTo(Reost.p_r->Left,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(Reost.p_r->Left-365,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(Reost.p_r->Left-365,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left,B.p_b->Top+62);
+
+            FProjects->lab->Canvas->MoveTo(V[0].p->Left, V[0].p->Top+V[0].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[0].p->Left-40, V[0].p->Top+V[0].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[0].p->Left-40, B.p_b->Top+62);
+
+			FProjects->lab->Canvas->MoveTo(V[0].p->Left+V[0].p->Width, V[0].p->Top+V[0].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[0].p->Left+V[0].p->Width+40, V[0].p->Top+V[0].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[0].p->Left+V[0].p->Width+40, B.p_b->Top+62);
+
+			FProjects->lab->Canvas->MoveTo(V[1].p->Left, V[1].p->Top+V[1].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[1].p->Left-40, V[1].p->Top+V[1].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[1].p->Left-40, B.p_b->Top+62);
+
+			FProjects->lab->Canvas->MoveTo(V[1].p->Left+V[1].p->Width, V[1].p->Top+V[1].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[1].p->Left+V[1].p->Width+40, V[1].p->Top+V[1].p->Height/2);
+			FProjects->lab->Canvas->LineTo(V[1].p->Left+V[1].p->Width+40, B.p_b->Top+62);
+		}
+	}
+	else if(nlab==4)
+	{
+        if(color=="r")
+		{
+			FProjects->lab->Canvas->Pen->Color=0x002C24DA;
+			FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width-1, B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(439,B.p_b->Top+62);
+
+			//прорисовка линии к первому резистору
+			FProjects->lab->Canvas->MoveTo(445,B.p_b->Top+26);
+			FProjects->lab->Canvas->LineTo(445,Res[0].p_res->Top+62);
+			FProjects->lab->Canvas->LineTo(Res[0].p_res->Left,Res[0].p_res->Top+62);
+			FProjects->lab->Canvas->LineTo(Res[0].p_res->Left+220,Res[0].p_res->Top+62);
+			FProjects->lab->Canvas->LineTo(Res[0].p_res->Left+220,B.p_b->Top+62);
+
+			//прорисовка линии ко второму резистору
+			FProjects->lab->Canvas->MoveTo(445,B.p_b->Top+98);
+			FProjects->lab->Canvas->LineTo(445,Res[1].p_res->Top+62);
+			FProjects->lab->Canvas->LineTo(Res[1].p_res->Left,Res[1].p_res->Top+62);
+			FProjects->lab->Canvas->LineTo(Res[1].p_res->Left+220,Res[1].p_res->Top+62);
+			FProjects->lab->Canvas->LineTo(Res[1].p_res->Left+220,B.p_b->Top+62);
+
+			FProjects->lab->Canvas->MoveTo(Res[1].p_res->Left+220,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2, Reost.p_r->Top+20);
+			FProjects->lab->Canvas->LineTo(Reost.p_r->Left+Reost.p_r->Width, Reost.p_r->Top+20);
+			FProjects->lab->Canvas->MoveTo(Reost.p_r->Left,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-50,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-50,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left,B.p_b->Top+62);
+		}
+		else if(color=="b")
+		{
+			FProjects->lab->Repaint();
+			FProjects->lab->Canvas->Pen->Color=0x00FF7B00;
+			FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width-1, B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(439,B.p_b->Top+62);
+			FProjects->lab->Canvas->MoveTo(Res[1].p_res->Left+220,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2, Reost.p_r->Top+20);
+			FProjects->lab->Canvas->LineTo(Reost.p_r->Left+Reost.p_r->Width, Reost.p_r->Top+20);
+			FProjects->lab->Canvas->MoveTo(Reost.p_r->Left,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-50,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-50,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left,B.p_b->Top+62);
+
+			if(D.value==1)
+			{
+                FProjects->lab->Canvas->MoveTo(445,B.p_b->Top+26);
+				FProjects->lab->Canvas->LineTo(445,Res[0].p_res->Top+62);
+				FProjects->lab->Canvas->LineTo(Res[0].p_res->Left,Res[0].p_res->Top+62);
+				FProjects->lab->Canvas->LineTo(Res[0].p_res->Left+220,Res[0].p_res->Top+62);
+				FProjects->lab->Canvas->LineTo(Res[0].p_res->Left+220,B.p_b->Top+62);
+
+				FProjects->lab->Canvas->Pen->Color=0x002C24DA;
+				FProjects->lab->Canvas->MoveTo(445,B.p_b->Top+98);
+				FProjects->lab->Canvas->LineTo(445,Res[1].p_res->Top+62);
+				FProjects->lab->Canvas->LineTo(Res[1].p_res->Left,Res[1].p_res->Top+62);
+				FProjects->lab->Canvas->LineTo(Res[1].p_res->Left+220,Res[1].p_res->Top+62);
+				FProjects->lab->Canvas->LineTo(Res[1].p_res->Left+220,B.p_b->Top+62);
+			}
+			if(D.value==2)
+			{
+                FProjects->lab->Canvas->MoveTo(445,B.p_b->Top+98);
+				FProjects->lab->Canvas->LineTo(445,Res[1].p_res->Top+62);
+				FProjects->lab->Canvas->LineTo(Res[1].p_res->Left,Res[1].p_res->Top+62);
+				FProjects->lab->Canvas->LineTo(Res[1].p_res->Left+220,Res[1].p_res->Top+62);
+				FProjects->lab->Canvas->LineTo(Res[1].p_res->Left+220,B.p_b->Top+62);
+
+                FProjects->lab->Canvas->Pen->Color=0x002C24DA;
+                FProjects->lab->Canvas->MoveTo(445,B.p_b->Top+26);
+				FProjects->lab->Canvas->LineTo(445,Res[0].p_res->Top+62);
+				FProjects->lab->Canvas->LineTo(Res[0].p_res->Left,Res[0].p_res->Top+62);
+				FProjects->lab->Canvas->LineTo(Res[0].p_res->Left+220,Res[0].p_res->Top+62);
+				FProjects->lab->Canvas->LineTo(Res[0].p_res->Left+220,B.p_b->Top+62);
+			}
+		}
+	}
+	else if(nlab==5)
+	{
+        if(color=="r")
+		{
+			//прорисовка линий от батареи
+			FProjects->lab->Canvas->Pen->Color=0x002C24DA;
+			FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width-1, B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+40,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+40,D2.p->Top);
+			FProjects->lab->Canvas->MoveTo(B.p_b->Left, B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-50,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-50,P.p->Top+40);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+14,P.p->Top+40);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+14,D2.p->Top);
+
+			//прорисовка линий для RLC
+			FProjects->lab->Canvas->MoveTo(RLC.p->Left+1, RLC.p->Top+RLC.p->Height/2);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+88, RLC.p->Top+RLC.p->Height/2);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+88,D2.p->Top);
+			FProjects->lab->Canvas->MoveTo(RLC.p->Left+RLC.p->Width, RLC.p->Top+RLC.p->Height/2);
+			FProjects->lab->Canvas->LineTo(RLC.p->Left+RLC.p->Width+50, RLC.p->Top+RLC.p->Height/2);
+			FProjects->lab->Canvas->LineTo(RLC.p->Left+RLC.p->Width+50, P.p->Top+40);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+114, P.p->Top+40);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+114, D2.p->Top);
+
+			//прорисовка линий для конденсатора
+			FProjects->lab->Canvas->MoveTo(D2.p->Left+51, D2.p->Top+D2.p->Height);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+51, D2.p->Top+D2.p->Height+35);
+			FProjects->lab->Canvas->LineTo(D2.p->Left-100, D2.p->Top+D2.p->Height+35);
+			FProjects->lab->Canvas->LineTo(D2.p->Left-100, D2.p->Left+80);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+D2.p->Width+100, D2.p->Left+80);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+D2.p->Width+100, D2.p->Top+D2.p->Height+35);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+77, D2.p->Top+D2.p->Height+35);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+77, D2.p->Top+D2.p->Height);
+		}
+		else if(color=="b")
+		{
+			FProjects->lab->Canvas->Pen->Color=0x00FF7B00;
+			FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width-1, B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+40,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+40,D2.p->Top);
+			FProjects->lab->Canvas->MoveTo(B.p_b->Left, B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-50,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-50,P.p->Top+40);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+14,P.p->Top+40);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+14,D2.p->Top);
+
+			FProjects->lab->Canvas->Pen->Color=0x002C24DA;
+			FProjects->lab->Canvas->MoveTo(RLC.p->Left+1, RLC.p->Top+RLC.p->Height/2);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+88, RLC.p->Top+RLC.p->Height/2);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+88,D2.p->Top);
+			FProjects->lab->Canvas->MoveTo(RLC.p->Left+RLC.p->Width, RLC.p->Top+RLC.p->Height/2);
+			FProjects->lab->Canvas->LineTo(RLC.p->Left+RLC.p->Width+50, RLC.p->Top+RLC.p->Height/2);
+			FProjects->lab->Canvas->LineTo(RLC.p->Left+RLC.p->Width+50, P.p->Top+40);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+114, P.p->Top+40);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+114, D2.p->Top);
+
+			FProjects->lab->Canvas->Pen->Color=0x00FF7B00;
+			FProjects->lab->Canvas->MoveTo(D2.p->Left+51, D2.p->Top+D2.p->Height);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+51, D2.p->Top+D2.p->Height+35);
+			FProjects->lab->Canvas->LineTo(D2.p->Left-100, D2.p->Top+D2.p->Height+35);
+			FProjects->lab->Canvas->LineTo(D2.p->Left-100, D2.p->Left+80);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+D2.p->Width+100, D2.p->Left+80);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+D2.p->Width+100, D2.p->Top+D2.p->Height+35);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+77, D2.p->Top+D2.p->Height+35);
+			FProjects->lab->Canvas->LineTo(D2.p->Left+77, D2.p->Top+D2.p->Height);
+
+			if(D2.value==1)
+			{
+				if(P.active==false)
+				{
+					//прорисовка линий от батареи
+					FProjects->lab->Canvas->Pen->Color=0x002C24DA;
+					FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width-1, B.p_b->Top+62);
+					FProjects->lab->Canvas->LineTo(D2.p->Left+40,B.p_b->Top+62);
+					FProjects->lab->Canvas->LineTo(D2.p->Left+40,D2.p->Top);
+					FProjects->lab->Canvas->MoveTo(B.p_b->Left, B.p_b->Top+62);
+					FProjects->lab->Canvas->LineTo(B.p_b->Left-50,B.p_b->Top+62);
+					FProjects->lab->Canvas->LineTo(B.p_b->Left-50,P.p->Top+40);
+					FProjects->lab->Canvas->LineTo(D2.p->Left+14,P.p->Top+40);
+					FProjects->lab->Canvas->LineTo(D2.p->Left+14,D2.p->Top);
+
+					//прорисовка линий для RLC
+					FProjects->lab->Canvas->MoveTo(RLC.p->Left+1, RLC.p->Top+RLC.p->Height/2);
+					FProjects->lab->Canvas->LineTo(D2.p->Left+88, RLC.p->Top+RLC.p->Height/2);
+					FProjects->lab->Canvas->LineTo(D2.p->Left+88,D2.p->Top);
+					FProjects->lab->Canvas->MoveTo(RLC.p->Left+RLC.p->Width, RLC.p->Top+RLC.p->Height/2);
+					FProjects->lab->Canvas->LineTo(RLC.p->Left+RLC.p->Width+50, RLC.p->Top+RLC.p->Height/2);
+					FProjects->lab->Canvas->LineTo(RLC.p->Left+RLC.p->Width+50, P.p->Top+40);
+					FProjects->lab->Canvas->LineTo(D2.p->Left+114, P.p->Top+40);
+					FProjects->lab->Canvas->LineTo(D2.p->Left+114, D2.p->Top);
+
+					//прорисовка линий для конденсатора
+					FProjects->lab->Canvas->MoveTo(D2.p->Left+51, D2.p->Top+D2.p->Height);
+					FProjects->lab->Canvas->LineTo(D2.p->Left+51, D2.p->Top+D2.p->Height+35);
+					FProjects->lab->Canvas->LineTo(D2.p->Left-100, D2.p->Top+D2.p->Height+35);
+					FProjects->lab->Canvas->LineTo(D2.p->Left-100, D2.p->Left+80);
+					FProjects->lab->Canvas->LineTo(D2.p->Left+D2.p->Width+100, D2.p->Left+80);
+					FProjects->lab->Canvas->LineTo(D2.p->Left+D2.p->Width+100, D2.p->Top+D2.p->Height+35);
+					FProjects->lab->Canvas->LineTo(D2.p->Left+77, D2.p->Top+D2.p->Height+35);
+					FProjects->lab->Canvas->LineTo(D2.p->Left+77, D2.p->Top+D2.p->Height);
+				}
+			}
+			else if(D2.value==2)
+			{
+				FProjects->lab->Canvas->Pen->Color=0x002C24DA;
+				FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width-1, B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(D2.p->Left+40,B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(D2.p->Left+40,D2.p->Top);
+				FProjects->lab->Canvas->MoveTo(B.p_b->Left, B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(B.p_b->Left-50,B.p_b->Top+62);
+				FProjects->lab->Canvas->LineTo(B.p_b->Left-50,P.p->Top+40);
+				FProjects->lab->Canvas->LineTo(D2.p->Left+14,P.p->Top+40);
+				FProjects->lab->Canvas->LineTo(D2.p->Left+14,D2.p->Top);
+
+				FProjects->lab->Canvas->Pen->Color=0x00FF7B00;
+				FProjects->lab->Canvas->MoveTo(RLC.p->Left+1, RLC.p->Top+RLC.p->Height/2);
+				FProjects->lab->Canvas->LineTo(D2.p->Left+88, RLC.p->Top+RLC.p->Height/2);
+				FProjects->lab->Canvas->LineTo(D2.p->Left+88,D2.p->Top);
+				FProjects->lab->Canvas->MoveTo(RLC.p->Left+RLC.p->Width, RLC.p->Top+RLC.p->Height/2);
+				FProjects->lab->Canvas->LineTo(RLC.p->Left+RLC.p->Width+50, RLC.p->Top+RLC.p->Height/2);
+				FProjects->lab->Canvas->LineTo(RLC.p->Left+RLC.p->Width+50, P.p->Top+40);
+				FProjects->lab->Canvas->LineTo(D2.p->Left+114, P.p->Top+40);
+				FProjects->lab->Canvas->LineTo(D2.p->Left+114, D2.p->Top);
+
+				FProjects->lab->Canvas->Pen->Color=0x00FF7B00;
+				FProjects->lab->Canvas->MoveTo(D2.p->Left+51, D2.p->Top+D2.p->Height);
+				FProjects->lab->Canvas->LineTo(D2.p->Left+51, D2.p->Top+D2.p->Height+35);
+				FProjects->lab->Canvas->LineTo(D2.p->Left-100, D2.p->Top+D2.p->Height+35);
+				FProjects->lab->Canvas->LineTo(D2.p->Left-100, D2.p->Left+80);
+				FProjects->lab->Canvas->LineTo(D2.p->Left+D2.p->Width+100, D2.p->Left+80);
+				FProjects->lab->Canvas->LineTo(D2.p->Left+D2.p->Width+100, D2.p->Top+D2.p->Height+35);
+				FProjects->lab->Canvas->LineTo(D2.p->Left+77, D2.p->Top+D2.p->Height+35);
+				FProjects->lab->Canvas->LineTo(D2.p->Left+77, D2.p->Top+D2.p->Height);
+			}
+		}
+	}
+	else if(nlab==6)
+	{
+		if(color=="r")
+		{
+			FProjects->lab->Canvas->Pen->Color=0x002C24DA;
+			FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width-1, B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2,B.p_b->Top+62);
+            FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2, Reost.p_r->Top+20);
+			FProjects->lab->Canvas->LineTo(Reost.p_r->Left+Reost.p_r->Width, Reost.p_r->Top+20);
+			FProjects->lab->Canvas->MoveTo(Reost.p_r->Left,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-250,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-250,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left,B.p_b->Top+62);
+		}
+		else if(color=="b")
+		{
+			FProjects->lab->Canvas->Pen->Color=0x00FF7B00;
+			FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width-1, B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2, Reost.p_r->Top+20);
+			FProjects->lab->Canvas->LineTo(Reost.p_r->Left+Reost.p_r->Width, Reost.p_r->Top+20);
+			FProjects->lab->Canvas->MoveTo(Reost.p_r->Left,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-250,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-250,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left,B.p_b->Top+62);
+		}
+	}
+	else if(nlab==7)
+	{
+		if(color=="r")
+		{
+			FProjects->lab->Canvas->Pen->Color=0x002C24DA;
+			FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width-1, B.p_b->Top+62);
+            FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2,B.p_b->Top+62);
+            FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2, Reost.p_r->Top+20);
+			FProjects->lab->Canvas->LineTo(Reost.p_r->Left+Reost.p_r->Width, Reost.p_r->Top+20);
+			FProjects->lab->Canvas->MoveTo(Reost.p_r->Left,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-250,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-250,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left,B.p_b->Top+62);
+		}
+		else if(color=="b")
+		{
+			FProjects->lab->Canvas->Pen->Color=0x00FF7B00;
+			FProjects->lab->Canvas->MoveTo(B.p_b->Left+B.p_b->Width-1, B.p_b->Top+62);
+            FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(A.p->Left+A.p->Width/2, Reost.p_r->Top+20);
+			FProjects->lab->Canvas->LineTo(Reost.p_r->Left+Reost.p_r->Width, Reost.p_r->Top+20);
+			FProjects->lab->Canvas->MoveTo(Reost.p_r->Left,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-250,Reost.p_r->Top+35);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left-250,B.p_b->Top+62);
+			FProjects->lab->Canvas->LineTo(B.p_b->Left,B.p_b->Top+62);
+		}
+	}
+}
+
+#pragma package(smart_init)

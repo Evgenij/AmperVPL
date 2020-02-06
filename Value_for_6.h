@@ -1,0 +1,22 @@
+//---------------------------------------------------------------------------
+
+#ifndef Value_for_6H
+#define Value_for_6H
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+//---------------------------------------------------------------------------
+class TValue6 : public TForm
+{
+__published:	// IDE-managed Components
+	TButton *Button1;
+private:	// User declarations
+public:		// User declarations
+	__fastcall TValue6(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TValue6 *Value6;
+//---------------------------------------------------------------------------
+#endif

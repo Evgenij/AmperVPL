@@ -1,0 +1,49 @@
+//---------------------------------------------------------------------------
+
+#ifndef MainMenuH
+#define MainMenuH
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Imaging.pngimage.hpp>
+#include <Vcl.ComCtrls.hpp>
+//---------------------------------------------------------------------------
+class TFormMenu : public TForm
+{
+__published:	// IDE-managed Components
+	TImage *Image1;
+	TImage *Image2;
+	TLabel *Label1;
+	TLabel *Label2;
+	TLabel *Label3;
+	TLabel *Label4;
+	TLabel *Label5;
+	TLabel *Label6;
+	TLabel *Label7;
+	void __fastcall FormActivate(TObject *Sender);
+	void __fastcall Label3MouseMove(TObject *Sender, TShiftState Shift, int X, int Y);
+	void __fastcall Label3MouseLeave(TObject *Sender);
+	void __fastcall Label4MouseMove(TObject *Sender, TShiftState Shift, int X, int Y);
+	void __fastcall Label4MouseLeave(TObject *Sender);
+	void __fastcall Label5MouseMove(TObject *Sender, TShiftState Shift, int X, int Y);
+	void __fastcall Label5MouseLeave(TObject *Sender);
+	void __fastcall Label6MouseMove(TObject *Sender, TShiftState Shift, int X, int Y);
+	void __fastcall Label6MouseLeave(TObject *Sender);
+	void __fastcall Label3Click(TObject *Sender);
+	void __fastcall Label6Click(TObject *Sender);
+	void __fastcall TrackBar1KeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall TrackBar1DragOver(TObject *Sender, TObject *Source, int X, int Y,
+          TDragState State, bool &Accept);
+	void __fastcall TrackBar1Exit(TObject *Sender);
+	void __fastcall TrackBar1Change(TObject *Sender);
+private:	// User declarations
+public:		// User declarations
+	__fastcall TFormMenu(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TFormMenu *FormMenu;
+//---------------------------------------------------------------------------
+#endif

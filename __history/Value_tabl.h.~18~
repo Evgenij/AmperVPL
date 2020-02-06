@@ -1,0 +1,36 @@
+//---------------------------------------------------------------------------
+
+#ifndef Value_tablH
+#define Value_tablH
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Vcl.Grids.hpp>
+#include <Vcl.ExtCtrls.hpp>
+//---------------------------------------------------------------------------
+class TFValue : public TForm
+{
+__published:	// IDE-managed Components
+	TStringGrid *SG;
+	TStringGrid *SG2;
+	TButton *Button1;
+	TButton *Button2;
+	TButton *Button3;
+	TPanel *Panel1;
+	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall SGDrawCell(TObject *Sender, int ACol, int ARow, TRect &Rect, TGridDrawState State);
+	void __fastcall FormActivate(TObject *Sender);
+	void __fastcall Button2Click(TObject *Sender);
+	void __fastcall Button3Click(TObject *Sender);
+	void __fastcall InExcell(TStringGrid *SGt);
+	void __fastcall FormCreate(TObject *Sender);
+private:	// User declarations
+public:		// User declarations
+	__fastcall TFValue(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TFValue *FValue;
+//---------------------------------------------------------------------------
+#endif

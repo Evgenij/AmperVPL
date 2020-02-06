@@ -1,0 +1,90 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Menu.h"
+#include "AmperPCH1.h"
+#include "Answer.h"
+#include "Elements.h"
+#include "lab1_info.h"
+#include "MainWindow.h"
+#include "Projects.h"
+#include "Value_tabl.h"
+#include "Lab.h"
+#include "info.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TNMenu *NMenu;
+//---------------------------------------------------------------------------
+__fastcall TNMenu::TNMenu(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TNMenu::Image3Click(TObject *Sender)
+{
+    if(FProjects->lab!=NULL)
+	{
+		FProjects->lab->Destroying();
+		FProjects->lab->Close();
+        NMenu->Close();
+	}
+	else
+	{
+		NMenu->Close();
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TNMenu::Image2MouseEnter(TObject *Sender)
+{
+	Image2->Picture->LoadFromFile("butt2.png");
+}
+//---------------------------------------------------------------------------
+void __fastcall TNMenu::Image2MouseLeave(TObject *Sender)
+{
+    Image2->Picture->LoadFromFile("butt1.png");
+}
+//---------------------------------------------------------------------------
+void __fastcall TNMenu::Image3MouseEnter(TObject *Sender)
+{
+	Image3->Picture->LoadFromFile("close2.png");
+}
+//---------------------------------------------------------------------------
+void __fastcall TNMenu::Image3MouseLeave(TObject *Sender)
+{
+	Image3->Picture->LoadFromFile("close1.png");
+}
+//---------------------------------------------------------------------------
+void __fastcall TNMenu::Image5MouseEnter(TObject *Sender)
+{
+	Image5->Picture->LoadFromFile("quest2.png");
+}
+//---------------------------------------------------------------------------
+void __fastcall TNMenu::Image5MouseLeave(TObject *Sender)
+{
+	Image5->Picture->LoadFromFile("quest1.png");
+}
+//---------------------------------------------------------------------------
+void __fastcall TNMenu::Image2Click(TObject *Sender)
+{
+	NMenu->Hide();
+	FProjects->Show();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TNMenu::Image5Click(TObject *Sender)
+{
+    FInfo->Show();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TNMenu::FormActivate(TObject *Sender)
+{
+    MediaPlayer1->FileName="atom.avi";
+	MediaPlayer1->Open();
+	MediaPlayer1->Play();
+}
+//---------------------------------------------------------------------------
+

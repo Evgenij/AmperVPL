@@ -1,0 +1,146 @@
+//---------------------------------------------------------------------------
+
+#ifndef LabH
+#define LabH
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Imaging.pngimage.hpp>
+#include <Vcl.WinXCtrls.hpp>
+#include <Vcl.Dialogs.hpp>
+#include <Vcl.Buttons.hpp>
+#include <Vcl.Grids.hpp>
+//---------------------------------------------------------------------------
+class TFProjects : public TForm
+{
+__published:	// IDE-managed Components
+	TImage *Image2;
+	TImage *Image3;
+	TImage *l1;
+	TImage *Image1;
+	TImage *l2;
+	TImage *l3;
+	TImage *l4;
+	TImage *l5;
+	TImage *l6;
+	TImage *l7;
+	//--
+    TForm *lab;
+	TLabel *two;
+	TLabel *four;
+	TLabel *R1;
+	TLabel *R2;
+	TLabel *Pl;	// IDE-managed Components
+	TButton *Button1;
+	TImage *im1;
+	TImage *im2;
+	TImage *Im_1;
+	TImage *im3;
+	TImage *im4;
+	TImage *im5;
+	TImage *im7;
+	TImage *im8;
+	TImage *Im_2;
+	TImage *Im_3;
+	TImage *Im_4;
+	TImage *Im_5;
+	TImage *Im_7;
+	TImage *Im_8;
+	TPanel *Panel1;
+	TLabel *Label1;
+	TLabel *Label2;
+	TEdit *ed1;
+	TEdit *ed2;
+	TEdit *ed3;
+	TEdit *ed4;
+	TEdit *ed5;
+	TEdit *ed6;
+	TEdit *ed7;
+	TBitBtn *b1;
+	TBitBtn *b2;
+	TBitBtn *b3;
+	TBitBtn *b4;
+	TLabel *Ei;
+	TLabel *kpd;
+	TLabel *I;
+	TLabel *U;
+	TLabel *temp1;
+	TLabel *temp2;
+	TCheckBox *ch1;
+	TCheckBox *ch2;
+	TMemo *memo;
+	TSaveDialog *SD;
+	TStringGrid *sg1;
+	TStringGrid *sg2;
+	TImage *labN;
+	TImage *Image4;
+	TActivityIndicator *Ind;
+	TTimer *Timer;
+	void __fastcall Image2MouseEnte(TObject *Sender);
+	void __fastcall Image2MouseLeave(TObject *Sender);
+	void __fastcall Image3MouseEnter(TObject *Sender);
+	void __fastcall Image3MouseLeave(TObject *Sender);
+	void __fastcall Image3Click(TObject *Sender);
+	void __fastcall FormActivate(TObject *Sender);
+	void __fastcall l1MouseEnte(TObject *Sender);
+	void __fastcall l1MouseLeave(TObject *Sender);
+	void __fastcall l2MouseEnter(TObject *Sender);
+	void __fastcall l2MouseLeave(TObject *Sender);
+	void __fastcall l3MouseEnter(TObject *Sender);
+	void __fastcall l3MouseLeave(TObject *Sender);
+	void __fastcall l4MouseEnter(TObject *Sender);
+	void __fastcall l4MouseLeave(TObject *Sender);
+	void __fastcall l5MouseEnter(TObject *Sender);
+	void __fastcall l5MouseLeave(TObject *Sender);
+	void __fastcall l6MouseEnter(TObject *Sender);
+	void __fastcall l6MouseLeave(TObject *Sender);
+	void __fastcall l7MouseEnter(TObject *Sender);
+	void __fastcall l7MouseLeave(TObject *Sender);
+	void __fastcall l1Click(TObject *Sender);
+	void __fastcall l2Click(TObject *Sender);
+	void __fastcall Image2Click(TObject *Sender);
+	void __fastcall l3Click(TObject *Sender);
+	void __fastcall l4Click(TObject *Sender);
+	void __fastcall l5Click(TObject *Sender);
+	void __fastcall l6Click(TObject *Sender);
+	void __fastcall l7Click(TObject *Sender);
+	//--
+	void __fastcall b1Click(TObject *Sender);
+	void __fastcall b2Click(TObject *Sender);
+	void __fastcall b3Click(TObject *Sender);
+	void __fastcall b4Click(TObject *Sender);
+    void __fastcall ed1Exit(TObject *Sender);
+	void __fastcall ed2Exit(TObject *Sender);
+	void __fastcall ed3Exit(TObject *Sender);
+	void __fastcall ed4Exit(TObject *Sender);
+	void __fastcall ed5Exit(TObject *Sender);
+	void __fastcall ed6Exit(TObject *Sender);
+	void __fastcall ed7Exit(TObject *Sender);
+	void __fastcall ed1KeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall ed2KeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall ed3KeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall ed4KeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall ed5KeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall ed6KeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall ed7KeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall ed1Change(TObject *Sender);
+	void __fastcall ed2Change(TObject *Sender);
+	void __fastcall ed3Change(TObject *Sender);
+	void __fastcall ed4Change(TObject *Sender);
+	void __fastcall ch1Click(TObject *Sender);
+	void __fastcall ch2Click(TObject *Sender);
+	void __fastcall SDClose(TObject *Sender);
+	void __fastcall Image1MouseEnter(TObject *Sender);
+	void __fastcall TimerTimer(TObject *Sender);
+	void __fastcall FormShow(TObject *Sender);
+private:	// User declarations
+public:		// User declarations
+	__fastcall TFProjects(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TFProjects *FProjects;
+//---------------------------------------------------------------------------
+#endif

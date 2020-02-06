@@ -1,0 +1,58 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Answer.h"
+#include "AmperPCH1.h"
+#include "Elements.h"
+#include "lab1_info.h"
+#include "MainMenu.h"
+#include "MainWindow.h"
+#include "Projects.h"
+#include "Value_tabl.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TFAnswer *FAnswer;
+//---------------------------------------------------------------------------
+__fastcall TFAnswer::TFAnswer(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TFAnswer::Image2MouseEnter(TObject *Sender)
+{
+	Image2->Picture->LoadFromFile("да_1.png");
+}
+//---------------------------------------------------------------------------
+void __fastcall TFAnswer::Image2MouseLeave(TObject *Sender)
+{
+	Image2->Picture->LoadFromFile("да.png");
+}
+//---------------------------------------------------------------------------
+void __fastcall TFAnswer::Image2Click(TObject *Sender)
+{
+    FormMenu->Close();
+}
+//---------------------------------------------------------------------------
+void __fastcall TFAnswer::Image3MouseEnter(TObject *Sender)
+{
+	Image3->Picture->LoadFromFile("нет_1.png");
+}
+//---------------------------------------------------------------------------
+void __fastcall TFAnswer::Image3MouseLeave(TObject *Sender)
+{
+	Image3->Picture->LoadFromFile("нет.png");
+}
+//---------------------------------------------------------------------------
+void __fastcall TFAnswer::Image4MouseEnter(TObject *Sender)
+{
+	Image4->Picture->LoadFromFile("left_1.png");
+}
+//---------------------------------------------------------------------------
+void __fastcall TFAnswer::Image4MouseLeave(TObject *Sender)
+{
+    Image4->Picture->LoadFromFile("left.png");
+}
+//---------------------------------------------------------------------------

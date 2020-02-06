@@ -1,0 +1,183 @@
+//---------------------------------------------------------------------------
+
+#ifndef ElementsH
+#define ElementsH
+#include <vcl.h>
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Vcl.Menus.hpp>
+#include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Imaging.pngimage.hpp>
+#include <Vcl.ComCtrls.hpp>
+#include <System.Sensors.Components.hpp>
+#include <System.Sensors.hpp>
+#include <Vcl.Grids.hpp>
+#include <Vcl.WinXCtrls.hpp>
+
+class Battery
+{
+	public:
+	TPanel *p_b;
+	TImage *batt;
+	TImage *tabl_b;
+	TTrackBar *tb_b;
+	TLabel *l_b;
+    double Volt;
+	void __fastcall tb_bChange(TObject *Sender);
+	void __fastcall tb_bKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall tb_bMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
+		  int X, int Y)
+    void create(int x, int y);
+};
+
+class Reostat
+{
+	public:
+	TPanel *p_r;
+	TImage *reost;
+	TImage *tabl_r;
+	TTrackBar *tb_r;
+	TLabel *l_r;
+    double R;
+    void __fastcall tb_rChange(TObject *Sender);
+	void create(int x,int y);
+};
+
+class Resistor
+{
+	public:
+	TPanel *p_res;
+	TImage *resist;
+	TImage *tabl_res;
+	TLabel *l_res;
+	TRadioButton *r1;
+	TRadioButton *r2;
+	TRadioButton *r3;
+	TRadioButton *r4;
+	TRadioButton *r5;
+	TLabel *l1;
+	TLabel *l2;
+	TLabel *l3;
+	TLabel *l4;
+	TLabel *l5;
+	double R, d, l, ro;
+	void __fastcall r1Click(TObject *Sender);
+	void __fastcall r2Click(TObject *Sender);
+	void __fastcall r3Click(TObject *Sender);
+	void __fastcall r4Click(TObject *Sender);
+	void __fastcall r5Click(TObject *Sender);
+	void create(int x, int y);
+};
+
+class Amper
+{
+	public:
+	TPanel *p;
+	TImage *im;
+	TProgressBar *pb;
+    TLabel *l;
+	void create(int x,int y);
+};
+
+class Volt
+{
+	public:
+	TPanel *p;
+	TImage *im;
+	TProgressBar *pb;
+    TLabel *l;
+	void create(int x, int y);
+};
+
+class Perekl
+{
+	public:
+	TPanel *p;
+	TImage *im;
+	TToggleSwitch *sw;
+	bool active;
+	void create(int x, int y);
+    void __fastcall Click(TObject *Sender);
+};
+
+class Lamp
+{
+    public:
+	TPanel *p;
+	TImage *im;
+	void create(int x, int y);
+};
+
+class Fire
+{
+	public:
+	TPanel *p;
+	TImage *im;
+	TTrackBar *tb;
+	TLabel *l;
+	void create(int x, int y,int w, int h);
+};
+
+class Temp
+{
+	public:
+	TPanel *p;
+	TImage *im;
+	TTrackBar *tb;
+	TLabel *l;
+	void create(int x, int y);
+	void __fastcall tbtemp(TObject *Sender);
+};
+
+class Dir
+{
+	public:
+	TImage *im;
+	int value;
+	void create(int x, int y);
+	void __fastcall imClick(TObject *Sender);
+};
+
+class RLC
+{
+	public:
+	TPanel *p;
+	TImage *im;
+	TLabel *c;
+	TLabel *q;
+	void create(int x, int y);
+};
+
+class Dir2
+{
+	public:
+	TPanel *p;
+	TImage *im;
+	int value;
+	void create(int x, int y);
+	void __fastcall imClick(TObject *Sender);
+};
+
+class Condens
+{
+	public:
+	TPanel *p;
+	TUpDown *up;
+	TLabel *l;
+	TImage *im;
+	TImage *im2;
+    TImage *im3;
+	int type, kol, soed;
+	void create(int x, int y);
+	void __fastcall im1Click(TObject *Sender);
+	void __fastcall im3Click(TObject *Sender);
+	void __fastcall OnMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
+		  int X, int Y);
+	void __fastcall OnMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          int X, int Y);
+};
+
+//---------------------------------------------------------------------------
+#endif

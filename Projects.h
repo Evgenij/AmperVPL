@@ -1,0 +1,122 @@
+//---------------------------------------------------------------------------
+
+#ifndef ProjectsH
+#define ProjectsH
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Imaging.jpeg.hpp>
+#include <Vcl.Imaging.pngimage.hpp>
+#include <Vcl.Buttons.hpp>
+#include <Vcl.Grids.hpp>
+#include <Vcl.Dialogs.hpp>
+//---------------------------------------------------------------------------
+class TFProject : public TForm
+{
+__published:
+	/*TForm *lab;
+	TLabel *two;
+	TLabel *four;
+	TLabel *R1;
+	TLabel *R2;
+	TLabel *Pl;	// IDE-managed Components
+	TButton *Button1;
+	TImage *im1;
+	TImage *im2;
+	TImage *Im_1;
+	TImage *im3;
+	TImage *im4;
+	TImage *im5;
+	TImage *im7;
+	TImage *im8;
+	TImage *Im_2;
+	TImage *Im_3;
+	TImage *Im_4;
+	TImage *Im_5;
+	TImage *Im_7;
+	TImage *Im_8;
+	TPanel *Panel1;
+	TLabel *Label1;
+	TLabel *Label2;
+	TImage *Image2;
+	TEdit *ed1;
+	TEdit *ed2;
+	TEdit *ed3;
+	TEdit *ed4;
+	TEdit *ed5;
+	TEdit *ed6;
+	TEdit *ed7;
+	TBitBtn *b1;
+	TBitBtn *b2;
+	TBitBtn *b3;
+    TBitBtn *b4;
+	TStringGrid *sg1;
+	TStringGrid *sg2;
+	TLabel *Ei;
+	TLabel *kpd;
+	TLabel *I;
+	TLabel *U;
+	TLabel *temp1;
+	TLabel *temp2;
+	TCheckBox *ch1;
+	TCheckBox *ch2;
+	TSaveDialog *SD;
+	TMemo *memo;
+	void __fastcall ed1Exit(TObject *Sender);
+	void __fastcall ed2Exit(TObject *Sender);
+	void __fastcall ed3Exit(TObject *Sender);
+	void __fastcall ed4Exit(TObject *Sender);
+	void __fastcall ed5Exit(TObject *Sender);
+	void __fastcall ed6Exit(TObject *Sender);
+	void __fastcall ed7Exit(TObject *Sender);
+	void __fastcall ed1KeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall ed2KeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall ed3KeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall ed4KeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall ed5KeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall ed6KeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall ed7KeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall ed1Change(TObject *Sender);
+	void __fastcall ed2Change(TObject *Sender);
+	void __fastcall ed3Change(TObject *Sender);
+	void __fastcall ed4Change(TObject *Sender);
+	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall im1MouseEnter(TObject *Sender);
+	void __fastcall im1MouseLeave(TObject *Sender);
+	void __fastcall im2MouseEnter(TObject *Sender);
+	void __fastcall im2MouseLeave(TObject *Sender);
+	void __fastcall im3MouseEnter(TObject *Sender);
+	void __fastcall im3MouseLeave(TObject *Sender);
+	void __fastcall im4MouseEnter(TObject *Sender);
+	void __fastcall im4MouseLeave(TObject *Sender);
+	void __fastcall im5MouseEnter(TObject *Sender);
+	void __fastcall im5MouseLeave(TObject *Sender);
+	void __fastcall im7MouseEnter(TObject *Sender);
+	void __fastcall im7MouseLeave(TObject *Sender);
+	void __fastcall im8MouseEnter(TObject *Sender);
+	void __fastcall im8MouseLeave(TObject *Sender);
+	void __fastcall FormActivate(TObject *Sender);
+	void __fastcall im1Click(TObject *Sender);
+	void __fastcall im2Click(TObject *Sender);
+	void __fastcall im3Click(TObject *Sender);
+	void __fastcall im4Click(TObject *Sender);
+	void __fastcall im5Click(TObject *Sender);
+	void __fastcall im7Click(TObject *Sender);
+	void __fastcall b1Click(TObject *Sender);
+	void __fastcall b2Click(TObject *Sender);
+	void __fastcall b3Click(TObject *Sender);
+	void __fastcall b4Click(TObject *Sender);
+	void __fastcall im8Click(TObject *Sender);
+	void __fastcall ch1Click(TObject *Sender);
+	void __fastcall ch2Click(TObject *Sender);  */
+private:	// User declarations
+public:		// User declarations
+	__fastcall TFProject(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TFProject *FProject;
+//---------------------------------------------------------------------------
+#endif

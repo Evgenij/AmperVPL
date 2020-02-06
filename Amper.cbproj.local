@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.993,C:\Users\Евгений\Desktop\Amper\Unit1.h=C:\Users\Евгений\Documents\Embarcadero\Studio\Projects\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.872,C:\Users\Евгений\Desktop\Amper\Unit1.h=C:\Users\Евгений\Desktop\Amper\Elements.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.924,C:\Users\Евгений\Desktop\Amper\Unit1.h=C:\Users\Евгений\Desktop\Amper\Value_for_6.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.794,C:\Users\Евгений\Desktop\Amper\Unit1.h=C:\Users\Евгений\Desktop\Amper\Components.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.473,C:\Users\Евгений\Desktop\Amper\lab1_info.dfm=C:\Users\Евгений\Desktop\Amper\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.701,C:\Users\Евгений\Desktop\Amper\Lab.dfm=C:\Users\Евгений\Desktop\Amper\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.351,C:\Users\Евгений\Desktop\релиз 0.9\Projects.cpp=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.594,=C:\Users\Евгений\Desktop\релиз 0.9\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.554,C:\Users\Евгений\Desktop\релиз 0.9\info.dfm=C:\Users\Евгений\Desktop\релиз 0.9\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.230,C:\Users\Евгений\Desktop\Amper\AmperPCH1.h=C:\Users\Евгений\Desktop\Amper\Project1PCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.924,C:\Users\Евгений\Desktop\Amper\Unit1.dfm=C:\Users\Евгений\Desktop\Amper\Value_for_6.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.846,C:\Users\Евгений\Desktop\Amper\Battery.h=C:\Users\Евгений\Desktop\Amper\Unit4.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.082,C:\Users\Евгений\Desktop\Amper\MainMenu.h=C:\Users\Евгений\Desktop\Amper\Unit3.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.392,C:\Users\Евгений\Desktop\Amper\Loading.cpp=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.339,C:\Users\Евгений\Desktop\Amper\Loading.cpp=C:\Users\Евгений\Desktop\Amper\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.993,C:\Users\Евгений\Desktop\Amper\Unit1.dfm=C:\Users\Евгений\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.841,C:\Users\Евгений\Desktop\Amper\Answer.cpp=C:\Users\Евгений\Desktop\Amper\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.411,=C:\Users\Евгений\Desktop\Amper\Unit4.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.487,=C:\Users\Евгений\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.058,C:\Users\Евгений\Desktop\Amper\Value_tabl.h=C:\Users\Евгений\Desktop\Amper\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.490,C:\Users\Евгений\Desktop\Amper\lab1_dop.cpp=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.055,C:\Users\Евгений\Desktop\Amper\lab1_dop.cpp=C:\Users\Евгений\Desktop\Amper\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.280,C:\Users\Евгений\Desktop\Amper\Amper.cbproj=C:\Users\Евгений\Desktop\Amper\Project1.cbproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.701,C:\Users\Евгений\Desktop\Amper\Lab.h=C:\Users\Евгений\Desktop\Amper\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.055,C:\Users\Евгений\Desktop\Amper\lab1_dop.h=C:\Users\Евгений\Desktop\Amper\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.055,C:\Users\Евгений\Desktop\Amper\lab1_dop.dfm=C:\Users\Евгений\Desktop\Amper\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.645,C:\Users\Евгений\Desktop\Amper\Projects.cpp=C:\Users\Евгений\Desktop\Amper\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.871,C:\Users\Евгений\Desktop\релиз 0.9\MainMenu.cpp=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.841,C:\Users\Евгений\Desktop\Amper\Answer.dfm=C:\Users\Евгений\Desktop\Amper\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.058,C:\Users\Евгений\Desktop\Amper\Value_tabl.cpp=C:\Users\Евгений\Desktop\Amper\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.473,C:\Users\Евгений\Desktop\Amper\lab1_info.h=C:\Users\Евгений\Desktop\Amper\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.058,C:\Users\Евгений\Desktop\Amper\Value_tabl.dfm=C:\Users\Евгений\Desktop\Amper\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.339,C:\Users\Евгений\Desktop\Amper\Loading.h=C:\Users\Евгений\Desktop\Amper\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.708,C:\Users\Евгений\Desktop\Amper\Menu.cpp=C:\Users\Евгений\Desktop\Amper\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.645,C:\Users\Евгений\Desktop\Amper\Projects.dfm=C:\Users\Евгений\Desktop\Amper\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.147,C:\Users\Евгений\Desktop\Amper\Value_for_6.cpp=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.082,C:\Users\Евгений\Desktop\Amper\MainMenu.cpp=C:\Users\Евгений\Desktop\Amper\Unit3.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.708,C:\Users\Евгений\Desktop\Amper\Menu.dfm=C:\Users\Евгений\Desktop\Amper\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.369,C:\Users\Евгений\Desktop\Amper\Components.cpp=C:\Users\Евгений\Desktop\Amper\Elements.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.374,C:\Users\Евгений\Desktop\Amper\MainWindow.dfm=C:\Users\Евгений\Desktop\Amper\Unit2.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.841,C:\Users\Евгений\Desktop\Amper\Answer.h=C:\Users\Евгений\Desktop\Amper\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.554,C:\Users\Евгений\Desktop\релиз 0.9\info.h=C:\Users\Евгений\Desktop\релиз 0.9\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.221,C:\Users\Евгений\Desktop\Amper\Elements.cpp=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.708,C:\Users\Евгений\Desktop\Amper\Menu.h=C:\Users\Евгений\Desktop\Amper\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.701,C:\Users\Евгений\Desktop\Amper\Lab.cpp=C:\Users\Евгений\Desktop\Amper\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.846,C:\Users\Евгений\Desktop\Amper\Battery.cpp=C:\Users\Евгений\Desktop\Amper\Unit4.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.339,C:\Users\Евгений\Desktop\Amper\Loading.dfm=C:\Users\Евгений\Desktop\Amper\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.554,C:\Users\Евгений\Desktop\релиз 0.9\info.cpp=C:\Users\Евгений\Desktop\релиз 0.9\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.473,C:\Users\Евгений\Desktop\Amper\lab1_info.cpp=C:\Users\Евгений\Desktop\Amper\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.820,=C:\Users\Евгений\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.645,C:\Users\Евгений\Desktop\Amper\Projects.h=C:\Users\Евгений\Desktop\Amper\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.205,C:\Users\Евгений\Desktop\Amper\Project1.cbproj=C:\Users\Евгений\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.374,C:\Users\Евгений\Desktop\Amper\MainWindow.h=C:\Users\Евгений\Desktop\Amper\Unit2.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.369,C:\Users\Евгений\Desktop\Amper\Components.h=C:\Users\Евгений\Desktop\Amper\Elements.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.924,C:\Users\Евгений\Desktop\Amper\Unit1.cpp=C:\Users\Евгений\Desktop\Amper\Value_for_6.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.993,C:\Users\Евгений\Desktop\Amper\Unit1.cpp=C:\Users\Евгений\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.253,=C:\Users\Евгений\Desktop\Amper\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.264,=C:\Users\Евгений\Desktop\Amper\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.440,C:\Users\Евгений\Desktop\Amper\Project1PCH1.h=C:\Users\Евгений\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.082,C:\Users\Евгений\Desktop\Amper\MainMenu.dfm=C:\Users\Евгений\Desktop\Amper\Unit3.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.872,C:\Users\Евгений\Desktop\Amper\Unit1.cpp=C:\Users\Евгений\Desktop\Amper\Elements.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.794,C:\Users\Евгений\Desktop\Amper\Unit1.cpp=C:\Users\Евгений\Desktop\Amper\Components.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.284,=C:\Users\Евгений\Desktop\Amper\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.050,=C:\Users\Евгений\Desktop\Amper\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.522,=C:\Users\Евгений\Desktop\Amper\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.374,C:\Users\Евгений\Desktop\Amper\MainWindow.cpp=C:\Users\Евгений\Desktop\Amper\Unit2.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.926,=C:\Users\Евгений\Desktop\Amper\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.640,=C:\Users\Евгений\Desktop\Amper\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.356,=C:\Users\Евгений\Desktop\Amper\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.217,=C:\Users\Евгений\Desktop\Amper\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.878,=C:\Users\Евгений\Desktop\Amper\Unit1.cpp</Transaction>
+  </Transactions>
+	<BT_BuildType>Debug</BT_BuildType>
+</BorlandProject>
